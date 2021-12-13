@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { IoBagHandleSharp } from "react-icons/io5";
-import { BsCart2 } from "react-icons/bs";
-import { BsChevronDown } from "react-icons/bs";
-import "./Header.css";
+import React, { Component } from 'react';
+
+import { BsCart2 } from 'react-icons/bs';
+import { BsChevronDown } from 'react-icons/bs';
+import './Header.css';
 
 export default class Header extends Component {
   render() {
@@ -22,7 +22,7 @@ export default class Header extends Component {
           </ul>
         </div>
         <div className="bag-section">
-          <IoBagHandleSharp size={22} color={"#5ece7b"} />
+          <img src="./images/bag-icon.png" alt="" />
         </div>
         <div className="cart-section">
           <div className="currencyAmount">$</div>

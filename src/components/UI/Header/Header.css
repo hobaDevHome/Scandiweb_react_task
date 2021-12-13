@@ -43,6 +43,9 @@
   display: flex;
   justify-content: center;
 }
+.bag-section img {
+  width: 41px;
+}
 .cart-section {
   flex-basis: 33%;
   align-self: left;

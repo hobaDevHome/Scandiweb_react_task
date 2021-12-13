@@ -1,17 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 :root {
   --greenColor: #5ece7b;
   --modalBg: #d4d3d7;
 }
 body {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: normal;
+  box-sizing: border-box;
 }
 .App {
   width: 75%;
   margin: 0 auto;
-  border: 1px solid red;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
