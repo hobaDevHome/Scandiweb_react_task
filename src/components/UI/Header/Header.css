@@ -1,0 +1,65 @@
+.header-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.links-section {
+  flex-basis: 33%;
+}
+.header-row ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+.cat-link {
+  display: inline-block;
+  padding: 10px;
+  font-size: 16px;
+  padding-bottom: 20px;
+}
+.cat-link a {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+}
+.cat-link a:hover {
+  color: var(--greenColor);
+}
+.cat-link:hover {
+  border-bottom: 2px solid var(--greenColor);
+}
+.cat-link.acitve-cat {
+  color: var(--greenColor);
+  border-bottom: 2px solid var(--greenColor);
+}
+.links-section {
+  font-size: 16px;
+}
+.bag-section {
+  flex-basis: 33%;
+  display: flex;
+  justify-content: center;
+}
+.cart-section {
+  flex-basis: 33%;
+  align-self: left;
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.currencyAmount {
+  font-size: 12px;
+  margin-right: 10px;
+}
+.currency {
+  margin-right: 10px;
+}
+.cart-icon,
+.currency,
+.currencyAmount {
+  cursor: pointer;
+}
