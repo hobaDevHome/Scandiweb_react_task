@@ -3,11 +3,10 @@ import "./Cart.css";
 import SizeButton from "../../UI/Buttons/SizeButton";
 
 import ProdcutDetailsImage from "./../PDP/ProdcutDetailsImage";
+import AddRemove from "../../UI/Buttons/AddRemove";
 
 export default class CartItemMain extends Component {
   render() {
-    const detailsImages = ["pro-1.jpg", "pro-2.jpg", "pro-4.jpg", "pro-3.jpg"];
-
     const sizeButtons = [
       { data: "XS", checked: false },
       { data: "S", checked: true },
@@ -29,12 +28,12 @@ export default class CartItemMain extends Component {
         </div>
         <div className="cart-item-images-quantity">
           <div className="quantity-div">
-            <div className="add">+</div>
+            <AddRemove>+</AddRemove>
             <div className="quantity">1</div>
-            <div className="remove">-</div>
+            <AddRemove>-</AddRemove>
           </div>
-          <div className="details-pic-div">
-            <ProdcutDetailsImage thumbSrc={"pro-2.jpg"} />
+          <div className="cart-item-pic-div">
+            <img src="./images/pro-2.jpg" alt="" />
           </div>
         </div>
       </div>

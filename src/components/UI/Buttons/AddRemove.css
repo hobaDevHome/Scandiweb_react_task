@@ -1,0 +1,11 @@
+.addremove-div {
+  width: 45px;
+  height: 45px;
+  border: 1px solid black;
+  font-size: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Courier New", Courier, monospace;
+  cursor: pointer;
+}
