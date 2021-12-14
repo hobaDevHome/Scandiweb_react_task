@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
+
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 export default class CartItemCarousel extends Component {
   state = { current: 0 };
@@ -35,11 +36,11 @@ export default class CartItemCarousel extends Component {
   render() {
     return (
       <section className="slider">
-        <FaArrowAltCircleLeft
+        <FiChevronLeft
           className="left-arrow"
           onClick={this.prevSlide.bind(this)}
         />
-        <FaArrowAltCircleRight
+        <FiChevronRight
           className="right-arrow"
           onClick={this.nextSlide.bind(this)}
         />
