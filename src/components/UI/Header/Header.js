@@ -30,7 +30,7 @@ export default class Header extends Component {
             <BsChevronDown size={14} />
           </div>
           <div className="cart-icon">
-            <BsCart2 size={14} />
+            <BsCart2 size={20} />
           </div>
         </div>
       </div>
