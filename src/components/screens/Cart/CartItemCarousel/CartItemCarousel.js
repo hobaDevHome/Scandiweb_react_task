@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./CartItemCarousel.css";
 
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
@@ -37,11 +38,15 @@ export default class CartItemCarousel extends Component {
     return (
       <section className="slider">
         <FiChevronLeft
-          className="left-arrow"
+          className={`left-arrow ${this.length > 1 ? "" : "arrows-off"}`}
+          color="white"
+          size={24}
           onClick={this.prevSlide.bind(this)}
         />
         <FiChevronRight
-          className="right-arrow"
+          className={`right-arrow ${this.length > 1 ? "" : "arrows-off"}`}
+          color="white"
+          size={24}
           onClick={this.nextSlide.bind(this)}
         />
         {this.SliderData.map((slide, index) => {
@@ -53,7 +58,7 @@ export default class CartItemCarousel extends Component {
               key={index}
             >
               {index === this.state.current && (
-                <img src={slide.image} alt="travel image" className="image" />
+                <img src={slide.image} alt="travel" className="slide-image" />
               )}
             </div>
           );

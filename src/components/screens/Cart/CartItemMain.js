@@ -34,7 +34,6 @@ export default class CartItemMain extends Component {
             <AddRemove>-</AddRemove>
           </div>
           <div className="cart-item-pic-div">
-            {/* <img src="./images/pro-2.jpg" alt="" /> */}
             <CartItemCarousel />
           </div>
         </div>
