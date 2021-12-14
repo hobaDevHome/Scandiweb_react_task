@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Acme&family=Big+Shoulders+Display:wght@700&family=Kumbh+Sans:wght@400;700&family=Lexend+Deca&family=Source+Sans+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Acme&family=Big+Shoulders+Display:wght@700&family=Kumbh+Sans:wght@400;700&family=Lexend+Deca&family=Source+Sans+Pro&display=swap");
 .size-button {
   width: 63px;
   height: 45px;
@@ -12,7 +12,7 @@
   font-weight: normal;
   font-size: 16px;
   line-height: 18px;
-  margin: 6px;
+  margin-right: 6px;
   cursor: pointer;
 }
 

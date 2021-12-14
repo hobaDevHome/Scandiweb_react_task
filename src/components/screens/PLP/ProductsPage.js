@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import './ProductsPage.css';
-import ProductItem from './ProductItem';
+import React, { Component } from "react";
+import "./ProductsPage.css";
+import ProductItem from "./ProductItem";
 
-const temp = [1, 2, 3, 4, 5, 6];
 export default class ProductsPage extends Component {
   render() {
     return (

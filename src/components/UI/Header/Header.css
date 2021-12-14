@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 .header-row {
   width: 100%;
   display: flex;
@@ -19,10 +20,10 @@
   padding: 10px;
   font-size: 16px;
   padding-bottom: 20px;
+  color: black;
 }
 .cat-link a {
   text-decoration: none;
-  color: black;
   text-transform: uppercase;
 }
 .cat-link a:hover {
@@ -32,8 +33,10 @@
   border-bottom: 2px solid var(--greenColor);
 }
 .cat-link.acitve-cat {
-  color: var(--greenColor);
   border-bottom: 2px solid var(--greenColor);
+}
+.cat-link.acitve-cat a {
+  color: var(--greenColor);
 }
 .links-section {
   font-size: 16px;
@@ -65,4 +68,32 @@
 .currency,
 .currencyAmount {
   cursor: pointer;
+}
+
+.cart-icon {
+  position: relative;
+}
+.cart-badge {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: black;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  text-transform: uppercase;
+  color: #ffffff;
+  right: -12px;
+  top: -8px;
+  opacity: 0;
+}
+.cart-badge-visible .cart-badge {
+  opacity: 1;
 }

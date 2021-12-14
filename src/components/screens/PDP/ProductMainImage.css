@@ -1,0 +1,8 @@
+.mainImage-container {
+  margin-right: 100px;
+  cursor: pointer;
+}
+.product-mainImage {
+  width: 600px;
+  height: auto;
+}

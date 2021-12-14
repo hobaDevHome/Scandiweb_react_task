@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Roboto+Condensed&display=swap");
+.prodcut-desc-container {
+  margin-top: 80px;
+  display: flex;
+
+  width: 100%;
+}
+.details-pic-div {
+  margin-right: 40px;
+}
+
+.prodcut-data-div {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.prod-title {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 27px;
+  margin-bottom: 16px;
+}
+
+.prod-shore-desc {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 27px;
+  margin-bottom: 40px;
+}
+
+.size {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 18px;
+  margin-bottom: 8px;
+}
+.sizes-buttons {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  justify-content: flex-start;
+}
+.price-amount {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 18px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.prod-long-desc {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 159.96%;
+}

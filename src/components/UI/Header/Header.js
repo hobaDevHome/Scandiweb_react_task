@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { BsCart2 } from 'react-icons/bs';
-import { BsChevronDown } from 'react-icons/bs';
-import './Header.css';
+import { BsCart2 } from "react-icons/bs";
+import { BsChevronDown } from "react-icons/bs";
+import "./Header.css";
 
 export default class Header extends Component {
   render() {
+    const cartItems = 2;
     return (
       <div className="header-row">
         <div className="links-section">
@@ -29,8 +30,12 @@ export default class Header extends Component {
           <div className="currency">
             <BsChevronDown size={14} />
           </div>
-          <div className="cart-icon">
+
+          <div
+            className={`cart-icon ${cartItems > 0 ? "cart-badge-visible" : ""}`}
+          >
             <BsCart2 size={20} />
+            <div className="cart-badge">{cartItems}</div>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Acme&family=Big+Shoulders+Display:wght@700&family=Kumbh+Sans:wght@400;700&family=Lexend+Deca&family=Source+Sans+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Acme&family=Big+Shoulders+Display:wght@700&family=Kumbh+Sans:wght@400;700&family=Lexend+Deca&family=Source+Sans+Pro&display=swap");
 * {
   box-sizing: border-box;
 }
@@ -15,7 +15,7 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 120%;
-  margin: 6px;
+
   color: white;
   text-transform: uppercase;
   cursor: pointer;
