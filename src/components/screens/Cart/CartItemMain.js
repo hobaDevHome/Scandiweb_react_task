@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Cart.css";
 import SizeButton from "../../UI/Buttons/SizeButton";
 
-import ProdcutDetailsImage from "./../PDP/ProdcutDetailsImage";
+import CartItemCarousel from "./CartItemCarousel/CartItemCarousel";
 import AddRemove from "../../UI/Buttons/AddRemove";
 
 export default class CartItemMain extends Component {
@@ -11,6 +11,7 @@ export default class CartItemMain extends Component {
       { data: "XS", checked: false },
       { data: "S", checked: true },
     ];
+
     return (
       <div className="main-cart-item">
         <div className="cart-item-data">
@@ -33,7 +34,8 @@ export default class CartItemMain extends Component {
             <AddRemove>-</AddRemove>
           </div>
           <div className="cart-item-pic-div">
-            <img src="./images/pro-2.jpg" alt="" />
+            {/* <img src="./images/pro-2.jpg" alt="" /> */}
+            <CartItemCarousel />
           </div>
         </div>
       </div>
