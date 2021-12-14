@@ -5,7 +5,7 @@
   width: 100%;
 }
 .cart-title {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: bold;
   font-size: 32px;
@@ -29,7 +29,7 @@
 }
 
 .cart-item-title {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: 600;
   font-size: 30px;
@@ -38,7 +38,7 @@
 }
 
 .cart-item-shore-desc {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: normal;
   font-size: 30px;
@@ -56,7 +56,7 @@
   justify-content: flex-start;
 }
 .price-amount {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -78,7 +78,7 @@
   align-items: center;
 }
 .quantity {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: bold;
   font-size: 24px;

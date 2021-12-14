@@ -1,0 +1,28 @@
+.backdrop {
+  position: fixed;
+  top: 74px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.cart-modal {
+  position: fixed;
+  top: 74px;
+  right: 240px;
+  width: 325px;
+  background-color: white;
+  padding: 1rem;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+  animation: slide-down 300ms ease-out forwards;
+}
+.content {
+  transform: scale(0.8);
+}
+.overlay-div {
+  transform: scale(0.2);
+}

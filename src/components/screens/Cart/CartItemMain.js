@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import "./Cart.css";
-import SizeButton from "../../UI/Buttons/SizeButton";
+import React, { Component } from 'react';
+import './Cart.css';
+import SizeButton from '../../UI/Buttons/SizeButton';
 
-import CartItemCarousel from "./CartItemCarousel/CartItemCarousel";
-import AddRemove from "../../UI/Buttons/AddRemove";
+import CartItemCarousel from './CartItemCarousel/CartItemCarousel';
+import AddRemove from '../../UI/Buttons/AddRemove';
 
 export default class CartItemMain extends Component {
   render() {
     const sizeButtons = [
-      { data: "XS", checked: false },
-      { data: "S", checked: true },
+      { data: 'XS', checked: false },
+      { data: 'S', checked: true },
     ];
 
     return (
