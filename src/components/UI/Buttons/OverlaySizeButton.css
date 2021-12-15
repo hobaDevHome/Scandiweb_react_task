@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Acme&family=Big+Shoulders+Display:wght@700&family=Kumbh+Sans:wght@400;700&family=Lexend+Deca&family=Source+Sans+Pro&display=swap");
-.size-button1 {
-  width: 63px;
-  height: 45px;
+.size-button {
+  width: 24px;
+  height: 24px;
   background-color: white;
   border: 1px solid black;
   display: flex;
@@ -10,13 +10,13 @@
   font-family: Source Sans Pro;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 18px;
   margin-right: 6px;
   cursor: pointer;
 }
 
-.size-button1.size-button-active {
+.size-button.size-button-active {
   background-color: black;
   color: white;
 }

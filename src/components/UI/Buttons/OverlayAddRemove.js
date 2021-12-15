@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./AddRemove.css";
+import "./OverlayAddRemove.css";
 
 export default class AddRemove extends Component {
   render() {
-    return <div className="addremove-div1">{this.props.children}</div>;
+    return <div className="addremove-div">{this.props.children}</div>;
   }
 }

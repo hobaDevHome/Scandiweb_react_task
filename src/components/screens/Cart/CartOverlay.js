@@ -1,8 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
-import SizeButton from '../../UI/Buttons/SizeButton';
-import CartItemMain from './CartItemMain';
-import './CartOverlay.css';
+import React, { Component, Fragment } from "react";
+import ReactDOM from "react-dom";
+import ViewBagButton from "../../UI/Buttons/ViewBagButton";
+import CartItemOverlay from "./CartItemOverlay";
+import WideButton from "../../UI/Buttons/WideButton";
+import "./CartOverlay.css";
 
 class Backdrop extends Component {
   render() {
@@ -20,10 +21,12 @@ class CartModal extends Component {
   }
 }
 
-const portalElement = document.getElementById('overlays');
+const portalElement = document.getElementById("overlays");
 
 export default class CartOverlay extends Component {
   render() {
+    const bagItems = 2;
+    const total = 100;
     return (
       <Fragment>
         {ReactDOM.createPortal(
@@ -32,9 +35,28 @@ export default class CartOverlay extends Component {
         )}
         {ReactDOM.createPortal(
           <CartModal>
-            <CartItemMain className="overlay-div" />
-            <SizeButton>view bag</SizeButton>
-            <button onClick={this.props.onHide}>close the modal</button>
+            <div className="overlay-item-titles">My Bag. {bagItems} items</div>
+            <div className="overlay-items-containter">
+              <CartItemOverlay />
+              <CartItemOverlay />
+            </div>
+            <div className="overlay-total-containt">
+              <div className="overlay-item-titles">Total {bagItems} items</div>
+              <div className="overlay-item-titles"> ${total} items</div>
+            </div>
+            <div className="overlay-buttons-div">
+              <div className="btn">
+                <ViewBagButton>view bag</ViewBagButton>
+              </div>
+              <div className="btn">
+                <WideButton
+                  onClick={this.props.onHide}
+                  style={{ fontSize: "14px", fontWeight: "normal" }}
+                >
+                  check out
+                </WideButton>
+              </div>
+            </div>
           </CartModal>,
           portalElement
         )}

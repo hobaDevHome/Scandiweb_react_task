@@ -3,8 +3,8 @@
   box-sizing: border-box;
 }
 .wide-button {
-  width: 292px;
-  height: 52px;
+  max-width: 292px;
+  height: 45px;
   padding: 16px 32px;
   background-color: var(--greenColor);
   display: flex;
