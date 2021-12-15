@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 .header-row {
   width: 100%;
@@ -7,6 +7,7 @@
   justify-content: space-between;
   align-items: center;
   height: 80px;
+  position: relative;
 }
 .links-section {
   flex-basis: 33%;
@@ -60,11 +61,12 @@
   align-items: center;
 }
 .currencyAmount {
-  font-size: 12px;
-  margin-right: 10px;
+  font-size: 18px;
+  margin-right: 5px;
 }
 .currency {
   margin-right: 10px;
+  top: 100px;
 }
 .cart-icon,
 .currency,
@@ -81,7 +83,7 @@
   height: 20px;
   border-radius: 10px;
   background-color: black;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
@@ -98,4 +100,32 @@
 }
 .cart-badge-visible .cart-badge {
   opacity: 1;
+}
+.currency-list {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 114px;
+  height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  align-items: center;
+  background-color: #fff;
+  filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+}
+
+.currency-item {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 160%;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.currency-icons-section {
+  display: flex;
 }

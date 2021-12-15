@@ -41,8 +41,8 @@ export default class CartOverlay extends Component {
               <CartItemOverlay />
             </div>
             <div className="overlay-total-containt">
-              <div className="overlay-item-titles">Total {bagItems} items</div>
-              <div className="overlay-item-titles"> ${total} items</div>
+              <div className="overlay-item-titles">Total </div>
+              <div className="overlay-item-titles"> $ {total} </div>
             </div>
             <div className="overlay-buttons-div">
               <div className="btn">
