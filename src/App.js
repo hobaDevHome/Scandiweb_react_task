@@ -9,24 +9,37 @@ import ProductDescription from "./components/screens/PDP/ProductDescription";
 
 import Cart from "./components/screens/Cart/Cart";
 
-function App() {
-  console.log(Producuts);
-  return (
-    <div className="App">
-      <Header />
-      <Switch>
-        <Route exact path="/">
-          <ProductsPage />
-        </Route>
-        <Route path="/cart">
-          <Cart />
-        </Route>
-        <Route path="/detials/:porductid">
-          <ProductDescription />
-        </Route>
-      </Switch>
-    </div>
-  );
-}
+import { EXCHANGE_RATES } from "./Apollo";
 
-export default App;
+import React, { Component } from "react";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+  gql,
+} from "@apollo/client";
+
+export default class App extends Component {
+  render() {
+    console.log(EXCHANGE_RATES);
+
+    return (
+      <div className="App">
+        <Header />
+
+        <Switch>
+          <Route exact path="/">
+            <ProductsPage />
+          </Route>
+          <Route path="/cart">
+            <Cart />
+          </Route>
+          <Route path="/detials/:porductid">
+            <ProductDescription />
+          </Route>
+        </Switch>
+      </div>
+    );
+  }
+}
