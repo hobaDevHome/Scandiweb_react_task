@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CartOverlay from "../../screens/Cart/CartOverlay";
 import { BsCart2 } from "react-icons/bs";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 import "./Header.css";
 
@@ -10,6 +11,7 @@ export default class Header extends Component {
 
   showCartOverlay() {
     this.setState({ showCartModal: true });
+    this.hideCurrencyList();
   }
   hideCartOverlay() {
     this.setState({ showCartModal: false });
@@ -22,6 +24,7 @@ export default class Header extends Component {
     this.setState({ showCurrency: false });
   }
   toggleCurrencyList() {
+    this.hideCartOverlay();
     this.setState({ showCurrency: !this.state.showCurrency });
   }
   render() {
@@ -67,7 +70,9 @@ export default class Header extends Component {
           </ul>
         </div>
         <div className="bag-section">
-          <img src="./images/bag-icon.png" alt="" />
+          <Link to="/">
+            <img src="./images/bag-icon.png" alt="" />
+          </Link>
         </div>
         <div className="cart-section">
           <div

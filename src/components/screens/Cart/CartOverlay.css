@@ -49,3 +49,7 @@
 .btn {
   flex-basis: 50%;
 }
+
+.link-router a {
+  text-decoration: none;
+}

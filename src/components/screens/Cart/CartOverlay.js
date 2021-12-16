@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import ViewBagButton from "../../UI/Buttons/ViewBagButton";
 import CartItemOverlay from "./CartItemOverlay";
 import WideButton from "../../UI/Buttons/WideButton";
+import { Link } from "react-router-dom";
+
 import "./CartOverlay.css";
 
 class Backdrop extends Component {
@@ -45,9 +47,14 @@ export default class CartOverlay extends Component {
               <div className="overlay-item-titles"> $ {total} </div>
             </div>
             <div className="overlay-buttons-div">
-              <div className="btn">
-                <ViewBagButton>view bag</ViewBagButton>
-              </div>
+              <Link
+                to="/cart"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <div className="btn" onClick={this.props.onHide}>
+                  <ViewBagButton>view bag</ViewBagButton>
+                </div>
+              </Link>
               <div className="btn">
                 <WideButton
                   onClick={this.props.onHide}

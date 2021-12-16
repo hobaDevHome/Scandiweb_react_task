@@ -4,8 +4,14 @@ import SizeButton from "../../UI/Buttons/SizeButton";
 import WideButton from "../../UI/Buttons/WideButton";
 import ProdcutDetailsImage from "./ProdcutDetailsImage";
 import ProdcutMainImage from "./ProductMainImage";
+import { withRouter } from "react-router-dom";
 
-export default class ProductDescription extends Component {
+class ProductDescription extends Component {
+  state = { id: undefined };
+  componentDidMount() {
+    const id = this.props.match.params.porductid;
+    this.setState({ id: id });
+  }
   render() {
     const detailsImages = ["pro-1.jpg", "pro-2.jpg", "pro-4.jpg", "pro-3.jpg"];
     const currentImage = "pro-2.jpg";
@@ -27,7 +33,7 @@ export default class ProductDescription extends Component {
           <ProdcutMainImage mainImage={currentImage} />
         </div>
         <div className="prodcut-data-div">
-          <div className="prod-title">Apollo</div>
+          <div className="prod-title">Apollo -id {this.state.id}</div>
           <div className="prod-shore-desc">Running Short</div>
           <div className="size">SIZE:</div>
           <div className="sizes-buttons">
@@ -50,3 +56,5 @@ export default class ProductDescription extends Component {
     );
   }
 }
+
+export default withRouter(ProductDescription);
