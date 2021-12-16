@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import CartOverlay from "../../screens/Cart/CartOverlay";
-import { BsCart2 } from "react-icons/bs";
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import CartOverlay from '../../screens/Cart/CartOverlay';
+import { BsCart2 } from 'react-icons/bs';
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
-import "./Header.css";
+import './Header.css';
 
 export default class Header extends Component {
   state = { showCartModal: false, showCurrency: false };
@@ -59,10 +59,10 @@ export default class Header extends Component {
         <div className="links-section">
           <ul>
             <li className="cat-link acitve-cat">
-              <a href="#">women</a>
+              <a href=" #">women</a>
             </li>
             <li className="cat-link">
-              <a href="#">men</a>
+              <a href=" #">men</a>
             </li>
             <li className="cat-link">
               <a href=" #">kids</a>
@@ -91,7 +91,7 @@ export default class Header extends Component {
 
           <div
             onClick={this.showCartOverlay.bind(this)}
-            className={`cart-icon ${cartItems > 0 ? "cart-badge-visible" : ""}`}
+            className={`cart-icon ${cartItems > 0 ? 'cart-badge-visible' : ''}`}
           >
             <BsCart2 size={20} />
             <div className="cart-badge">{cartItems}</div>

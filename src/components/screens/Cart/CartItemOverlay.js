@@ -1,15 +1,14 @@
-import React, { Component } from "react";
-import "./CartItemOverlay.css";
-import OverlaySizeButton from "../../UI/Buttons/OverlaySizeButton";
+import React, { Component } from 'react';
+import './CartItemOverlay.css';
+import OverlaySizeButton from '../../UI/Buttons/OverlaySizeButton';
 
-import CartItemCarousel from "./CartItemCarousel/CartItemCarousel";
-import OverlayAddRemove from "../../UI/Buttons/OverlayAddRemove";
+import OverlayAddRemove from '../../UI/Buttons/OverlayAddRemove';
 
 export default class CartItemOverlay extends Component {
   render() {
     const sizeButtons = [
-      { data: "XS", checked: false },
-      { data: "S", checked: true },
+      { data: 'XS', checked: false },
+      { data: 'S', checked: true },
     ];
 
     return (

@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { BsCart2 } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { BsCart2 } from 'react-icons/bs';
+// import { Link } from "react-router-dom";
 
-import "./ProductItem.css";
+import './ProductItem.css';
 
 class ProductItem extends Component {
   render() {
     return (
-      <div className={this.props.inStock ? "item out-of-stock" : "item"}>
+      <div className={this.props.inStock ? 'item out-of-stock' : 'item'}>
         <div className="item-image-container">
           <img
             className="item-image out-of-stock"
@@ -20,10 +20,10 @@ class ProductItem extends Component {
         </div>
         <div
           className={
-            this.props.inCart ? "item-cart-icon item-in-cart" : "item-cart-icon"
+            this.props.inCart ? 'item-cart-icon item-in-cart' : 'item-cart-icon'
           }
         >
-          <BsCart2 size={20} color={"white"} />
+          <BsCart2 size={20} color={'white'} />
         </div>
 
         <p className="title">Apollo Running Short</p>
