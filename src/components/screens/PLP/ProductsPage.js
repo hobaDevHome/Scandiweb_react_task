@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ProductsPage.css';
 import ProductItem from './ProductItem';
-import { Link } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 
 class ProductsPage extends Component {
@@ -14,9 +14,6 @@ class ProductsPage extends Component {
   };
 
   render() {
-    console.log('starting selectedList', this.props.selectedList.products);
-
-    console.log('starting productsList', this.props.productsList.products);
     return (
       <div className="products">
         <div className="cat-name-containger">
@@ -26,13 +23,12 @@ class ProductsPage extends Component {
           {this.props.selectedList.products !== undefined &&
             this.props.selectedList.products.map((product) => {
               return (
-                <Link
+                <ProductItem
                   key={product.id}
-                  to="/detials/1"
-                  style={{ textDecoration: 'none', color: 'black' }}
-                >
-                  <ProductItem inStock={product.inStock} inCart={false} />
-                </Link>
+                  inStock={product.inStock}
+                  inCart={false}
+                  id={product.id}
+                />
               );
             })}
         </div>
@@ -45,15 +41,7 @@ const mapStateToProps = (state) => {
   return {
     selectedList: state.selectedList,
     category: state.category,
-    query: state.query,
-    productsList: state.productsList,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    // add: () => dispatch(addAction()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsPage);
+export default connect(mapStateToProps, null)(ProductsPage);
