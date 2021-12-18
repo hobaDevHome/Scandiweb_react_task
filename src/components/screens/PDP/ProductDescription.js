@@ -16,6 +16,7 @@ class ProductDescription extends Component {
   }
 
   selecteProduct = {};
+  price = 0;
 
   sizeButtons = [
     { data: 'XS', checked: false },
@@ -34,7 +35,10 @@ class ProductDescription extends Component {
       );
 
       this.detailsImages = this.selecteProduct.gallery;
-      console.log('product item', this.selecteProduct);
+      this.price = this.selecteProduct.prices.find(
+        (price) => price.currency.symbol === this.props.currency
+      ).amount;
+      console.log('product item', this.price.amount);
 
       return (
         <div className="prodcut-desc-container">
@@ -62,7 +66,7 @@ class ProductDescription extends Component {
               })}
             </div>
             <div className="size">PRICE:</div>
-            <div className="price-amount">{this.props.currency} 50.00</div>
+            <div className="price-amount">{`${this.props.currency} ${this.price}`}</div>
             <AddToCartComp />
             <p className="prod-long-desc">
               <span
