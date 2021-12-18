@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { BsCart2 } from 'react-icons/bs';
 import { connect } from 'react-redux';
+import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
+import AddRemove from '../../UI/Buttons/AddRemove';
+import SizeButton from '../../UI/Buttons/OverlaySizeButton';
+import WideButton from '../../UI/Buttons/WideButton';
 
 import './ProductItem.css';
 
@@ -30,6 +34,7 @@ class ProductItem extends Component {
 
         <p className="title">Apollo Running Short</p>
         <p className="price">{this.props.currency}50.00</p>
+        <AddToCartComp />
       </div>
     );
   }

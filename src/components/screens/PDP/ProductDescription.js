@@ -6,6 +6,7 @@ import ProdcutDetailsImage from './ProdcutDetailsImage';
 import ProdcutMainImage from './ProductMainImage';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
 
 class ProductDescription extends Component {
   state = { id: undefined };
@@ -46,7 +47,7 @@ class ProductDescription extends Component {
           </div>
           <div className="size">PRICE:</div>
           <div className="price-amount">{this.props.currency} 50.00</div>
-          <WideButton>ADD TO CART</WideButton>
+          <AddToCartComp />
           <p className="prod-long-desc">
             Find stunning women's cocktail dresses and party dresses. Stand out
             in lace and metallic cocktail dresses and party dresses from all

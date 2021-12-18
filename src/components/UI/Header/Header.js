@@ -88,19 +88,25 @@ class Header extends Component {
         <div className="links-section">
           <ul>
             <li
-              className="cat-link acitve-cat"
+              className={`cat-link ${
+                this.props.category === 'all' ? 'acitve-cat' : ''
+              }`}
               onClick={() => this.onChosseCatHandler('all')}
             >
               <p>all</p>
             </li>
             <li
-              className="cat-link"
+              className={`cat-link ${
+                this.props.category === 'clothes' ? 'acitve-cat' : ''
+              }`}
               onClick={() => this.onChosseCatHandler('clothes')}
             >
               <p>clothes</p>
             </li>
             <li
-              className="cat-link"
+              className={`cat-link ${
+                this.props.category === 'tech' ? 'acitve-cat' : ''
+              }`}
               onClick={() => this.onChosseCatHandler('tech')}
             >
               <p>tech</p>

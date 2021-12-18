@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "./OverlayAddRemove.css";
+import React, { Component } from 'react';
+import './OverlayAddRemove.css';
 
 export default class AddRemove extends Component {
   render() {

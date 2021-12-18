@@ -31,41 +31,10 @@ class ProductsPage extends Component {
                   to="/detials/1"
                   style={{ textDecoration: 'none', color: 'black' }}
                 >
-                  <ProductItem />
+                  <ProductItem inStock={product.inStock} inCart={false} />
                 </Link>
               );
             })}
-
-          {/* <Link
-            to="/detials/2"
-            style={{ textDecoration: 'none', color: 'black' }}
-          >
-            <ProductItem />
-          </Link>
-          <Link
-            to="/detials/3"
-            style={{ textDecoration: 'none', color: 'black' }}
-          >
-            <ProductItem inStock={true} id="3" />
-          </Link>
-          <Link
-            to="/detials/4"
-            style={{ textDecoration: 'none', color: 'black' }}
-          >
-            <ProductItem />
-          </Link>
-          <Link
-            to="/detials/5"
-            style={{ textDecoration: 'none', color: 'black' }}
-          >
-            <ProductItem inCart={true} />
-          </Link>
-          <Link
-            to="/detials/6"
-            style={{ textDecoration: 'none', color: 'black' }}
-          >
-            <ProductItem />
-          </Link> */}
         </div>
       </div>
     );
