@@ -3,10 +3,15 @@ import CartOverlay from '../../screens/Cart/CartOverlay';
 import { BsCart2 } from 'react-icons/bs';
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {
+  changeCurrency,
+  getSelectedProductsLists,
+} from '../../../store/actions';
 
 import './Header.css';
 
-export default class Header extends Component {
+class Header extends Component {
   state = { showCartModal: false, showCurrency: false };
 
   showCartOverlay() {
@@ -27,29 +32,53 @@ export default class Header extends Component {
     this.hideCartOverlay();
     this.setState({ showCurrency: !this.state.showCurrency });
   }
+
+  onChooseCurrencyHandler(newCurrency) {
+    // console.log('handler called whit', newCurrency);
+
+    this.props.changeCurrency(newCurrency);
+
+    this.hideCurrencyList();
+  }
+
+  onChosseCatHandler(choosecCat) {
+    this.props.getSelectedProductsLists(choosecCat);
+  }
   render() {
-    const cartItems = 2;
+    const cartItems = this.props.cartItems.length;
     return (
       <div className="header-row">
         {this.state.showCurrency && (
           <div className="currency-list">
             <div
               className="currency-item"
-              onClick={this.hideCurrencyList.bind(this)}
+              onClick={() => this.onChooseCurrencyHandler('$')}
             >
               $ USD
             </div>
             <div
               className="currency-item"
-              onClick={this.hideCurrencyList.bind(this)}
+              onClick={() => this.onChooseCurrencyHandler('£')}
             >
-              € EUR
+              £ GBP
             </div>
             <div
               className="currency-item"
-              onClick={this.hideCurrencyList.bind(this)}
+              onClick={() => this.onChooseCurrencyHandler('A$')}
+            >
+              A$ AUD
+            </div>
+            <div
+              className="currency-item"
+              onClick={() => this.onChooseCurrencyHandler('¥')}
             >
               ¥ JPY
+            </div>
+            <div
+              className="currency-item"
+              onClick={() => this.onChooseCurrencyHandler('₽')}
+            >
+              ₽ RUB
             </div>
           </div>
         )}
@@ -58,14 +87,23 @@ export default class Header extends Component {
         )}
         <div className="links-section">
           <ul>
-            <li className="cat-link acitve-cat">
-              <a href=" #">women</a>
+            <li
+              className="cat-link acitve-cat"
+              onClick={() => this.onChosseCatHandler('all')}
+            >
+              <p>all</p>
             </li>
-            <li className="cat-link">
-              <a href=" #">men</a>
+            <li
+              className="cat-link"
+              onClick={() => this.onChosseCatHandler('clothes')}
+            >
+              <p>clothes</p>
             </li>
-            <li className="cat-link">
-              <a href=" #">kids</a>
+            <li
+              className="cat-link"
+              onClick={() => this.onChosseCatHandler('tech')}
+            >
+              <p>tech</p>
             </li>
           </ul>
         </div>
@@ -79,7 +117,7 @@ export default class Header extends Component {
             className="currency-icons-section"
             onClick={this.toggleCurrencyList.bind(this)}
           >
-            <div className="currencyAmount">$</div>
+            <div className="currencyAmount">{this.props.currency}</div>
             <div className="currency">
               {this.state.showCurrency ? (
                 <BsChevronUp size={10} />
@@ -101,3 +139,20 @@ export default class Header extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    currency: state.currency,
+    category: state.category,
+    cartItems: state.cartItems,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeCurrency: (curr) => dispatch(changeCurrency(curr)),
+    getSelectedProductsLists: (cat) => dispatch(getSelectedProductsLists(cat)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

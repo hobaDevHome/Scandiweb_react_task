@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './Cart.css';
 import SizeButton from '../../UI/Buttons/SizeButton';
+import { connect } from 'react-redux';
 
 import CartItemCarousel from './CartItemCarousel/CartItemCarousel';
 import AddRemove from '../../UI/Buttons/AddRemove';
 
-export default class CartItemMain extends Component {
+class CartItemMain extends Component {
   render() {
     const sizeButtons = [
       { data: 'XS', checked: false },
@@ -17,7 +18,7 @@ export default class CartItemMain extends Component {
         <div className="cart-item-data">
           <div className="cart-item-title">Apollo</div>
           <div className="cart-item-shore-desc">Running Short</div>
-          <div className="price-amount">$50.00</div>
+          <div className="price-amount">{this.props.currency}50.00</div>
 
           <div className="sizes-buttons">
             {sizeButtons.map((button) => {
@@ -41,3 +42,17 @@ export default class CartItemMain extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    currency: state.currency,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // add: () => dispatch(addAction()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartItemMain);

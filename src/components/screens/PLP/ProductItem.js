@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { BsCart2 } from 'react-icons/bs';
-// import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
 import './ProductItem.css';
 
 class ProductItem extends Component {
   render() {
+    // console.log(this.props.selectedList[0].products.length);
     return (
       <div className={this.props.inStock ? 'item out-of-stock' : 'item'}>
+        {/* <p>list length is {this.props.selectedList.length}</p> */}
         <div className="item-image-container">
           <img
             className="item-image out-of-stock"
@@ -27,10 +29,25 @@ class ProductItem extends Component {
         </div>
 
         <p className="title">Apollo Running Short</p>
-        <p className="price">$50.00</p>
+        <p className="price">{this.props.currency}50.00</p>
       </div>
     );
   }
 }
 
-export default ProductItem;
+const mapStateToProps = (state) => {
+  return {
+    currency: state.currency,
+    productsList: state.productsList,
+    selectedList: state.selectedList,
+    category: state.category,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // add: () => dispatch(addAction()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductItem);

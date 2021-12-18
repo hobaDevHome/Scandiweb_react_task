@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 import Header from '../src/components/UI/Header/Header';
 import ProductsPage from './components/screens/PLP/ProductsPage';
 import ProductDescription from './components/screens/PDP/ProductDescription';
@@ -9,9 +9,11 @@ import ProductDescription from './components/screens/PDP/ProductDescription';
 import Cart from './components/screens/Cart/Cart';
 import { gql } from '@apollo/client';
 import { clientScandiweb } from './Apollo';
+import { getProductsLists } from './store/actions';
 
-export default class App extends Component {
+class App extends Component {
   state = { categories: undefined };
+
   componentDidMount() {
     clientScandiweb
       .query({
@@ -47,20 +49,27 @@ export default class App extends Component {
           }
         `,
       })
-      .then((result) => this.setState({ categories: result.data.categories }));
+      .then((result) => {
+        this.setState({ categories: result.data.categories });
+
+        this.props.getProductsLists(this.state.categories);
+      });
   }
   render() {
     if (this.state.categories !== undefined) {
-      console.log('cat data', this.state.categories);
+      // console.log('cat data', this.state.categories);
+    }
+    if (this.state.categories === undefined) {
+      return <divf>Loading</divf>;
     }
 
     return (
       <div className="App">
-        <Header />
+        <Header categories={this.state.categories} />
 
         <Switch>
           <Route exact path="/">
-            <ProductsPage />
+            <ProductsPage cats={this.state.categories} />
           </Route>
           <Route path="/cart">
             <Cart />
@@ -73,3 +82,20 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    currency: state.currency,
+    category: state.category,
+    cartItems: state.cartItems,
+    productsList: state.productsList,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getProductsLists: (list) => dispatch(getProductsLists(list)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

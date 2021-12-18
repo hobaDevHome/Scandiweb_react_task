@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import "./ProductDescription.css";
-import SizeButton from "../../UI/Buttons/SizeButton";
-import WideButton from "../../UI/Buttons/WideButton";
-import ProdcutDetailsImage from "./ProdcutDetailsImage";
-import ProdcutMainImage from "./ProductMainImage";
-import { withRouter } from "react-router-dom";
+import React, { Component } from 'react';
+import './ProductDescription.css';
+import SizeButton from '../../UI/Buttons/SizeButton';
+import WideButton from '../../UI/Buttons/WideButton';
+import ProdcutDetailsImage from './ProdcutDetailsImage';
+import ProdcutMainImage from './ProductMainImage';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class ProductDescription extends Component {
   state = { id: undefined };
@@ -13,13 +14,13 @@ class ProductDescription extends Component {
     this.setState({ id: id });
   }
   render() {
-    const detailsImages = ["pro-1.jpg", "pro-2.jpg", "pro-4.jpg", "pro-3.jpg"];
-    const currentImage = "pro-2.jpg";
+    const detailsImages = ['pro-1.jpg', 'pro-2.jpg', 'pro-4.jpg', 'pro-3.jpg'];
+    const currentImage = 'pro-2.jpg';
     const sizeButtons = [
-      { data: "XS", checked: false },
-      { data: "S", checked: true },
-      { data: "M", checked: false },
-      { data: "L", checked: false },
+      { data: 'XS', checked: false },
+      { data: 'S', checked: true },
+      { data: 'M', checked: false },
+      { data: 'L', checked: false },
     ];
 
     return (
@@ -44,7 +45,7 @@ class ProductDescription extends Component {
             })}
           </div>
           <div className="size">PRICE:</div>
-          <div className="price-amount">$50.00</div>
+          <div className="price-amount">{this.props.currency} 50.00</div>
           <WideButton>ADD TO CART</WideButton>
           <p className="prod-long-desc">
             Find stunning women's cocktail dresses and party dresses. Stand out
@@ -57,4 +58,19 @@ class ProductDescription extends Component {
   }
 }
 
-export default withRouter(ProductDescription);
+const mapStateToProps = (state) => {
+  return {
+    currency: state.currency,
+    productsList: state.productsList,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // add: () => dispatch(addAction()),
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(ProductDescription));

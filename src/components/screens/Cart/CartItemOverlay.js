@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './CartItemOverlay.css';
 import OverlaySizeButton from '../../UI/Buttons/OverlaySizeButton';
+import { connect } from 'react-redux';
 
 import OverlayAddRemove from '../../UI/Buttons/OverlayAddRemove';
 
-export default class CartItemOverlay extends Component {
+class CartItemOverlay extends Component {
   render() {
     const sizeButtons = [
       { data: 'XS', checked: false },
@@ -16,7 +17,7 @@ export default class CartItemOverlay extends Component {
         <div className="overlay-item-data">
           <div className="overlay-item-title-details">Apollo</div>
           <div className="overlay-item-title-details">Running Short</div>
-          <div className="overlay-price-amount">$50.00</div>
+          <div className="overlay-price-amount">{this.props.currency}50.00</div>
 
           <div className="overlay-sizes-buttons">
             {sizeButtons.map((button) => {
@@ -42,3 +43,17 @@ export default class CartItemOverlay extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    currency: state.currency,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // add: () => dispatch(addAction()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartItemOverlay);
