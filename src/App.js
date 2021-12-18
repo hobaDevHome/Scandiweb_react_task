@@ -65,7 +65,16 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header categories={this.state.categories} />
+        <Header
+          categories={this.state.categories}
+          style={{
+            position: 'fixed',
+            top: 0,
+            backgroundColor: 'white',
+            zIndex: 25,
+            width: '80%',
+          }}
+        />
 
         <Switch>
           <Route exact path="/">

@@ -47,7 +47,7 @@ class Header extends Component {
   render() {
     const cartItems = this.props.cartItems.length;
     return (
-      <div className="header-row">
+      <div className="header-row" style={this.props.style}>
         {this.state.showCurrency && (
           <div className="currency-list">
             <div

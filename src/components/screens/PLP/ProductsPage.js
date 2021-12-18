@@ -28,6 +28,7 @@ class ProductsPage extends Component {
                   inStock={product.inStock}
                   inCart={false}
                   id={product.id}
+                  product={product}
                 />
               );
             })}

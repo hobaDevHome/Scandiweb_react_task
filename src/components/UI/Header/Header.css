@@ -40,7 +40,7 @@
 .cat-link.acitve-cat {
   border-bottom: 2px solid var(--greenColor);
 }
-.cat-link.acitve-cat p {
+.cat-link.acitve-cat a {
   color: var(--greenColor);
 }
 .links-section {
