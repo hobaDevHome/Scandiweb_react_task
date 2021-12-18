@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './SizeButton.css';
+import './ColorBtn.css';
 
-export default class SizeButton extends Component {
+export default class ColorBtn extends Component {
   render() {
     return (
       <div
@@ -9,8 +9,8 @@ export default class SizeButton extends Component {
         style={this.props.style}
         className={
           this.props.checked
-            ? 'size-button1 size-button-active'
-            : 'size-button1'
+            ? 'color-button color-button-active'
+            : 'color-button'
         }
       >
         {this.props.children}

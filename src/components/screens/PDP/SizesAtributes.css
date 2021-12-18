@@ -1,0 +1,15 @@
+.size {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 18px;
+  margin-bottom: 8px;
+}
+
+.sizes-buttons {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  justify-content: flex-start;
+}

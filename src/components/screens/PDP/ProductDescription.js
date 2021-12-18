@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './ProductDescription.css';
-import SizeButton from '../../UI/Buttons/SizeButton';
 
 import ProdcutDetailsImage from './ProdcutDetailsImage';
 import ProdcutMainImage from './ProductMainImage';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
+import SizesAtributes from './SizesAtributes';
 
 class ProductDescription extends Component {
   state = { id: undefined, imageIndex: 0 };
@@ -17,13 +17,7 @@ class ProductDescription extends Component {
 
   selecteProduct = {};
   price = 0;
-
-  sizeButtons = [
-    { data: 'XS', checked: false },
-    { data: 'S', checked: true },
-    { data: 'M', checked: false },
-    { data: 'L', checked: false },
-  ];
+  attributes;
 
   render() {
     if (
@@ -38,7 +32,10 @@ class ProductDescription extends Component {
       this.price = this.selecteProduct.prices.find(
         (price) => price.currency.symbol === this.props.currency
       ).amount;
-      console.log('product item', this.price.amount);
+
+      this.attributes = this.selecteProduct.attributes[0];
+
+      console.log('product item', this.attributes.name);
 
       return (
         <div className="prodcut-desc-container">
@@ -54,17 +51,8 @@ class ProductDescription extends Component {
           </div>
           <div className="prodcut-data-div">
             <div className="prod-title">{this.selecteProduct.name}</div>
-            {/* <div className="prod-shore-desc">Running Short</div> */}
-            <div className="size">SIZE:</div>
-            <div className="sizes-buttons">
-              {this.sizeButtons.map((button) => {
-                return (
-                  <SizeButton checked={button.checked}>
-                    {button.data}
-                  </SizeButton>
-                );
-              })}
-            </div>
+            <SizesAtributes attributes={this.attributes} />
+
             <div className="size">PRICE:</div>
             <div className="price-amount">{`${this.props.currency} ${this.price}`}</div>
             <AddToCartComp />
