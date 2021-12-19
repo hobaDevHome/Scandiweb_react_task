@@ -3,13 +3,15 @@
   position: relative;
   margin-bottom: 103px;
   cursor: pointer;
+  width: 100%;
 }
 .item-image-container {
   position: relative;
 }
 .item-image {
-  width: 100%;
-  height: auto;
+  width: 350px;
+  height: 330px;
+  object-fit: cover;
 }
 
 .item .title {

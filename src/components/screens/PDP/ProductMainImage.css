@@ -3,6 +3,7 @@
   cursor: pointer;
 }
 .product-mainImage {
-  width: 600px;
-  height: auto;
+  min-width: 600px;
+  max-height: 450px;
+  object-fit: cover;
 }

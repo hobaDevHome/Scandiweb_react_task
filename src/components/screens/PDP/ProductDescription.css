@@ -1,28 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Roboto+Condensed&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Roboto+Condensed&display=swap");
+.main {
+}
 .prodcut-desc-container {
   margin-top: 150px;
   display: flex;
 
   width: 100%;
 }
+
 .details-pic-div {
   margin-right: 40px;
+  height: 450px;
+
+  overflow: hidden;
 }
 
 .prodcut-data-div {
   width: 300px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
-.size {
-  font-family: 'Roboto Condensed';
+.size-desc {
+  font-family: "Roboto Condensed";
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
   line-height: 18px;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
 }
 
 .sizes-buttons {
@@ -38,7 +43,7 @@
   font-weight: 600;
   font-size: 30px;
   line-height: 27px;
-  margin-bottom: 16px;
+  margin-bottom: 40px;
 }
 
 .prod-shore-desc {
@@ -50,20 +55,21 @@
   margin-bottom: 40px;
 }
 
-.price-amount {
-  font-family: 'Raleway';
+.price-amount-desc {
+  font-family: "Raleway";
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
   line-height: 18px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+
+  margin-bottom: 40px;
 }
 
 .prod-long-desc {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 159.96%;
+  margin-top: 40px;
 }
