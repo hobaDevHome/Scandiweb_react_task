@@ -45,7 +45,6 @@ class Header extends Component {
     this.props.getSelectedProductsLists(choosecCat);
   }
   render() {
-    const cartItems = this.props.cartItems.length;
     return (
       <div className="header-row" style={this.props.style}>
         {this.state.showCurrency && (
@@ -141,10 +140,12 @@ class Header extends Component {
 
           <div
             onClick={this.showCartOverlay.bind(this)}
-            className={`cart-icon ${cartItems > 0 ? "cart-badge-visible" : ""}`}
+            className={`cart-icon ${
+              this.props.cartItems.length > 0 ? "cart-badge-visible" : ""
+            }`}
           >
             <BsCart2 size={20} />
-            <div className="cart-badge">{cartItems}</div>
+            <div className="cart-badge">{this.props.cartItems.length}</div>
           </div>
         </div>
       </div>

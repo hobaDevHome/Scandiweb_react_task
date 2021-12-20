@@ -30,8 +30,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       return { ...state, category: action.payload, selectedList: newList[0] };
 
     case "add_cart_item":
-      const addedItems = state.cartItems.push(action.payload);
-      return { ...state, cartItems: addedItems };
+      return { ...state, cartItems: [...state.cartItems, action.payload] };
 
     case "delete_cart_item":
       const newCartItems = state.cartItems.filter(
