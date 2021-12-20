@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import './Cart.css';
-import SizeButton from '../../UI/Buttons/SizeButton';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import "./Cart.css";
+import SizeButton from "../../UI/Buttons/SizeButton";
+import { connect } from "react-redux";
 
-import CartItemCarousel from './CartItemCarousel/CartItemCarousel';
-import AddRemove from '../../UI/Buttons/AddRemove';
+import CartItemCarousel from "./CartItemCarousel/CartItemCarousel";
+import AddRemove from "../../UI/Buttons/AddRemove";
 
 class CartItemMain extends Component {
   render() {
     const sizeButtons = [
-      { data: 'XS', checked: false },
-      { data: 'S', checked: true },
+      { data: "XS", checked: false },
+      { data: "S", checked: true },
     ];
 
     return (
@@ -31,7 +31,7 @@ class CartItemMain extends Component {
         <div className="cart-item-images-quantity">
           <div className="quantity-div">
             <AddRemove>+</AddRemove>
-            <div className="quantity">1</div>
+            <div className="quantity">{this.props.cartItem.quantity}</div>
             <AddRemove>-</AddRemove>
           </div>
           <div className="cart-item-pic-div">
@@ -46,6 +46,8 @@ class CartItemMain extends Component {
 const mapStateToProps = (state) => {
   return {
     currency: state.currency,
+    cartItems: state.cartItems,
+    totalAmount: state.totalAmount,
   };
 };
 

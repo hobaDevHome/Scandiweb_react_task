@@ -13,11 +13,11 @@ class AddToCartComp extends Component {
     this.onDeleteItem = this.onDeleteItem.bind(this);
   }
   onAddItem() {
-    console.log(this.props.category);
+    // console.log(this.props.category);
     this.props.addCartItem(this.props.sentItem);
   }
   onDeleteItem() {
-    console.log(this.props.sentItem.id);
+    // console.log(this.props.sentItem.id);
     this.props.deleteCartItem(this.props.sentItem.id);
   }
   render() {

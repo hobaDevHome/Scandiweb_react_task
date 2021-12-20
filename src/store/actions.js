@@ -20,14 +20,14 @@ export const getSelectedProductsLists = (sentCategory) => {
   };
 };
 export const addCartItem = (item) => {
-  console.log("add cart item action called", item);
+  // console.log("add cart item action called", item);
   return {
     type: "add_cart_item",
     payload: item,
   };
 };
 export const deleteCartItem = (id) => {
-  console.log("delete cart item action called", id);
+  // console.log("delete cart item action called", id);
   return {
     type: "delete_cart_item",
     payload: id,

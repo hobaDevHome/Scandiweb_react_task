@@ -7,7 +7,7 @@ export default class SizesAtributes extends Component {
   currentAttributes = this.props.attributes;
 
   render() {
-    console.log("insidi att button", this.props.attributes);
+    // console.log("insidi att button", this.props.attributes);
     if (
       this.props.attributes !== undefined &&
       this.props.attributes.items.length > 0
