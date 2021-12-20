@@ -1,9 +1,11 @@
-import CartItemModel from "../components/Models/CartItemModel";
+import { act } from 'react-dom/cjs/react-dom-test-utils.production.min';
+import CartItemModel from '../components/Models/CartItemModel';
 
 const INITIAL_STATE = {
   query: [],
-  currency: "$",
-  category: "all",
+  currency: '$',
+
+  category: 'all',
   productsList: [],
   selectedList: [],
   cartItems: [],
@@ -11,12 +13,12 @@ const INITIAL_STATE = {
 };
 
 export const productsReducer = (state = INITIAL_STATE, action) => {
-  // console.log("reducer called wthi", action.payload);
+  // console.log('reducer called wthi', action.payload);
   switch (action.type) {
-    case "change_currency":
+    case 'change_currency':
       return { ...state, currency: action.payload };
 
-    case "get_products_list":
+    case 'get_products_list':
       return {
         ...state,
         productsList: action.payload[0],
@@ -24,54 +26,56 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
         query: action.payload,
       };
 
-    case "get_slelected_products_list":
+    case 'get_slelected_products_list':
       const newList = state.query.filter((cat) => cat.name === action.payload);
       return { ...state, category: action.payload, selectedList: newList[0] };
 
-    case "add_cart_item":
+    case 'add_cart_item':
       const addedProduct = action.payload;
       const prodPrice = addedProduct.prices;
       const prodTitle = addedProduct.name;
       const prodAttributes = addedProduct.attributes;
       const prodId = addedProduct.id;
+      const prodGallery = addedProduct.gallery;
+
       const fouund = state.cartItems.find(
         (item) => item.id === addedProduct.id
       );
       const indexOfFound = state.cartItems.indexOf(fouund);
 
       if (fouund) {
-        console.log("there is a prod");
+        console.log('there is a prod');
         const updatedCartItem = new CartItemModel(
           state.cartItems[indexOfFound].quantity + 1,
           prodPrice,
           prodTitle,
           prodAttributes,
-          prodId
+          prodId,
+          prodGallery
         );
         return {
           ...state,
           cartItems: state.cartItems.map((el) =>
             el.id === prodId ? updatedCartItem : el
           ),
-          totalAmount: state.totalAmount + prodPrice,
         };
       } else {
-        console.log("there is NO a prod");
+        console.log('there is NO a prod');
         const newCartItem = new CartItemModel(
           1, // quanity for a new added prod
           prodPrice,
           prodTitle,
           prodAttributes,
-          prodId
+          prodId,
+          prodGallery
         );
         return {
           ...state,
           cartItems: [...state.cartItems, newCartItem],
-          totalAmount: state.totalAmount + prodPrice,
         };
       }
 
-    case "delete_cart_item":
+    case 'delete_cart_item':
       const selectedCartItem = state.cartItems.find(
         (item) => item.id === action.payload
       );
@@ -85,14 +89,14 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
             selectedCartItem.productPrice,
             selectedCartItem.productTitle,
             selectedCartItem.attributes,
-            selectedCartItem.id
+            selectedCartItem.id,
+            selectedCartItem.gallery
           );
           return {
             ...state,
             cartItems: state.cartItems.map((el) =>
               el.id === selectedCartItem.id ? updatedCartItem : el
             ),
-            totalAmount: state.totalAmount - selectedCartItem.price,
           };
         } else {
           return {
@@ -101,6 +105,27 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
           };
         }
       }
+      break;
+
+    case 'clac_total':
+      let calculatedAmount = 0;
+      const items = action.payload;
+      const prodcusPricesList = items.map((cartItem) => {
+        return { l: cartItem.productPrice, q: cartItem.quantity };
+      });
+      const amounts = prodcusPricesList.map((priceList) =>
+        priceList.l.map((price) => {
+          if (price.currency.symbol === state.currency) {
+            calculatedAmount += price.amount * priceList.q;
+            calculatedAmount = +calculatedAmount.toFixed(2);
+          }
+        })
+      );
+
+      return {
+        ...state,
+        totalAmount: calculatedAmount,
+      };
 
     default:
       return state;

@@ -1,41 +1,61 @@
-import React, { Component } from "react";
-import "./Cart.css";
-import SizeButton from "../../UI/Buttons/SizeButton";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import './Cart.css';
 
-import CartItemCarousel from "./CartItemCarousel/CartItemCarousel";
-import AddRemove from "../../UI/Buttons/AddRemove";
+import { connect } from 'react-redux';
+import { addCartItem } from '../../../store/actions';
+import { deleteCartItem } from '../../../store/actions';
+import SizesAtributes from '../PDP/SizesAtributes';
+
+import CartItemCarousel from './CartItemCarousel/CartItemCarousel';
+import AddRemove from '../../UI/Buttons/AddRemove';
 
 class CartItemMain extends Component {
-  render() {
-    const sizeButtons = [
-      { data: "XS", checked: false },
-      { data: "S", checked: true },
-    ];
+  constructor(props) {
+    super(props);
+    this.onAddItem = this.onAddItem.bind(this);
+    this.onDeleteItem = this.onDeleteItem.bind(this);
+  }
+  onAddItem() {
+    // console.log(this.props.category);
+    this.props.addCartItem(this.props.cartItem);
+  }
+  onDeleteItem() {
+    // console.log(this.props.sentItem.id);
+    this.props.deleteCartItem(this.props.cartItem.id);
+  }
 
+  render() {
+    let price;
+    if (this.props.cartItems !== undefined) {
+      price = this.props.cartItem.productPrice.find(
+        (price) => price.currency.symbol === this.props.currency
+      ).amount;
+    }
+
+    console.log(this.props.cartItem.attributes);
     return (
       <div className="main-cart-item">
         <div className="cart-item-data">
-          <div className="cart-item-title">Apollo</div>
-          <div className="cart-item-shore-desc">Running Short</div>
-          <div className="price-amount">{this.props.currency}50.00</div>
+          <div className="cart-item-title">
+            {this.props.cartItem.productTitle}
+          </div>
+
+          <div className="price-amount">{`${this.props.currency} ${
+            price * this.props.cartItem.quantity
+          }`}</div>
 
           <div className="sizes-buttons">
-            {sizeButtons.map((button) => {
-              return (
-                <SizeButton checked={button.checked}>{button.data}</SizeButton>
-              );
-            })}
+            <SizesAtributes attributes={this.props.cartItem.attributes[0]} />
           </div>
         </div>
         <div className="cart-item-images-quantity">
           <div className="quantity-div">
-            <AddRemove>+</AddRemove>
+            <AddRemove onClick={this.onAddItem}>+</AddRemove>
             <div className="quantity">{this.props.cartItem.quantity}</div>
-            <AddRemove>-</AddRemove>
+            <AddRemove onClick={this.onDeleteItem}>-</AddRemove>
           </div>
           <div className="cart-item-pic-div">
-            <CartItemCarousel />
+            <CartItemCarousel cartItem={this.props.cartItem} />
           </div>
         </div>
       </div>
@@ -53,7 +73,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // add: () => dispatch(addAction()),
+    addCartItem: (item) => dispatch(addCartItem(item)),
+    deleteCartItem: (id) => dispatch(deleteCartItem(id)),
   };
 };
 

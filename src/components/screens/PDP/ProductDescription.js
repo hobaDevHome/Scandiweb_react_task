@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import "./ProductDescription.css";
+import React, { Component } from 'react';
+import './ProductDescription.css';
 
-import ProdcutDetailsImage from "./ProdcutDetailsImage";
-import ProdcutMainImage from "./ProductMainImage";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import AddToCartComp from "../../UI/AddToCartComp/AddToCartComp";
-import SizesAtributes from "./SizesAtributes";
+import ProdcutDetailsImage from './ProdcutDetailsImage';
+import ProdcutMainImage from './ProductMainImage';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
+import SizesAtributes from './SizesAtributes';
 
 class ProductDescription extends Component {
   state = { id: undefined, currentImage: undefined };
@@ -68,7 +68,7 @@ class ProductDescription extends Component {
 
               <div className="size-desc">PRICE:</div>
               <div className="price-amount-desc">{`${this.props.currency} ${this.price}`}</div>
-              <AddToCartComp />
+              <AddToCartComp sentItem={this.selecteProduct} />
             </div>
           </div>
           <p className="prod-long-desc">
@@ -76,7 +76,7 @@ class ProductDescription extends Component {
               dangerouslySetInnerHTML={{
                 __html: this.selecteProduct.description.replace(
                   /(<? *script)/gi,
-                  "illegalscript"
+                  'illegalscript'
                 ),
               }}
             />

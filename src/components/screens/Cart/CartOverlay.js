@@ -1,11 +1,13 @@
-import React, { Component, Fragment } from "react";
-import ReactDOM from "react-dom";
-import ViewBagButton from "../../UI/Buttons/ViewBagButton";
-import CartItemOverlay from "./CartItemOverlay";
-import WideButton from "../../UI/Buttons/WideButton";
-import { Link } from "react-router-dom";
+import React, { Component, Fragment } from 'react';
+import ReactDOM from 'react-dom';
+import ViewBagButton from '../../UI/Buttons/ViewBagButton';
+import CartItemOverlay from './CartItemOverlay';
+import WideButton from '../../UI/Buttons/WideButton';
+import { Link } from 'react-router-dom';
+import { calculateTotal } from '../../../store/actions';
+import { connect } from 'react-redux';
 
-import "./CartOverlay.css";
+import './CartOverlay.css';
 
 class Backdrop extends Component {
   render() {
@@ -23,12 +25,13 @@ class CartModal extends Component {
   }
 }
 
-const portalElement = document.getElementById("overlays");
+const portalElement = document.getElementById('overlays');
 
-export default class CartOverlay extends Component {
+class CartOverlay extends Component {
   render() {
-    const bagItems = 2;
-    const total = 100;
+    if (this.props.cartItems !== undefined) {
+      this.props.calculateTotal(this.props.cartItems);
+    }
     return (
       <Fragment>
         {ReactDOM.createPortal(
@@ -37,19 +40,28 @@ export default class CartOverlay extends Component {
         )}
         {ReactDOM.createPortal(
           <CartModal>
-            <div className="overlay-item-titles">My Bag. {bagItems} items</div>
+            <div className="overlay-item-titles">
+              My Bag. {this.props.cartItems.length} items
+            </div>
             <div className="overlay-items-containter">
-              <CartItemOverlay />
-              <CartItemOverlay />
+              {this.props.cartItems.map((item) => {
+                return (
+                  <div>
+                    <CartItemOverlay key={item.id} cartItem={item} />
+                  </div>
+                );
+              })}
             </div>
             <div className="overlay-total-containt">
               <div className="overlay-item-titles">Total </div>
-              <div className="overlay-item-titles"> $ {total} </div>
+              <div className="overlay-item-titles">
+                $ {this.props.totalAmount}
+              </div>
             </div>
             <div className="overlay-buttons-div">
               <Link
                 to="/cart"
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: 'none', color: 'black' }}
               >
                 <div className="btn" onClick={this.props.onHide}>
                   <ViewBagButton>view bag</ViewBagButton>
@@ -58,7 +70,7 @@ export default class CartOverlay extends Component {
               <div className="btn">
                 <WideButton
                   onClick={this.props.onHide}
-                  style={{ fontSize: "14px", fontWeight: "normal" }}
+                  style={{ fontSize: '14px', fontWeight: 'normal' }}
                 >
                   check out
                 </WideButton>
@@ -71,3 +83,18 @@ export default class CartOverlay extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    cartItems: state.cartItems,
+    totalAmount: state.totalAmount,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    calculateTotal: (items) => dispatch(calculateTotal(items)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartOverlay);

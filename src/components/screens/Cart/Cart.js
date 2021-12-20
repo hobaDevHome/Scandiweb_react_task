@@ -1,24 +1,27 @@
-import React, { Component } from "react";
-import "./Cart.css";
-import CartItemMain from "./CartItemMain";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import './Cart.css';
+import CartItemMain from './CartItemMain';
+import { connect } from 'react-redux';
+import { calculateTotal } from '../../../store/actions';
 
 class Cart extends Component {
   render() {
-    console.log(this.props.cartItems);
+    if (this.props.cartItems !== undefined) {
+      this.props.calculateTotal(this.props.cartItems);
+    }
     return (
       <div className="cart-container">
         <div className="cart-title">Cart</div>
-        <div className="divdier"></div>
         {this.props.cartItems.map((item) => {
           return (
             <div>
               <CartItemMain key={item.id} cartItem={item} />
+              <div className="divdier"></div>
             </div>
           );
         })}
-
-        <div className="total">{this.props.totalAmount}</div>
+        <div className="cart-total">Total:</div>
+        <div className="total">{`${this.props.currency} ${this.props.totalAmount}`}</div>
       </div>
     );
   }
@@ -27,8 +30,14 @@ class Cart extends Component {
 const mapStateToProps = (state) => {
   return {
     cartItems: state.cartItems,
+    currency: state.currency,
     totalAmount: state.totalAmount,
   };
 };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    calculateTotal: (items) => dispatch(calculateTotal(items)),
+  };
+};
 
-export default connect(mapStateToProps, null)(Cart);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
