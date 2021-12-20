@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import CartOverlay from '../../screens/Cart/CartOverlay';
-import { BsCart2 } from 'react-icons/bs';
-import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import CartOverlay from "../../screens/Cart/CartOverlay";
+import { BsCart2 } from "react-icons/bs";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import {
   changeCurrency,
   getSelectedProductsLists,
-} from '../../../store/actions';
+} from "../../../store/actions";
 
-import './Header.css';
+import "./Header.css";
 
 class Header extends Component {
   state = { showCartModal: false, showCurrency: false };
@@ -52,31 +52,31 @@ class Header extends Component {
           <div className="currency-list">
             <div
               className="currency-item"
-              onClick={() => this.onChooseCurrencyHandler('$')}
+              onClick={() => this.onChooseCurrencyHandler("$")}
             >
               $ USD
             </div>
             <div
               className="currency-item"
-              onClick={() => this.onChooseCurrencyHandler('£')}
+              onClick={() => this.onChooseCurrencyHandler("£")}
             >
               £ GBP
             </div>
             <div
               className="currency-item"
-              onClick={() => this.onChooseCurrencyHandler('A$')}
+              onClick={() => this.onChooseCurrencyHandler("A$")}
             >
               A$ AUD
             </div>
             <div
               className="currency-item"
-              onClick={() => this.onChooseCurrencyHandler('¥')}
+              onClick={() => this.onChooseCurrencyHandler("¥")}
             >
               ¥ JPY
             </div>
             <div
               className="currency-item"
-              onClick={() => this.onChooseCurrencyHandler('₽')}
+              onClick={() => this.onChooseCurrencyHandler("₽")}
             >
               ₽ RUB
             </div>
@@ -90,9 +90,9 @@ class Header extends Component {
             <Link to="/">
               <li
                 className={`cat-link ${
-                  this.props.category === 'all' ? 'acitve-cat' : ''
+                  this.props.category === "all" ? "acitve-cat" : ""
                 }`}
-                onClick={() => this.onChosseCatHandler('all')}
+                onClick={() => this.onChosseCatHandler("all")}
               >
                 <p>all</p>
               </li>
@@ -100,9 +100,9 @@ class Header extends Component {
             <Link to="/">
               <li
                 className={`cat-link ${
-                  this.props.category === 'clothes' ? 'acitve-cat' : ''
+                  this.props.category === "clothes" ? "acitve-cat" : ""
                 }`}
-                onClick={() => this.onChosseCatHandler('clothes')}
+                onClick={() => this.onChosseCatHandler("clothes")}
               >
                 <p>clothes</p>
               </li>
@@ -110,9 +110,9 @@ class Header extends Component {
             <Link to="/">
               <li
                 className={`cat-link ${
-                  this.props.category === 'tech' ? 'acitve-cat' : ''
+                  this.props.category === "tech" ? "acitve-cat" : ""
                 }`}
-                onClick={() => this.onChosseCatHandler('tech')}
+                onClick={() => this.onChosseCatHandler("tech")}
               >
                 <p>tech</p>
               </li>
@@ -141,7 +141,7 @@ class Header extends Component {
 
           <div
             onClick={this.showCartOverlay.bind(this)}
-            className={`cart-icon ${cartItems > 0 ? 'cart-badge-visible' : ''}`}
+            className={`cart-icon ${cartItems > 0 ? "cart-badge-visible" : ""}`}
           >
             <BsCart2 size={20} />
             <div className="cart-badge">{cartItems}</div>

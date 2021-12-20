@@ -1,19 +1,22 @@
+import { act } from "react-dom/cjs/react-dom-test-utils.production.min";
+
 const INITIAL_STATE = {
   query: [],
-  currency: '$',
-  category: 'all',
+  currency: "$",
+  category: "all",
   productsList: [],
   selectedList: [],
-  cartItems: [1, 2, 3, 'm', 'kaza'],
+  cartItems: [],
+  totalAmount: 0,
 };
 
 export const productsReducer = (state = INITIAL_STATE, action) => {
-  //   console.log('reducer called wthi', action.payload);
+  console.log("reducer called wthi", action.payload);
   switch (action.type) {
-    case 'change_currency':
+    case "change_currency":
       return { ...state, currency: action.payload };
 
-    case 'get_products_list':
+    case "get_products_list":
       return {
         ...state,
         productsList: action.payload[0],
@@ -21,10 +24,21 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
         query: action.payload,
       };
 
-    case 'get_slelected_products_list':
+    case "get_slelected_products_list":
       const newList = state.query.filter((cat) => cat.name === action.payload);
 
       return { ...state, category: action.payload, selectedList: newList[0] };
+
+    case "add_cart_item":
+      const addedItems = state.cartItems.push(action.payload);
+      return { ...state, cartItems: addedItems };
+
+    case "delete_cart_item":
+      const newCartItems = state.cartItems.filter(
+        (item) => item.id !== action.payload
+      );
+
+      return { ...state, cartItems: newCartItems };
 
     default:
       return state;
