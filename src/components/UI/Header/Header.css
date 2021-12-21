@@ -33,6 +33,7 @@
 .cat-link a:hover {
   color: var(--greenColor);
   cursor: pointer;
+  user-select: none;
 }
 .cat-link:hover {
   border-bottom: 2px solid var(--greenColor);
@@ -74,6 +75,7 @@
 .currency,
 .currencyAmount {
   cursor: pointer;
+  user-select: none;
 }
 
 .cart-icon {
@@ -126,6 +128,7 @@
   line-height: 160%;
   margin: 10px 0;
   cursor: pointer;
+  user-select: none;
 }
 
 .currency-icons-section {

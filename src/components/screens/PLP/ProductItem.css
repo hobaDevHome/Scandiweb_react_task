@@ -3,7 +3,9 @@
   position: relative;
   margin-bottom: 103px;
   cursor: pointer;
-  width: 100%;
+  user-select: none;
+  width: 420px;
+  filter: drop-shadow(0px 0px 10px rgba(85, 88, 90, 0.3));
 }
 .item-image-container {
   position: relative;

@@ -1,6 +1,7 @@
 .mainImage-container {
   margin-right: 100px;
   cursor: pointer;
+  user-select: none;
 }
 .product-mainImage {
   min-width: 600px;

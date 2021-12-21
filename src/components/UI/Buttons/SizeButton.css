@@ -14,6 +14,7 @@
   line-height: 18px;
   margin-right: 6px;
   cursor: pointer;
+  user-select: none;
 }
 
 .size-button1.size-button-active {

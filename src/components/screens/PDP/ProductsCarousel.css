@@ -23,6 +23,7 @@
   z-index: 30;
   opacity: 1;
   cursor: pointer;
+  user-select: none;
 }
 .up-arrow-c:hover,
 .down-arrow-c:hover {

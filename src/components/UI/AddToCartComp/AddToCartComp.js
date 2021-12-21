@@ -13,6 +13,18 @@ class AddToCartComp extends Component {
     this.onAddItem = this.onAddItem.bind(this);
     this.onDeleteItem = this.onDeleteItem.bind(this);
   }
+  myItemsNo = 0;
+  getOwnCartNoOfItems() {
+    const mine = this.props.cartItems.find(
+      (el) => el.id === this.props.sentItem.id
+    );
+    if (mine) {
+      this.myItemsNo = mine.quantity;
+      console.log('no', this.myItemsNo);
+    } else {
+      this.myItemsNo = 0;
+    }
+  }
   onAddItem(clicked) {
     console.log();
     if (this.props.sentItem.attributes.length < 1) {
@@ -32,6 +44,7 @@ class AddToCartComp extends Component {
     this.props.deleteCartItem(this.props.sentItem.id);
   }
   render() {
+    this.getOwnCartNoOfItems();
     // console.log(this.props);
     return (
       <div className="add-to-cart-comp-containter">
@@ -39,17 +52,26 @@ class AddToCartComp extends Component {
           <div className="pleas-add">* Please select an attribute</div>
         )}
         <div className="cart-buttons-component">
-          <AddRemove onClick={this.onDeleteItem}>-</AddRemove>
-          <WideButton
-            onClick={() => this.onAddItem(this.props.clickedAttributes)}
-          >
-            add to cart
-          </WideButton>
-          <AddRemove
-            onClick={() => this.onAddItem(this.props.clickedAttributes)}
-          >
-            +
-          </AddRemove>
+          {this.myItemsNo !== 0 && (
+            <AddRemove onClick={this.onDeleteItem}>-</AddRemove>
+          )}
+          {this.myItemsNo === 0 ? (
+            <WideButton
+              onClick={() => this.onAddItem(this.props.clickedAttributes)}
+            >
+              add to cart
+            </WideButton>
+          ) : (
+            this.myItemsNo
+          )}
+
+          {this.myItemsNo !== 0 && (
+            <AddRemove
+              onClick={() => this.onAddItem(this.props.clickedAttributes)}
+            >
+              +
+            </AddRemove>
+          )}
         </div>
       </div>
     );
