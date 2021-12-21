@@ -62,10 +62,12 @@ class ProductItem extends Component {
           />
         )}
         <div className="add-to-cart-comp">
-          <AddToCartComp
-            sentItem={this.itemProduct}
-            clicked={this.props.clickedAttributes}
-          />
+          {!this.itemProduct.inStock && (
+            <AddToCartComp
+              sentItem={this.itemProduct}
+              clicked={this.props.clickedAttributes}
+            />
+          )}
         </div>
       </div>
     );

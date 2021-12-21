@@ -45,7 +45,11 @@ class AddToCartComp extends Component {
           >
             add to cart
           </WideButton>
-          <AddRemove onClick={this.onAddItem}>+</AddRemove>
+          <AddRemove
+            onClick={() => this.onAddItem(this.props.clickedAttributes)}
+          >
+            +
+          </AddRemove>
         </div>
       </div>
     );
