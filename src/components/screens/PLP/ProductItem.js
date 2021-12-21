@@ -15,20 +15,10 @@ class ProductItem extends Component {
   itemImage;
   attributes = 0;
 
-  render() {
-    this.itemImage = this.itemProduct.gallery[0];
-    this.price = this.itemProduct.prices.find(
-      (price) => price.currency.symbol === this.props.currency
-    ).amount;
-    if (
-      this.props.product.attributes[0] &&
-      this.props.product.attributes[0].items !== undefined
-    ) {
-      this.attributes = this.props.product.attributes[0];
-    }
-    // console.log('attributes', this.attributes);
-    return (
-      <div className={this.props.inStock ? 'item out-of-stock' : 'item'}>
+  linkComponent() {
+    console.log(this.itemProduct.inStock);
+    if (!this.itemProduct.inStock) {
+      return (
         <Link
           to={`/detials/${this.props.id}`}
           style={{ textDecoration: 'none', color: 'black' }}
@@ -44,6 +34,38 @@ class ProductItem extends Component {
             </div>
           </div>
         </Link>
+      );
+    } else {
+      return (
+        <div className="item-image-container">
+          <img
+            className="item-image out-of-stock"
+            src={this.itemImage}
+            alt=""
+          />
+          <div className="out-lable">
+            <p>OUT OF STOCK</p>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  render() {
+    this.itemImage = this.itemProduct.gallery[0];
+    this.price = this.itemProduct.prices.find(
+      (price) => price.currency.symbol === this.props.currency
+    ).amount;
+    if (
+      this.props.product.attributes[0] &&
+      this.props.product.attributes[0].items !== undefined
+    ) {
+      this.attributes = this.props.product.attributes[0];
+    }
+    // console.log('attributes', this.attributes);
+    return (
+      <div className={this.props.inStock ? 'item out-of-stock' : 'item'}>
+        {this.linkComponent()}
         <div
           className={
             this.props.inCart ? 'item-cart-icon item-in-cart' : 'item-cart-icon'
