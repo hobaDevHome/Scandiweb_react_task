@@ -50,7 +50,16 @@ class ProductItem extends Component {
       );
     }
   }
-
+  itemInCartCheck() {
+    const found = this.props.cartItems.find(
+      (el) => el.id === this.itemProduct.id
+    );
+    if (found) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   render() {
     this.itemImage = this.itemProduct.gallery[0];
     this.price = this.itemProduct.prices.find(
@@ -68,7 +77,9 @@ class ProductItem extends Component {
         {this.linkComponent()}
         <div
           className={
-            this.props.inCart ? 'item-cart-icon item-in-cart' : 'item-cart-icon'
+            this.itemInCartCheck()
+              ? 'item-cart-icon item-in-cart'
+              : 'item-cart-icon'
           }
         >
           <BsCart2 size={20} color={'white'} />
@@ -76,7 +87,7 @@ class ProductItem extends Component {
 
         <p className="title">{this.itemProduct.name}</p>
         <p className="price">{`${this.props.currency} ${this.price}`}</p>
-        {this.attributes !== 0 && (
+        {this.attributes !== 0 && !this.itemProduct.inStock && (
           <SizesAtributes
             attributes={this.attributes}
             sentItem={this.itemProduct}
@@ -103,6 +114,7 @@ const mapStateToProps = (state) => {
     selectedList: state.selectedList,
     category: state.category,
     clickedAttributes: state.clickedAttributes,
+    cartItems: state.cartItems,
   };
 };
 
