@@ -17,9 +17,10 @@ class CartItemOverlay extends Component {
   }
   attrValue;
   attrName;
+  correspondingProduct;
   onAddItem() {
     // console.log('add item from overlay');
-    this.props.addCartItem(this.props.cartItem);
+    this.props.addCartItem(this.correspondingProduct);
   }
   onDeleteItem() {
     // console.log('delete item from overlay');
@@ -35,6 +36,12 @@ class CartItemOverlay extends Component {
       const found = this.props.clickedAttributes.find(
         (att) => att.id === this.props.cartItem.id
       );
+      if (this.props.productsList.products !== undefined) {
+        this.correspondingProduct = this.props.productsList.products.find(
+          (prod) => prod.id === this.props.cartItem.id
+        );
+        console.log(this.correspondingProduct);
+      }
       if (found) {
         // this.foundVlue = found.attribute.value;
         this.attrName = found.name;
@@ -95,6 +102,7 @@ const mapStateToProps = (state) => {
     cartItems: state.cartItems,
     totalAmount: state.totalAmount,
     clickedAttributes: state.clickedAttributes,
+    productsList: state.productsList,
   };
 };
 

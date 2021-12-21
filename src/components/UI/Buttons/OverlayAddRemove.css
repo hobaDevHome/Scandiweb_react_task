@@ -6,6 +6,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   cursor: pointer;
+}
+
+.addremove-div:hover {
+  background-color: rgb(5, 48, 15);
+  color: white;
 }

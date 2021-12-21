@@ -19,9 +19,10 @@ class CartItemMain extends Component {
   }
   attrValue;
   attrName;
+  correspondingProduct;
   onAddItem() {
     // console.log(this.props.category);
-    this.props.addCartItem(this.props.cartItem);
+    this.props.addCartItem(this.correspondingProduct);
   }
   onDeleteItem() {
     // console.log(this.props.sentItem.id);
@@ -35,6 +36,12 @@ class CartItemMain extends Component {
         (price) => price.currency.symbol === this.props.currency
       ).amount;
 
+      if (this.props.productsList.products !== undefined) {
+        this.correspondingProduct = this.props.productsList.products.find(
+          (prod) => prod.id === this.props.cartItem.id
+        );
+        console.log(this.correspondingProduct);
+      }
       const found = this.props.clickedAttributes.find(
         (att) => att.id === this.props.cartItem.id
       );
@@ -96,6 +103,7 @@ const mapStateToProps = (state) => {
     cartItems: state.cartItems,
     totalAmount: state.totalAmount,
     clickedAttributes: state.clickedAttributes,
+    productsList: state.productsList,
   };
 };
 

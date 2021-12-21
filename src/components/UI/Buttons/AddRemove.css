@@ -9,3 +9,7 @@
   font-family: 'Courier New', Courier, monospace;
   cursor: pointer;
 }
+.addremove-div2:hover {
+  background-color: rgb(5, 48, 15);
+  color: white;
+}
