@@ -15,8 +15,6 @@ class ProductItem extends Component {
   itemImage;
   attributes = 0;
 
-  attributeHandler() {}
-
   render() {
     this.itemImage = this.itemProduct.gallery[0];
     this.price = this.itemProduct.prices.find(
@@ -64,7 +62,10 @@ class ProductItem extends Component {
           />
         )}
         <div className="add-to-cart-comp">
-          <AddToCartComp sentItem={this.itemProduct} />
+          <AddToCartComp
+            sentItem={this.itemProduct}
+            clicked={this.props.clickedAttributes}
+          />
         </div>
       </div>
     );
@@ -77,6 +78,7 @@ const mapStateToProps = (state) => {
     productsList: state.productsList,
     selectedList: state.selectedList,
     category: state.category,
+    clickedAttributes: state.clickedAttributes,
   };
 };
 

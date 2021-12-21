@@ -3,7 +3,6 @@ import CartItemModel from '../components/Models/CartItemModel';
 const INITIAL_STATE = {
   query: [],
   currency: '$',
-
   category: 'all',
   productsList: [],
   selectedList: [],
