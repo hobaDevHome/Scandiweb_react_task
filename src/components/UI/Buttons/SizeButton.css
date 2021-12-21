@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Acme&family=Big+Shoulders+Display:wght@700&family=Kumbh+Sans:wght@400;700&family=Lexend+Deca&family=Source+Sans+Pro&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Big+Shoulders+Display:wght@700&family=Kumbh+Sans:wght@400;700&family=Lexend+Deca&family=Source+Sans+Pro&display=swap');
 .size-button1 {
   width: 63px;
   height: 45px;
@@ -19,4 +19,9 @@
 .size-button1.size-button-active {
   background-color: black;
   color: white;
+}
+
+.size-button1:hover {
+  background-color: rgb(198, 252, 225);
+  font-weight: bold;
 }

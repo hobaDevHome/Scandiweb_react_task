@@ -67,3 +67,11 @@
 .item-in-cart.item-cart-icon {
   opacity: 1;
 }
+
+.add-to-cart-comp {
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}

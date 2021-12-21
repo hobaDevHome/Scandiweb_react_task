@@ -14,6 +14,7 @@ class ProductsPage extends Component {
   };
 
   render() {
+    // console.log(this.props.clickedAttributes);
     return (
       <div className="products">
         <div className="cat-name-containger">
@@ -42,6 +43,7 @@ const mapStateToProps = (state) => {
   return {
     selectedList: state.selectedList,
     category: state.category,
+    clickedAttributes: state.clickedAttributes,
   };
 };
 

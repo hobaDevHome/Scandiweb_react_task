@@ -1,4 +1,3 @@
-import { act } from 'react-dom/cjs/react-dom-test-utils.production.min';
 import CartItemModel from '../components/Models/CartItemModel';
 
 const INITIAL_STATE = {
@@ -9,6 +8,7 @@ const INITIAL_STATE = {
   productsList: [],
   selectedList: [],
   cartItems: [],
+  clickedAttributes: [],
   totalAmount: 0,
 };
 
@@ -44,7 +44,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       const indexOfFound = state.cartItems.indexOf(fouund);
 
       if (fouund) {
-        console.log('there is a prod');
+        // console.log('there is a prod');
         const updatedCartItem = new CartItemModel(
           state.cartItems[indexOfFound].quantity + 1,
           prodPrice,
@@ -60,7 +60,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
           ),
         };
       } else {
-        console.log('there is NO a prod');
+        // console.log('there is NO a prod');
         const newCartItem = new CartItemModel(
           1, // quanity for a new added prod
           prodPrice,
@@ -82,7 +82,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
 
       if (selectedCartItem) {
         const currentQty = selectedCartItem.quantity;
-        console.log(currentQty);
+        // console.log(currentQty);
         if (currentQty > 1) {
           const updatedCartItem = new CartItemModel(
             selectedCartItem.quantity - 1,
@@ -126,6 +126,26 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         totalAmount: calculatedAmount,
       };
+
+    case 'change_attribute':
+      const id = action.payload.id;
+      const attribute = action.payload.attribute;
+      const name = action.payload.name;
+      const addClickedattribute = { id, attribute, name };
+      const clickedFound = state.clickedAttributes.find((atr) => atr.id === id);
+      if (!clickedFound) {
+        return {
+          ...state,
+          clickedAttributes: [...state.clickedAttributes, addClickedattribute],
+        };
+      } else {
+        return {
+          ...state,
+          clickedAttributes: state.clickedAttributes.map((att) =>
+            att.id === id ? addClickedattribute : att
+          ),
+        };
+      }
 
     default:
       return state;

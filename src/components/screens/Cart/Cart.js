@@ -32,6 +32,7 @@ const mapStateToProps = (state) => {
     cartItems: state.cartItems,
     currency: state.currency,
     totalAmount: state.totalAmount,
+    clickedAttributes: state.clickedAttributes,
   };
 };
 const mapDispatchToProps = (dispatch) => {

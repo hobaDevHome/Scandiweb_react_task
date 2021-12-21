@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
 import SizesAtributes from './SizesAtributes';
+import { changeAttrubute } from '../../../store/actions';
 
 class ProductDescription extends Component {
   state = { id: undefined, currentImage: undefined };
@@ -40,7 +41,7 @@ class ProductDescription extends Component {
 
       this.attributes = this.selecteProduct.attributes[0];
 
-      // console.log("product item", this.attributes.name);
+      console.log(this.props.clickedAttributes);
 
       return (
         <div className="main">
@@ -64,7 +65,11 @@ class ProductDescription extends Component {
             </div>
             <div className="prodcut-data-div">
               <div className="prod-title">{this.selecteProduct.name}</div>
-              <SizesAtributes attributes={this.attributes} />
+              <SizesAtributes
+                attributes={this.attributes}
+                sentItme={this.selecteProduct}
+                id={this.state.id}
+              />
 
               <div className="size-desc">PRICE:</div>
               <div className="price-amount-desc">{`${this.props.currency} ${this.price}`}</div>
@@ -94,12 +99,14 @@ const mapStateToProps = (state) => {
     currency: state.currency,
     productsList: state.productsList,
     selectedList: state.selectedList,
+    clickedAttributes: state.clickedAttributes,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // add: () => dispatch(addAction()),
+    changeAttrubute: (id, attribute) =>
+      dispatch(changeAttrubute(id, attribute)),
   };
 };
 export default connect(

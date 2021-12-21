@@ -11,8 +11,8 @@
 .cart-modal {
   position: fixed;
   top: 74px;
-  right: 240px;
-  width: 325px;
+  right: 200px;
+  width: 350px;
   background-color: white;
   padding: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
@@ -52,4 +52,8 @@
 
 .link-router a {
   text-decoration: none;
+}
+.overlay-items-containter {
+  overflow-y: scroll;
+  max-height: 600px;
 }

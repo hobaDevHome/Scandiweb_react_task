@@ -12,7 +12,7 @@
 .overlay-item-data {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
   margin: 0;
   padding: 0;
 }
@@ -47,8 +47,9 @@
 .overlay-item-pic img {
   width: 105px;
   height: 137px;
-  object-fit: cover;
+  object-fit: contain;
   margin-left: 15px;
+  border: 1px solid rgb(216, 208, 208);
 }
 .overlay-quantity-div {
   height: 100%;
@@ -58,7 +59,7 @@
   align-items: center;
 }
 .overlay-quantity {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: bold;
   font-size: 16px;

@@ -1,17 +1,34 @@
 import React, { Component } from 'react';
 import ColorBtn from '../../UI/Buttons/ColorBtn';
 import SizeButton from '../../UI/Buttons/SizeButton';
+import { connect } from 'react-redux';
+import { changeAttrubute } from '../../../store/actions';
 import './SizesAtributes.css';
 
-export default class SizesAtributes extends Component {
+class SizesAtributes extends Component {
+  constructor(props) {
+    super(props);
+    this.attrHandler = this.attrHandler.bind(this);
+  }
+  state = { checked: false };
   currentAttributes = this.props.attributes;
-
-  render() {
-    console.log(
-      'insidi att button',
-      this.props.attributes,
-      this.props.attributes.items
+  // currentItem = this.props.sentItem;
+  foundVlue;
+  attrHandler(id, attr, name) {
+    console.log('inside size buton', name);
+    this.props.changeAttrubute(id, attr, name);
+  }
+  checkIfSelected() {
+    const found = this.props.clickedAttributes.find(
+      (att) => att.id === this.props.id
     );
+    if (found) {
+      this.foundVlue = found.attribute.value;
+    }
+  }
+  render() {
+    // console.log('insidi att button', this.currentAttributes, this.currentItem);
+    this.checkIfSelected();
     if (
       this.props.attributes !== undefined &&
       this.props.attributes.items.length > 0
@@ -26,12 +43,31 @@ export default class SizesAtributes extends Component {
                   return (
                     <ColorBtn
                       style={{ backgroundColor: attr.value }}
+                      checked={this.foundVlue === attr.value}
+                      onClick={() =>
+                        this.attrHandler(
+                          this.props.id,
+                          attr,
+                          this.currentAttributes.name
+                        )
+                      }
                     ></ColorBtn>
                   );
                 })
               : this.currentAttributes.items.map((attr) => {
                   return (
-                    <SizeButton checked={attr.checked}>{attr.value}</SizeButton>
+                    <SizeButton
+                      onClick={() =>
+                        this.attrHandler(
+                          this.props.id,
+                          attr,
+                          this.currentAttributes.name
+                        )
+                      }
+                      checked={this.foundVlue === attr.value}
+                    >
+                      {attr.value}
+                    </SizeButton>
                   );
                 })}
           </div>
@@ -41,3 +77,22 @@ export default class SizesAtributes extends Component {
     return <div></div>;
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    currency: state.currency,
+    productsList: state.productsList,
+    selectedList: state.selectedList,
+    category: state.category,
+    clickedAttributes: state.clickedAttributes,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeAttrubute: (id, attribute, name) =>
+      dispatch(changeAttrubute(id, attribute, name)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SizesAtributes);

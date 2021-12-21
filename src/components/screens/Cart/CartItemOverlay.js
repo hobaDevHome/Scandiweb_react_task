@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './CartItemOverlay.css';
-import SizesAtributes from '../PDP/SizesAtributes';
+
 import { connect } from 'react-redux';
 import { addCartItem } from '../../../store/actions';
 import { deleteCartItem } from '../../../store/actions';
 
 import OverlayAddRemove from '../../UI/Buttons/OverlayAddRemove';
+import ColorBtn from '../../UI/Buttons/ColorBtn';
+import OverlaySizeButton from '../../UI/Buttons/OverlaySizeButton';
 
 class CartItemOverlay extends Component {
   constructor(props) {
@@ -13,12 +15,14 @@ class CartItemOverlay extends Component {
     this.onAddItem = this.onAddItem.bind(this);
     this.onDeleteItem = this.onDeleteItem.bind(this);
   }
+  attrValue;
+  attrName;
   onAddItem() {
-    console.log('add item from overlay');
+    // console.log('add item from overlay');
     this.props.addCartItem(this.props.cartItem);
   }
   onDeleteItem() {
-    console.log('delete item from overlay');
+    // console.log('delete item from overlay');
     // console.log(this.props.sentItem.id);
     this.props.deleteCartItem(this.props.cartItem.id);
   }
@@ -28,6 +32,15 @@ class CartItemOverlay extends Component {
       price = this.props.cartItem.productPrice.find(
         (price) => price.currency.symbol === this.props.currency
       ).amount;
+      const found = this.props.clickedAttributes.find(
+        (att) => att.id === this.props.cartItem.id
+      );
+      if (found) {
+        // this.foundVlue = found.attribute.value;
+        this.attrName = found.name;
+        this.attrValue = found.attribute.value;
+        console.log('att', this.attrName, this.attrValue);
+      }
     }
 
     return (
@@ -42,7 +55,21 @@ class CartItemOverlay extends Component {
           }`}</div>
 
           <div className="overlay-sizes-buttons">
-            <SizesAtributes attributes={this.props.cartItem.attributes[0]} />
+            {this.attrName === 'Color' ? (
+              <ColorBtn
+                style={{
+                  backgroundColor: this.attrValue,
+                  border: '2px solid rgb(218, 48, 203)',
+                }}
+              ></ColorBtn>
+            ) : null}
+            {this.attrName === 'Size' || this.attrName === 'Capacity' ? (
+              <OverlaySizeButton
+                style={{ backgroundColor: 'black', color: 'white' }}
+              >
+                {this.attrValue}
+              </OverlaySizeButton>
+            ) : null}
           </div>
         </div>
         <div className="overlay-item-images-quantity">
@@ -67,6 +94,7 @@ const mapStateToProps = (state) => {
     currency: state.currency,
     cartItems: state.cartItems,
     totalAmount: state.totalAmount,
+    clickedAttributes: state.clickedAttributes,
   };
 };
 

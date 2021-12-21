@@ -16,5 +16,9 @@
 }
 
 .color-button.color-button-active {
-  border: 1px solid black;
+  border: 2px solid rgb(218, 48, 203);
+}
+
+.color-button:hover {
+  border: 2px solid rgb(218, 48, 203);
 }
