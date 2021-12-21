@@ -8,9 +8,15 @@ import { connect } from 'react-redux';
 import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
 import SizesAtributes from './SizesAtributes';
 import { changeAttrubute } from '../../../store/actions';
+import ProductsCarousel from './ProductsCarousel';
 
 class ProductDescription extends Component {
-  state = { id: undefined, currentImage: undefined };
+  constructor(props) {
+    super(props);
+    this.onThumbClickHandler = this.onThumbClickHandler.bind(this);
+
+    this.state = { id: undefined, currentImage: undefined };
+  }
   componentDidMount() {
     const sentId = this.props.match.params.porductid;
     this.setState({ id: sentId });
@@ -21,7 +27,7 @@ class ProductDescription extends Component {
   attributes;
   currentImage;
   onThumbClickHandler(thumb) {
-    // console.log("thum cliked", thumb);
+    console.log('thum cliked', thumb);
     this.setState({ currentImage: thumb });
   }
   render() {
@@ -47,12 +53,16 @@ class ProductDescription extends Component {
         <div className="main">
           <div className="prodcut-desc-container">
             <div className="details-pic-div">
-              {this.selecteProduct.gallery.map((thumb) => (
+              <ProductsCarousel
+                pics={this.selecteProduct.gallery}
+                onClick={this.onThumbClickHandler}
+              />
+              {/* {this.selecteProduct.gallery.map((thumb) => (
                 <ProdcutDetailsImage
                   thumbSrc={thumb}
                   onClick={() => this.onThumbClickHandler(thumb)}
                 />
-              ))}
+              ))} */}
             </div>
             <div className="product-img-div">
               <ProdcutMainImage
