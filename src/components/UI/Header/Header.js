@@ -81,6 +81,7 @@ class Header extends Component {
             {this.currencyNames.map((cur) => {
               return (
                 <div
+                  key={cur.length}
                   className="currency-item"
                   onClick={() =>
                     this.onChooseCurrencyHandler(cur.split(' ')[0])
@@ -99,7 +100,7 @@ class Header extends Component {
           <ul>
             {this.categoryNames.map((cat) => {
               return (
-                <Link to="/">
+                <Link to="/" key={cat.length}>
                   <li
                     className={`cat-link ${
                       this.props.category === cat ? 'acitve-cat' : ''

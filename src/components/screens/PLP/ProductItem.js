@@ -24,14 +24,12 @@ class ProductItem extends Component {
   attributes = 0;
 
   onAddItem(item) {
-    console.log(item);
     this.setState({ noOfItmesInCart: this.state.noOfItmesInCart + 1 });
     this.props.addCartItem(item);
   }
 
   getOwnCartNoOfItems(quantity) {
     this.setState({ noOfItmesInCart: quantity });
-    console.log('no of items in PLP', quantity);
   }
 
   linkComponent() {

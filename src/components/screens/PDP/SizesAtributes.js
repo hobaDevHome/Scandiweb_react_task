@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import ColorBtn from "../../UI/Buttons/ColorBtn";
-import SizeButton from "../../UI/Buttons/SizeButton";
-import { connect } from "react-redux";
-import { changeAttrubute } from "../../../store/actions";
-import "./SizesAtributes.css";
+import React, { Component } from 'react';
+import ColorBtn from '../../UI/Buttons/ColorBtn';
+import SizeButton from '../../UI/Buttons/SizeButton';
+import { connect } from 'react-redux';
+import { changeAttrubute } from '../../../store/actions';
+import './SizesAtributes.css';
 
 class SizesAtributes extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class SizesAtributes extends Component {
           <div className="size">{this.currentAttributes.name}</div>
 
           <div className="sizes-buttons">
-            {this.currentAttributes.name === "Color"
+            {this.currentAttributes.name === 'Color'
               ? this.currentAttributes.items.map((attr) => {
                   return (
                     <ColorBtn

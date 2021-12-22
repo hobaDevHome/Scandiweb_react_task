@@ -8,7 +8,7 @@ import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
 import SizesAtributes from './SizesAtributes';
 import { changeAttrubute } from '../../../store/actions';
 import ProductsCarousel from './ProductsCarousel';
-import { calculateTotal } from '../../../store/actions';
+
 import './ProductDescription.css';
 
 class ProductDescription extends Component {
@@ -27,7 +27,6 @@ class ProductDescription extends Component {
 
   getOwnCartNoOfItems(quantity) {
     this.setState({ noOfItmesInCart: quantity });
-    console.log('no of items in PLP', quantity);
   }
 
   componentDidMount() {

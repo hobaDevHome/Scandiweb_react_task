@@ -65,6 +65,7 @@ export default class ProductsCarousel extends Component {
           >
             {this.props.pics.map((thumb) => (
               <ProdcutDetailsImage
+                key={thumb.length}
                 thumbSrc={thumb}
                 onClick={() => this.onThumbClick(thumb)}
               />
