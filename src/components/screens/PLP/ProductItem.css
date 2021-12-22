@@ -12,7 +12,7 @@
   height: 330px;
   display: flex;
   justify-content: center;
-  /* box-shadow: 4px 4px 2px 1px rgba(155, 155, 160, 0.2); */
+
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .item-image {
@@ -55,23 +55,6 @@
   color: #8d8f9a;
 }
 .out-of-stock .out-lable {
-  opacity: 1;
-}
-
-.item-cart-icon {
-  position: absolute;
-  left: 320px;
-  top: 300px;
-  width: 52px;
-  height: 52px;
-  background-color: var(--greenColor);
-  border-radius: 26px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-}
-.item-in-cart.item-cart-icon {
   opacity: 1;
 }
 

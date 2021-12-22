@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
 import { Link } from 'react-router-dom';
 import SizesAtributes from '../PDP/SizesAtributes';
-import { changeAttrubute } from '../../../store/actions';
+import { changeAttrubute, addCartItem } from '../../../store/actions';
 
 import './ProductItem.css';
 
@@ -13,14 +13,21 @@ class ProductItem extends Component {
     super(props);
     this.state = { showMsg: false };
     this.getOwnCartNoOfItems = this.getOwnCartNoOfItems.bind(this);
+    this.onAddItem = this.onAddItem.bind(this);
 
-    this.state = { noOfItmesInCart: 1 };
+    this.state = { noOfItmesInCart: 0 };
   }
 
   itemProduct = this.props.product;
   price = 0;
   itemImage;
   attributes = 0;
+
+  onAddItem(item) {
+    console.log(item);
+    this.setState({ noOfItmesInCart: this.state.noOfItmesInCart + 1 });
+    this.props.addCartItem(item);
+  }
 
   getOwnCartNoOfItems(quantity) {
     this.setState({ noOfItmesInCart: quantity });
@@ -61,16 +68,7 @@ class ProductItem extends Component {
       );
     }
   }
-  itemInCartCheck() {
-    const found = this.props.cartItems.find(
-      (el) => el.id === this.itemProduct.id
-    );
-    if (found) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+
   render() {
     this.itemImage = this.itemProduct.gallery[0];
     this.price = this.itemProduct.prices.find(
@@ -86,27 +84,12 @@ class ProductItem extends Component {
     return (
       <div className={this.props.inStock ? 'item out-of-stock' : 'item'}>
         {this.linkComponent()}
-        <div
-          className={
-            this.itemInCartCheck()
-              ? 'item-cart-icon item-in-cart'
-              : 'item-cart-icon'
-          }
-        >
-          <BsCart2 size={20} color={'white'} />
-        </div>
 
         <p className="title">{this.itemProduct.name}</p>
         <p className="price">{`${this.props.currency} ${
-          +Math.round(this.price * this.state.noOfItmesInCart * 100) / 100
+          +Math.round(this.price * (this.state.noOfItmesInCart + 1) * 100) / 100
         }`}</p>
-        {this.attributes !== 0 && !this.itemProduct.inStock && (
-          <SizesAtributes
-            attributes={this.attributes}
-            sentItem={this.itemProduct}
-            id={this.itemProduct.id}
-          />
-        )}
+
         <div className="add-to-cart-comp">
           {!this.itemProduct.inStock && (
             <AddToCartComp
@@ -116,6 +99,13 @@ class ProductItem extends Component {
             />
           )}
         </div>
+        {this.attributes !== 0 && !this.itemProduct.inStock && (
+          <SizesAtributes
+            attributes={this.attributes}
+            sentItem={this.itemProduct}
+            id={this.itemProduct.id}
+          />
+        )}
       </div>
     );
   }
@@ -133,6 +123,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     changeAttrubute: (id, attribute) =>
       dispatch(changeAttrubute(id, attribute)),
+    addCartItem: (item) => dispatch(addCartItem(item)),
   };
 };
 
