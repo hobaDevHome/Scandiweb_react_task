@@ -1,25 +1,38 @@
-import React, { Component } from "react";
-import { BsCart2 } from "react-icons/bs";
-import { connect } from "react-redux";
-import AddToCartComp from "../../UI/AddToCartComp/AddToCartComp";
-import { Link } from "react-router-dom";
-import SizesAtributes from "../PDP/SizesAtributes";
-import { changeAttrubute } from "../../../store/actions";
+import React, { Component } from 'react';
+import { BsCart2 } from 'react-icons/bs';
+import { connect } from 'react-redux';
+import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
+import { Link } from 'react-router-dom';
+import SizesAtributes from '../PDP/SizesAtributes';
+import { changeAttrubute } from '../../../store/actions';
 
-import "./ProductItem.css";
+import './ProductItem.css';
 
 class ProductItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { showMsg: false };
+    this.getOwnCartNoOfItems = this.getOwnCartNoOfItems.bind(this);
+
+    this.state = { noOfItmesInCart: 1 };
+  }
+
   itemProduct = this.props.product;
   price = 0;
   itemImage;
   attributes = 0;
+
+  getOwnCartNoOfItems(quantity) {
+    this.setState({ noOfItmesInCart: quantity });
+    console.log('no of items in PLP', quantity);
+  }
 
   linkComponent() {
     if (!this.itemProduct.inStock) {
       return (
         <Link
           to={`/detials/${this.props.id}`}
-          style={{ textDecoration: "none", color: "black" }}
+          style={{ textDecoration: 'none', color: 'black' }}
         >
           <div className="item-image-container">
             <img
@@ -71,20 +84,22 @@ class ProductItem extends Component {
     }
 
     return (
-      <div className={this.props.inStock ? "item out-of-stock" : "item"}>
+      <div className={this.props.inStock ? 'item out-of-stock' : 'item'}>
         {this.linkComponent()}
         <div
           className={
             this.itemInCartCheck()
-              ? "item-cart-icon item-in-cart"
-              : "item-cart-icon"
+              ? 'item-cart-icon item-in-cart'
+              : 'item-cart-icon'
           }
         >
-          <BsCart2 size={20} color={"white"} />
+          <BsCart2 size={20} color={'white'} />
         </div>
 
         <p className="title">{this.itemProduct.name}</p>
-        <p className="price">{`${this.props.currency} ${this.price}`}</p>
+        <p className="price">{`${this.props.currency} ${
+          +this.price * this.state.noOfItmesInCart
+        }`}</p>
         {this.attributes !== 0 && !this.itemProduct.inStock && (
           <SizesAtributes
             attributes={this.attributes}
@@ -95,6 +110,7 @@ class ProductItem extends Component {
         <div className="add-to-cart-comp">
           {!this.itemProduct.inStock && (
             <AddToCartComp
+              getOwnCartNoOfItems={this.getOwnCartNoOfItems}
               sentItem={this.itemProduct}
               clicked={this.props.clickedAttributes}
             />
@@ -108,7 +124,6 @@ class ProductItem extends Component {
 const mapStateToProps = (state) => {
   return {
     currency: state.currency,
-
     clickedAttributes: state.clickedAttributes,
     cartItems: state.cartItems,
   };

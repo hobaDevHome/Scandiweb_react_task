@@ -5,15 +5,20 @@
   cursor: pointer;
   user-select: none;
   width: 420px;
-  filter: drop-shadow(0px 0px 10px rgba(85, 88, 90, 0.3));
 }
 .item-image-container {
   position: relative;
+  width: 420px;
+  height: 330px;
+  display: flex;
+  justify-content: center;
+  /* box-shadow: 4px 4px 2px 1px rgba(155, 155, 160, 0.2); */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .item-image {
-  width: 100%;
+  width: 420px;
   height: 330px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .item .title {
@@ -55,7 +60,7 @@
 
 .item-cart-icon {
   position: absolute;
-  left: 280px;
+  left: 320px;
   top: 300px;
   width: 52px;
   height: 52px;

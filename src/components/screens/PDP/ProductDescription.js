@@ -1,26 +1,35 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import ProdcutMainImage from "./ProductMainImage";
-import { BsCart2 } from "react-icons/bs";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import AddToCartComp from "../../UI/AddToCartComp/AddToCartComp";
-import SizesAtributes from "./SizesAtributes";
-import { changeAttrubute } from "../../../store/actions";
-import ProductsCarousel from "./ProductsCarousel";
-import "./ProductDescription.css";
+import ProdcutMainImage from './ProductMainImage';
+
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
+import SizesAtributes from './SizesAtributes';
+import { changeAttrubute } from '../../../store/actions';
+import ProductsCarousel from './ProductsCarousel';
+import { calculateTotal } from '../../../store/actions';
+import './ProductDescription.css';
 
 class ProductDescription extends Component {
   constructor(props) {
     super(props);
     this.onThumbClickHandler = this.onThumbClickHandler.bind(this);
+    this.itemInCartCheck = this.itemInCartCheck.bind(this);
+    this.getOwnCartNoOfItems = this.getOwnCartNoOfItems.bind(this);
 
-    this.state = { id: undefined, currentImage: undefined };
+    this.state = { id: undefined, currentImage: undefined, noOfItmesInCart: 1 };
   }
   selecteProduct = {};
   price = 0;
   attributes;
   currentImage;
+
+  getOwnCartNoOfItems(quantity) {
+    this.setState({ noOfItmesInCart: quantity });
+    console.log('no of items in PLP', quantity);
+  }
+
   componentDidMount() {
     const sentId = this.props.match.params.porductid;
     this.setState({ id: sentId });
@@ -70,7 +79,7 @@ class ProductDescription extends Component {
                     : this.state.currentImage
                 }
               />
-              <div
+              {/* <div
                 className={
                   this.itemInCartCheck()
                     ? "item-cart-icon2 item-in-cart"
@@ -78,7 +87,7 @@ class ProductDescription extends Component {
                 }
               >
                 <BsCart2 size={20} color={"white"} />
-              </div>
+              </div> */}
             </div>
             <div className="prodcut-data-div">
               <div className="prod-title">{this.selecteProduct.name}</div>
@@ -89,8 +98,12 @@ class ProductDescription extends Component {
               />
 
               <div className="size-desc">PRICE:</div>
-              <div className="price-amount-desc">{`${this.props.currency} ${this.price}`}</div>
-              <AddToCartComp sentItem={this.selecteProduct} />
+              <div className="price-amount-desc">{`${this.props.currency} 
+              ${+this.price * this.state.noOfItmesInCart}`}</div>
+              <AddToCartComp
+                sentItem={this.selecteProduct}
+                getOwnCartNoOfItems={this.getOwnCartNoOfItems}
+              />
             </div>
           </div>
           <p className="prod-long-desc">
@@ -98,7 +111,7 @@ class ProductDescription extends Component {
               dangerouslySetInnerHTML={{
                 __html: this.selecteProduct.description.replace(
                   /(<? *script)/gi,
-                  "illegalscript"
+                  'illegalscript'
                 ),
               }}
             />

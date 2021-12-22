@@ -4,10 +4,7 @@
   flex-direction: column;
 }
 .viewport {
-  /* transform: translate(-50%, -50%); */
-
   height: 340px;
-  /* background-color: red; */
 }
 .carousel {
   display: flex;
@@ -31,11 +28,11 @@
 }
 
 .up-arrow-c {
-  top: 0;
+  top: 10px;
   left: 50px;
 }
 .down-arrow-c {
-  bottom: -100px;
+  bottom: -90px;
   left: 50px;
 }
 .arrows-off-c {

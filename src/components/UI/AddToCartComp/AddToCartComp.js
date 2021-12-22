@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import AddRemove from "../Buttons/AddRemove";
-import WideButton from "../Buttons/WideButton";
-import { connect } from "react-redux";
-import { addCartItem } from "../../../store/actions";
-import { deleteCartItem } from "../../../store/actions";
-import "./AddToCartComp.css";
+import React, { Component } from 'react';
+import AddRemove from '../Buttons/AddRemove';
+import WideButton from '../Buttons/WideButton';
+import { connect } from 'react-redux';
+import { addCartItem } from '../../../store/actions';
+import { deleteCartItem } from '../../../store/actions';
+import './AddToCartComp.css';
 
 class AddToCartComp extends Component {
   constructor(props) {
@@ -20,6 +20,7 @@ class AddToCartComp extends Component {
     );
     if (mine) {
       this.myItemsNo = mine.quantity;
+      this.props.getOwnCartNoOfItems(this.myItemsNo);
     } else {
       this.myItemsNo = 0;
     }

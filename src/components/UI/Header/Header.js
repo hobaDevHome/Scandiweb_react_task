@@ -1,19 +1,21 @@
-import React, { Component } from "react";
-import CartOverlay from "../../screens/Cart/CartOverlay";
-import { BsCart2 } from "react-icons/bs";
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import CartOverlay from '../../screens/Cart/CartOverlay';
+import { BsCart2 } from 'react-icons/bs';
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import {
   changeCurrency,
   getSelectedProductsLists,
-} from "../../../store/actions";
+} from '../../../store/actions';
 
-import "./Header.css";
+import './Header.css';
 
 class Header extends Component {
   state = { showCartModal: false, showCurrency: false };
   numcerOfItems = 0;
+  categoryNames;
+  currencyNames;
   showCartOverlay() {
     this.setState({ showCartModal: true });
     this.hideCurrencyList();
@@ -41,49 +43,53 @@ class Header extends Component {
 
   onChosseCatHandler(choosecCat) {
     this.props.getSelectedProductsLists(choosecCat);
-    localStorage.setItem("category", choosecCat);
+    localStorage.setItem('category', choosecCat);
   }
   getCartItemsNo() {
     let amuont = 0;
     const mapping = this.props.cartItems.map((el) => (amuont += el.quantity));
     this.numcerOfItems = amuont;
   }
+  getCategoriesNames() {
+    const prods = this.props.query;
+
+    if (prods) {
+      this.categoryNames = prods.map((prod) => prod.name);
+    }
+  }
+  getCurrencyNames() {
+    const prods = this.props.query;
+
+    if (prods.length > 0 && prods !== undefined) {
+      if (prods[0] !== undefined && prods[0].products !== undefined) {
+        this.currencyNames = prods[0].products[0].prices.map(
+          (prod) => `${prod.currency.symbol} ${prod.currency.label}`
+        );
+      }
+    }
+  }
   render() {
-    this.getCartItemsNo();
+    if (this.props.query !== undefined) {
+      this.getCartItemsNo();
+      this.getCategoriesNames();
+      this.getCurrencyNames();
+    }
     return (
       <div className="header-row" style={this.props.style}>
         {this.state.showCurrency && (
           <div className="currency-list">
-            <div
-              className="currency-item"
-              onClick={() => this.onChooseCurrencyHandler("$")}
-            >
-              $ USD
-            </div>
-            <div
-              className="currency-item"
-              onClick={() => this.onChooseCurrencyHandler("£")}
-            >
-              £ GBP
-            </div>
-            <div
-              className="currency-item"
-              onClick={() => this.onChooseCurrencyHandler("A$")}
-            >
-              A$ AUD
-            </div>
-            <div
-              className="currency-item"
-              onClick={() => this.onChooseCurrencyHandler("¥")}
-            >
-              ¥ JPY
-            </div>
-            <div
-              className="currency-item"
-              onClick={() => this.onChooseCurrencyHandler("₽")}
-            >
-              ₽ RUB
-            </div>
+            {this.currencyNames.map((cur) => {
+              return (
+                <div
+                  className="currency-item"
+                  onClick={() =>
+                    this.onChooseCurrencyHandler(cur.split(' ')[0])
+                  }
+                >
+                  {cur}
+                </div>
+              );
+            })}
           </div>
         )}
         {this.state.showCartModal && (
@@ -91,36 +97,20 @@ class Header extends Component {
         )}
         <div className="links-section">
           <ul>
-            <Link to="/">
-              <li
-                className={`cat-link ${
-                  this.props.category === "all" ? "acitve-cat" : ""
-                }`}
-                onClick={() => this.onChosseCatHandler("all")}
-              >
-                <p>all</p>
-              </li>
-            </Link>
-            <Link to="/">
-              <li
-                className={`cat-link ${
-                  this.props.category === "clothes" ? "acitve-cat" : ""
-                }`}
-                onClick={() => this.onChosseCatHandler("clothes")}
-              >
-                <p>clothes</p>
-              </li>
-            </Link>
-            <Link to="/">
-              <li
-                className={`cat-link ${
-                  this.props.category === "tech" ? "acitve-cat" : ""
-                }`}
-                onClick={() => this.onChosseCatHandler("tech")}
-              >
-                <p>tech</p>
-              </li>
-            </Link>
+            {this.categoryNames.map((cat) => {
+              return (
+                <Link to="/">
+                  <li
+                    className={`cat-link ${
+                      this.props.category === cat ? 'acitve-cat' : ''
+                    }`}
+                    onClick={() => this.onChosseCatHandler(cat)}
+                  >
+                    <p>{cat}</p>
+                  </li>
+                </Link>
+              );
+            })}
           </ul>
         </div>
         <div className="bag-section">
@@ -146,7 +136,7 @@ class Header extends Component {
           <div
             onClick={this.showCartOverlay.bind(this)}
             className={`cart-icon ${
-              this.props.cartItems.length > 0 ? "cart-badge-visible" : ""
+              this.props.cartItems.length > 0 ? 'cart-badge-visible' : ''
             }`}
           >
             <BsCart2 size={20} />
@@ -163,6 +153,8 @@ const mapStateToProps = (state) => {
     currency: state.currency,
     category: state.category,
     cartItems: state.cartItems,
+    productsList: state.productsList,
+    query: state.query,
   };
 };
 
