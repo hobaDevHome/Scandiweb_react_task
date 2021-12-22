@@ -15,7 +15,6 @@ class SizesAtributes extends Component {
 
   foundVlue;
   attrHandler(id, attr, name) {
-    console.log("inside size buton", name);
     this.props.changeAttrubute(id, attr, name);
   }
   checkIfSelected() {

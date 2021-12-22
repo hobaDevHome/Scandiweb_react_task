@@ -15,7 +15,6 @@ class ProductItem extends Component {
   attributes = 0;
 
   linkComponent() {
-    console.log(this.itemProduct.inStock);
     if (!this.itemProduct.inStock) {
       return (
         <Link

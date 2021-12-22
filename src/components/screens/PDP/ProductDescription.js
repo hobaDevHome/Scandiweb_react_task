@@ -34,7 +34,6 @@ class ProductDescription extends Component {
     }
   }
   onThumbClickHandler(thumb) {
-    console.log("thum cliked", thumb);
     this.setState({ currentImage: thumb });
   }
   render() {

@@ -55,5 +55,30 @@
 }
 .overlay-items-containter {
   overflow-y: scroll;
+  overflow-x: hidden;
   max-height: 600px;
+}
+
+.no-items-overlay {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+no-items-contianer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.noItmesLink {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

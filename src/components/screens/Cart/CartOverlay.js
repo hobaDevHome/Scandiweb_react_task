@@ -40,41 +40,66 @@ class CartOverlay extends Component {
         )}
         {ReactDOM.createPortal(
           <CartModal>
-            <div className="overlay-item-titles">
-              My Bag. {this.props.cartItems.length} items
-            </div>
-            <div className="overlay-items-containter">
-              {this.props.cartItems.map((item) => {
-                return (
-                  <div>
-                    <CartItemOverlay key={item.id} cartItem={item} />
+            <div>
+              {this.props.cartItems.length > 0 ? (
+                <div>
+                  <div className="overlay-item-titles">
+                    My Bag. {this.props.cartItems.length} items
                   </div>
-                );
-              })}
-            </div>
-            <div className="overlay-total-containt">
-              <div className="overlay-item-titles">Total </div>
-              <div className="overlay-item-titles">
-                {`${this.props.currency} ${this.props.totalAmount}`}
-              </div>
-            </div>
-            <div className="overlay-buttons-div">
-              <Link
-                to="/cart"
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                <div className="btn" onClick={this.props.onHide}>
-                  <ViewBagButton>view bag</ViewBagButton>
+                  <div className="overlay-items-containter">
+                    {this.props.cartItems.map((item) => {
+                      return (
+                        <div>
+                          <CartItemOverlay key={item.id} cartItem={item} />
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="overlay-total-containt">
+                    <div className="overlay-item-titles">Total </div>
+                    <div className="overlay-item-titles">
+                      {`${this.props.currency} ${this.props.totalAmount}`}
+                    </div>
+                  </div>
+                  <div className="overlay-buttons-div">
+                    <Link
+                      to="/cart"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <div className="btn" onClick={this.props.onHide}>
+                        <ViewBagButton>view bag</ViewBagButton>
+                      </div>
+                    </Link>
+                    <div className="btn">
+                      <WideButton
+                        onClick={this.props.onHide}
+                        style={{ fontSize: "14px", fontWeight: "normal" }}
+                      >
+                        check out
+                      </WideButton>
+                    </div>
+                  </div>
                 </div>
-              </Link>
-              <div className="btn">
-                <WideButton
-                  onClick={this.props.onHide}
-                  style={{ fontSize: "14px", fontWeight: "normal" }}
-                >
-                  check out
-                </WideButton>
-              </div>
+              ) : (
+                <div className="no-items-contianer">
+                  <div className="no-items-overlay">
+                    Your shopping bag is empty right now
+                  </div>
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                      aligntSelf: "center",
+                    }}
+                    className="noItmesLink"
+                    to="/"
+                  >
+                    <WideButton onClick={this.props.onHide}>
+                      see some products
+                    </WideButton>
+                  </Link>
+                </div>
+              )}
             </div>
           </CartModal>,
           portalElement

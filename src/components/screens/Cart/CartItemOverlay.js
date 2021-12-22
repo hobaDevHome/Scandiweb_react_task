@@ -35,12 +35,10 @@ class CartItemOverlay extends Component {
         this.correspondingProduct = this.props.productsList.products.find(
           (prod) => prod.id === this.props.cartItem.id
         );
-        console.log(this.correspondingProduct);
       }
       if (found) {
         this.attrName = found.name;
         this.attrValue = found.attribute.value;
-        console.log("att", this.attrName, this.attrValue);
       }
     }
 

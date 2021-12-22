@@ -38,7 +38,6 @@ class CartItemMain extends Component {
         this.correspondingProduct = this.props.productsList.products.find(
           (prod) => prod.id === this.props.cartItem.id
         );
-        console.log(this.correspondingProduct);
       }
       const found = this.props.clickedAttributes.find(
         (att) => att.id === this.props.cartItem.id
@@ -46,7 +45,6 @@ class CartItemMain extends Component {
       if (found) {
         this.attrName = found.name;
         this.attrValue = found.attribute.value;
-        console.log("att", this.attrName);
       }
     }
 
