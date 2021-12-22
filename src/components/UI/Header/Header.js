@@ -41,6 +41,7 @@ class Header extends Component {
 
   onChosseCatHandler(choosecCat) {
     this.props.getSelectedProductsLists(choosecCat);
+    localStorage.setItem("category", choosecCat);
   }
   getCartItemsNo() {
     let amuont = 0;
