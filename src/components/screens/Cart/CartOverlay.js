@@ -1,13 +1,13 @@
-import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
-import ViewBagButton from '../../UI/Buttons/ViewBagButton';
-import CartItemOverlay from './CartItemOverlay';
-import WideButton from '../../UI/Buttons/WideButton';
-import { Link } from 'react-router-dom';
-import { calculateTotal } from '../../../store/actions';
-import { connect } from 'react-redux';
+import React, { Component, Fragment } from "react";
+import ReactDOM from "react-dom";
+import ViewBagButton from "../../UI/Buttons/ViewBagButton";
+import CartItemOverlay from "./CartItemOverlay";
+import WideButton from "../../UI/Buttons/WideButton";
+import { Link } from "react-router-dom";
+import { calculateTotal } from "../../../store/actions";
+import { connect } from "react-redux";
 
-import './CartOverlay.css';
+import "./CartOverlay.css";
 
 class Backdrop extends Component {
   render() {
@@ -25,7 +25,7 @@ class CartModal extends Component {
   }
 }
 
-const portalElement = document.getElementById('overlays');
+const portalElement = document.getElementById("overlays");
 
 class CartOverlay extends Component {
   render() {
@@ -55,13 +55,13 @@ class CartOverlay extends Component {
             <div className="overlay-total-containt">
               <div className="overlay-item-titles">Total </div>
               <div className="overlay-item-titles">
-                $ {this.props.totalAmount}
+                {`${this.props.currency} ${this.props.totalAmount}`}
               </div>
             </div>
             <div className="overlay-buttons-div">
               <Link
                 to="/cart"
-                style={{ textDecoration: 'none', color: 'black' }}
+                style={{ textDecoration: "none", color: "black" }}
               >
                 <div className="btn" onClick={this.props.onHide}>
                   <ViewBagButton>view bag</ViewBagButton>
@@ -70,7 +70,7 @@ class CartOverlay extends Component {
               <div className="btn">
                 <WideButton
                   onClick={this.props.onHide}
-                  style={{ fontSize: '14px', fontWeight: 'normal' }}
+                  style={{ fontSize: "14px", fontWeight: "normal" }}
                 >
                   check out
                 </WideButton>
@@ -87,6 +87,7 @@ class CartOverlay extends Component {
 const mapStateToProps = (state) => {
   return {
     cartItems: state.cartItems,
+    currency: state.currency,
     totalAmount: state.totalAmount,
   };
 };
