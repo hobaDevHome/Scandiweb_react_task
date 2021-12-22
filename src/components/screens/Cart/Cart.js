@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import CartItemMain from "./CartItemMain";
-import { connect } from "react-redux";
-import { calculateTotal } from "../../../store/actions";
-import "./Cart.css";
+import React, { Component } from 'react';
+import CartItemMain from './CartItemMain';
+import { connect } from 'react-redux';
+import { calculateTotal } from '../../../store/actions';
+import './Cart.css';
 
 class Cart extends Component {
   render() {

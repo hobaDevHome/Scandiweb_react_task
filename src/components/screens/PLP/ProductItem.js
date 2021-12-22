@@ -98,7 +98,7 @@ class ProductItem extends Component {
 
         <p className="title">{this.itemProduct.name}</p>
         <p className="price">{`${this.props.currency} ${
-          +this.price * this.state.noOfItmesInCart
+          +Math.round(this.price * this.state.noOfItmesInCart * 100) / 100
         }`}</p>
         {this.attributes !== 0 && !this.itemProduct.inStock && (
           <SizesAtributes

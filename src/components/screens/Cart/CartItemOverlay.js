@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addCartItem } from "../../../store/actions";
-import { deleteCartItem } from "../../../store/actions";
-import OverlayAddRemove from "../../UI/Buttons/OverlayAddRemove";
-import ColorBtn from "../../UI/Buttons/ColorBtn";
-import OverlaySizeButton from "../../UI/Buttons/OverlaySizeButton";
-import "./CartItemOverlay.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addCartItem } from '../../../store/actions';
+import { deleteCartItem } from '../../../store/actions';
+import OverlayAddRemove from '../../UI/Buttons/OverlayAddRemove';
+import ColorBtn from '../../UI/Buttons/ColorBtn';
+import OverlaySizeButton from '../../UI/Buttons/OverlaySizeButton';
+import './CartItemOverlay.css';
 
 class CartItemOverlay extends Component {
   constructor(props) {
@@ -49,22 +49,24 @@ class CartItemOverlay extends Component {
             {this.props.cartItem.productTitle}
           </div>
 
-          <div className="overlay-price-amount">{`${this.props.currency} ${
-            price * this.props.cartItem.quantity
-          }`}</div>
+          <div className="overlay-price-amount">
+            {`${this.props.currency} ${parseFloat(
+              price * this.props.cartItem.quantity
+            ).toFixed(2)}`}
+          </div>
 
           <div className="overlay-sizes-buttons">
-            {this.attrName === "Color" ? (
+            {this.attrName === 'Color' ? (
               <ColorBtn
                 style={{
                   backgroundColor: this.attrValue,
-                  border: "2px solid rgb(218, 48, 203)",
+                  border: '2px solid rgb(218, 48, 203)',
                 }}
               ></ColorBtn>
             ) : null}
-            {this.attrName === "Size" || this.attrName === "Capacity" ? (
+            {this.attrName === 'Size' || this.attrName === 'Capacity' ? (
               <OverlaySizeButton
-                style={{ backgroundColor: "black", color: "white" }}
+                style={{ backgroundColor: 'black', color: 'white' }}
               >
                 {this.attrValue}
               </OverlaySizeButton>
