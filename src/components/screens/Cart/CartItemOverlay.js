@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import './CartItemOverlay.css';
-
-import { connect } from 'react-redux';
-import { addCartItem } from '../../../store/actions';
-import { deleteCartItem } from '../../../store/actions';
-
-import OverlayAddRemove from '../../UI/Buttons/OverlayAddRemove';
-import ColorBtn from '../../UI/Buttons/ColorBtn';
-import OverlaySizeButton from '../../UI/Buttons/OverlaySizeButton';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addCartItem } from "../../../store/actions";
+import { deleteCartItem } from "../../../store/actions";
+import OverlayAddRemove from "../../UI/Buttons/OverlayAddRemove";
+import ColorBtn from "../../UI/Buttons/ColorBtn";
+import OverlaySizeButton from "../../UI/Buttons/OverlaySizeButton";
+import "./CartItemOverlay.css";
 
 class CartItemOverlay extends Component {
   constructor(props) {
@@ -19,12 +17,9 @@ class CartItemOverlay extends Component {
   attrName;
   correspondingProduct;
   onAddItem() {
-    // console.log('add item from overlay');
     this.props.addCartItem(this.correspondingProduct);
   }
   onDeleteItem() {
-    // console.log('delete item from overlay');
-    // console.log(this.props.sentItem.id);
     this.props.deleteCartItem(this.props.cartItem.id);
   }
   render() {
@@ -43,10 +38,9 @@ class CartItemOverlay extends Component {
         console.log(this.correspondingProduct);
       }
       if (found) {
-        // this.foundVlue = found.attribute.value;
         this.attrName = found.name;
         this.attrValue = found.attribute.value;
-        console.log('att', this.attrName, this.attrValue);
+        console.log("att", this.attrName, this.attrValue);
       }
     }
 
@@ -62,17 +56,17 @@ class CartItemOverlay extends Component {
           }`}</div>
 
           <div className="overlay-sizes-buttons">
-            {this.attrName === 'Color' ? (
+            {this.attrName === "Color" ? (
               <ColorBtn
                 style={{
                   backgroundColor: this.attrValue,
-                  border: '2px solid rgb(218, 48, 203)',
+                  border: "2px solid rgb(218, 48, 203)",
                 }}
               ></ColorBtn>
             ) : null}
-            {this.attrName === 'Size' || this.attrName === 'Capacity' ? (
+            {this.attrName === "Size" || this.attrName === "Capacity" ? (
               <OverlaySizeButton
-                style={{ backgroundColor: 'black', color: 'white' }}
+                style={{ backgroundColor: "black", color: "white" }}
               >
                 {this.attrValue}
               </OverlaySizeButton>

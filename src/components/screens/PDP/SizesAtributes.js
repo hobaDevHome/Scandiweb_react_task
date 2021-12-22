@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import ColorBtn from '../../UI/Buttons/ColorBtn';
-import SizeButton from '../../UI/Buttons/SizeButton';
-import { connect } from 'react-redux';
-import { changeAttrubute } from '../../../store/actions';
-import './SizesAtributes.css';
+import React, { Component } from "react";
+import ColorBtn from "../../UI/Buttons/ColorBtn";
+import SizeButton from "../../UI/Buttons/SizeButton";
+import { connect } from "react-redux";
+import { changeAttrubute } from "../../../store/actions";
+import "./SizesAtributes.css";
 
 class SizesAtributes extends Component {
   constructor(props) {
@@ -12,10 +12,10 @@ class SizesAtributes extends Component {
   }
   state = { checked: false };
   currentAttributes = this.props.attributes;
-  // currentItem = this.props.sentItem;
+
   foundVlue;
   attrHandler(id, attr, name) {
-    console.log('inside size buton', name);
+    console.log("inside size buton", name);
     this.props.changeAttrubute(id, attr, name);
   }
   checkIfSelected() {
@@ -27,7 +27,6 @@ class SizesAtributes extends Component {
     }
   }
   render() {
-    // console.log('insidi att button', this.currentAttributes, this.currentItem);
     this.checkIfSelected();
     if (
       this.props.attributes !== undefined &&
@@ -38,7 +37,7 @@ class SizesAtributes extends Component {
           <div className="size">{this.currentAttributes.name}</div>
 
           <div className="sizes-buttons">
-            {this.currentAttributes.name === 'Color'
+            {this.currentAttributes.name === "Color"
               ? this.currentAttributes.items.map((attr) => {
                   return (
                     <ColorBtn
@@ -80,10 +79,6 @@ class SizesAtributes extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currency: state.currency,
-    productsList: state.productsList,
-    selectedList: state.selectedList,
-    category: state.category,
     clickedAttributes: state.clickedAttributes,
   };
 };

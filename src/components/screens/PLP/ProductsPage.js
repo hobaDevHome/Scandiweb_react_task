@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-import './ProductsPage.css';
-import ProductItem from './ProductItem';
-
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import ProductItem from "./ProductItem";
+import { connect } from "react-redux";
+import "./ProductsPage.css";
 
 class ProductsPage extends Component {
   state = { loaded: false };
 
   catNames = {
-    tech: 'Tech Category Products',
-    clothes: 'Clothes Category Products',
-    all: 'All Products',
+    tech: "Tech Category Products",
+    clothes: "Clothes Category Products",
+    all: "All Products",
   };
 
   render() {
-    // console.log(this.props.clickedAttributes);
     return (
       <div className="products">
         <div className="cat-name-containger">
@@ -43,7 +41,6 @@ const mapStateToProps = (state) => {
   return {
     selectedList: state.selectedList,
     category: state.category,
-    clickedAttributes: state.clickedAttributes,
   };
 };
 

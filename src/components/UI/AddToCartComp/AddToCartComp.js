@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import AddRemove from '../Buttons/AddRemove';
-import WideButton from '../Buttons/WideButton';
-import { connect } from 'react-redux';
-import { addCartItem } from '../../../store/actions';
-import { deleteCartItem } from '../../../store/actions';
-import './AddToCartComp.css';
+import React, { Component } from "react";
+import AddRemove from "../Buttons/AddRemove";
+import WideButton from "../Buttons/WideButton";
+import { connect } from "react-redux";
+import { addCartItem } from "../../../store/actions";
+import { deleteCartItem } from "../../../store/actions";
+import "./AddToCartComp.css";
 
 class AddToCartComp extends Component {
   constructor(props) {
@@ -20,13 +20,11 @@ class AddToCartComp extends Component {
     );
     if (mine) {
       this.myItemsNo = mine.quantity;
-      console.log('no', this.myItemsNo);
     } else {
       this.myItemsNo = 0;
     }
   }
   onAddItem(clicked) {
-    console.log();
     if (this.props.sentItem.attributes.length < 1) {
       this.props.addCartItem(this.props.sentItem);
     } else {
@@ -40,12 +38,11 @@ class AddToCartComp extends Component {
     }
   }
   onDeleteItem() {
-    // console.log(this.props.sentItem.id);
     this.props.deleteCartItem(this.props.sentItem.id);
   }
   render() {
     this.getOwnCartNoOfItems();
-    // console.log(this.props);
+
     return (
       <div className="add-to-cart-comp-containter">
         {this.state.showMsg && (
@@ -80,9 +77,6 @@ class AddToCartComp extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    productsList: state.productsList,
-    selectedList: state.selectedList,
-    category: state.category,
     cartItems: state.cartItems,
     clickedAttributes: state.clickedAttributes,
   };

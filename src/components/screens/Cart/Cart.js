@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import './Cart.css';
-import CartItemMain from './CartItemMain';
-import { connect } from 'react-redux';
-import { calculateTotal } from '../../../store/actions';
+import React, { Component } from "react";
+import CartItemMain from "./CartItemMain";
+import { connect } from "react-redux";
+import { calculateTotal } from "../../../store/actions";
+import "./Cart.css";
 
 class Cart extends Component {
   render() {
@@ -32,7 +32,6 @@ const mapStateToProps = (state) => {
     cartItems: state.cartItems,
     currency: state.currency,
     totalAmount: state.totalAmount,
-    clickedAttributes: state.clickedAttributes,
   };
 };
 const mapDispatchToProps = (dispatch) => {

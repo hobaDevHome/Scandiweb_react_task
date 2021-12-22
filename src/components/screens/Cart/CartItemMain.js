@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import './Cart.css';
+import React, { Component } from "react";
 
-import { connect } from 'react-redux';
-import { addCartItem } from '../../../store/actions';
-import { deleteCartItem } from '../../../store/actions';
+import { connect } from "react-redux";
+import { addCartItem } from "../../../store/actions";
+import { deleteCartItem } from "../../../store/actions";
 
-import { Link } from 'react-router-dom';
-import CartItemCarousel from './CartItemCarousel/CartItemCarousel';
-import AddRemove from '../../UI/Buttons/AddRemove';
-import SizeButton from '../../UI/Buttons/SizeButton';
-import ColorBtn from '../../UI/Buttons/ColorBtn';
+import { Link } from "react-router-dom";
+import CartItemCarousel from "./CartItemCarousel/CartItemCarousel";
+import AddRemove from "../../UI/Buttons/AddRemove";
+import SizeButton from "../../UI/Buttons/SizeButton";
+import ColorBtn from "../../UI/Buttons/ColorBtn";
+import "./Cart.css";
 
 class CartItemMain extends Component {
   constructor(props) {
@@ -21,11 +21,9 @@ class CartItemMain extends Component {
   attrName;
   correspondingProduct;
   onAddItem() {
-    // console.log(this.props.category);
     this.props.addCartItem(this.correspondingProduct);
   }
   onDeleteItem() {
-    // console.log(this.props.sentItem.id);
     this.props.deleteCartItem(this.props.cartItem.id);
   }
 
@@ -46,10 +44,9 @@ class CartItemMain extends Component {
         (att) => att.id === this.props.cartItem.id
       );
       if (found) {
-        // this.foundVlue = found.attribute.value;
         this.attrName = found.name;
         this.attrValue = found.attribute.value;
-        console.log('att', this.attrName);
+        console.log("att", this.attrName);
       }
     }
 
@@ -65,16 +62,16 @@ class CartItemMain extends Component {
           }`}</div>
 
           <div className="sizes-buttons">
-            {this.attrName === 'Color' ? (
+            {this.attrName === "Color" ? (
               <ColorBtn
                 style={{
                   backgroundColor: this.attrValue,
-                  border: '2px solid rgb(218, 48, 203)',
+                  border: "2px solid rgb(218, 48, 203)",
                 }}
               ></ColorBtn>
             ) : null}
-            {this.attrName === 'Size' || this.attrName === 'Capacity' ? (
-              <SizeButton style={{ backgroundColor: 'black', color: 'white' }}>
+            {this.attrName === "Size" || this.attrName === "Capacity" ? (
+              <SizeButton style={{ backgroundColor: "black", color: "white" }}>
                 {this.attrValue}
               </SizeButton>
             ) : null}
@@ -101,7 +98,7 @@ const mapStateToProps = (state) => {
   return {
     currency: state.currency,
     cartItems: state.cartItems,
-    totalAmount: state.totalAmount,
+
     clickedAttributes: state.clickedAttributes,
     productsList: state.productsList,
   };

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./ProductDescription.css";
 
 import ProdcutMainImage from "./ProductMainImage";
 import { BsCart2 } from "react-icons/bs";
@@ -9,6 +8,7 @@ import AddToCartComp from "../../UI/AddToCartComp/AddToCartComp";
 import SizesAtributes from "./SizesAtributes";
 import { changeAttrubute } from "../../../store/actions";
 import ProductsCarousel from "./ProductsCarousel";
+import "./ProductDescription.css";
 
 class ProductDescription extends Component {
   constructor(props) {
@@ -17,6 +17,10 @@ class ProductDescription extends Component {
 
     this.state = { id: undefined, currentImage: undefined };
   }
+  selecteProduct = {};
+  price = 0;
+  attributes;
+  currentImage;
   componentDidMount() {
     const sentId = this.props.match.params.porductid;
     this.setState({ id: sentId });
@@ -29,10 +33,6 @@ class ProductDescription extends Component {
       return false;
     }
   }
-  selecteProduct = {};
-  price = 0;
-  attributes;
-  currentImage;
   onThumbClickHandler(thumb) {
     console.log("thum cliked", thumb);
     this.setState({ currentImage: thumb });
@@ -53,8 +53,6 @@ class ProductDescription extends Component {
       ).amount;
 
       this.attributes = this.selecteProduct.attributes[0];
-
-      console.log(this.props.clickedAttributes);
 
       return (
         <div className="main">
@@ -118,8 +116,6 @@ const mapStateToProps = (state) => {
   return {
     currency: state.currency,
     productsList: state.productsList,
-    selectedList: state.selectedList,
-    clickedAttributes: state.clickedAttributes,
     cartItems: state.cartItems,
   };
 };

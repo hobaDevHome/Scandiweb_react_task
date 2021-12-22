@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { BsCart2 } from "react-icons/bs";
 import { connect } from "react-redux";
 import AddToCartComp from "../../UI/AddToCartComp/AddToCartComp";
-
 import { Link } from "react-router-dom";
 import SizesAtributes from "../PDP/SizesAtributes";
 import { changeAttrubute } from "../../../store/actions";
@@ -71,7 +70,7 @@ class ProductItem extends Component {
     ) {
       this.attributes = this.props.product.attributes[0];
     }
-    // console.log('attributes', this.attributes);
+
     return (
       <div className={this.props.inStock ? "item out-of-stock" : "item"}>
         {this.linkComponent()}
@@ -110,9 +109,7 @@ class ProductItem extends Component {
 const mapStateToProps = (state) => {
   return {
     currency: state.currency,
-    productsList: state.productsList,
-    selectedList: state.selectedList,
-    category: state.category,
+
     clickedAttributes: state.clickedAttributes,
     cartItems: state.cartItems,
   };
