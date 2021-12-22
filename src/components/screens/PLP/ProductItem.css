@@ -55,8 +55,8 @@
 
 .item-cart-icon {
   position: absolute;
-  right: 11px;
-  bottom: 75px;
+  left: 280px;
+  top: 300px;
   width: 52px;
   height: 52px;
   background-color: var(--greenColor);

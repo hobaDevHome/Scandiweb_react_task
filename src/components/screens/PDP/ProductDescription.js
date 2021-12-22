@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import './ProductDescription.css';
+import React, { Component } from "react";
+import "./ProductDescription.css";
 
-import ProdcutDetailsImage from './ProdcutDetailsImage';
-import ProdcutMainImage from './ProductMainImage';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
-import SizesAtributes from './SizesAtributes';
-import { changeAttrubute } from '../../../store/actions';
-import ProductsCarousel from './ProductsCarousel';
+import ProdcutMainImage from "./ProductMainImage";
+import { BsCart2 } from "react-icons/bs";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import AddToCartComp from "../../UI/AddToCartComp/AddToCartComp";
+import SizesAtributes from "./SizesAtributes";
+import { changeAttrubute } from "../../../store/actions";
+import ProductsCarousel from "./ProductsCarousel";
 
 class ProductDescription extends Component {
   constructor(props) {
@@ -21,13 +21,20 @@ class ProductDescription extends Component {
     const sentId = this.props.match.params.porductid;
     this.setState({ id: sentId });
   }
-
+  itemInCartCheck() {
+    const found = this.props.cartItems.find((el) => el.id === this.state.id);
+    if (found) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   selecteProduct = {};
   price = 0;
   attributes;
   currentImage;
   onThumbClickHandler(thumb) {
-    console.log('thum cliked', thumb);
+    console.log("thum cliked", thumb);
     this.setState({ currentImage: thumb });
   }
   render() {
@@ -57,12 +64,6 @@ class ProductDescription extends Component {
                 pics={this.selecteProduct.gallery}
                 onClick={this.onThumbClickHandler}
               />
-              {/* {this.selecteProduct.gallery.map((thumb) => (
-                <ProdcutDetailsImage
-                  thumbSrc={thumb}
-                  onClick={() => this.onThumbClickHandler(thumb)}
-                />
-              ))} */}
             </div>
             <div className="product-img-div">
               <ProdcutMainImage
@@ -72,6 +73,15 @@ class ProductDescription extends Component {
                     : this.state.currentImage
                 }
               />
+              <div
+                className={
+                  this.itemInCartCheck()
+                    ? "item-cart-icon2 item-in-cart"
+                    : "item-cart-icon2"
+                }
+              >
+                <BsCart2 size={20} color={"white"} />
+              </div>
             </div>
             <div className="prodcut-data-div">
               <div className="prod-title">{this.selecteProduct.name}</div>
@@ -91,7 +101,7 @@ class ProductDescription extends Component {
               dangerouslySetInnerHTML={{
                 __html: this.selecteProduct.description.replace(
                   /(<? *script)/gi,
-                  'illegalscript'
+                  "illegalscript"
                 ),
               }}
             />
@@ -110,6 +120,7 @@ const mapStateToProps = (state) => {
     productsList: state.productsList,
     selectedList: state.selectedList,
     clickedAttributes: state.clickedAttributes,
+    cartItems: state.cartItems,
   };
 };
 
