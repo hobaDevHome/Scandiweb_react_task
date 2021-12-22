@@ -79,15 +79,6 @@ class ProductDescription extends Component {
                     : this.state.currentImage
                 }
               />
-              {/* <div
-                className={
-                  this.itemInCartCheck()
-                    ? "item-cart-icon2 item-in-cart"
-                    : "item-cart-icon2"
-                }
-              >
-                <BsCart2 size={20} color={"white"} />
-              </div> */}
             </div>
             <div className="prodcut-data-div">
               <div className="prod-title">{this.selecteProduct.name}</div>

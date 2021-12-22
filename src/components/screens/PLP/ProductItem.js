@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BsCart2 } from 'react-icons/bs';
+
 import { connect } from 'react-redux';
 import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ class ProductItem extends Component {
     this.getOwnCartNoOfItems = this.getOwnCartNoOfItems.bind(this);
     this.onAddItem = this.onAddItem.bind(this);
 
-    this.state = { noOfItmesInCart: 0 };
+    this.state = { noOfItmesInCart: 1 };
   }
 
   itemProduct = this.props.product;
@@ -87,7 +87,7 @@ class ProductItem extends Component {
 
         <p className="title">{this.itemProduct.name}</p>
         <p className="price">{`${this.props.currency} ${
-          +Math.round(this.price * (this.state.noOfItmesInCart + 1) * 100) / 100
+          +Math.round(this.price * this.state.noOfItmesInCart * 100) / 100
         }`}</p>
 
         <div className="add-to-cart-comp">
