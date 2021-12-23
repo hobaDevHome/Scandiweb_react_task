@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Header from "../src/components/UI/Header/Header";
 import ProductsPage from "./components/screens/PLP/ProductsPage";
-import ProductDescription from "./components/screens/PDP/ProductDescription";
+import ProductDescription from "./components/screens/PDP/ProductDescription";ىحة
 
 import Cart from "./components/screens/Cart/Cart";
 import { gql } from "@apollo/client";

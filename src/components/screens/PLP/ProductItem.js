@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { connect } from 'react-redux';
-import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
-import { Link } from 'react-router-dom';
-import SizesAtributes from '../PDP/SizesAtributes';
-import { changeAttrubute, addCartItem } from '../../../store/actions';
+import { connect } from "react-redux";
+import AddToCartComp from "../../UI/AddToCartComp/AddToCartComp";
+import { Link } from "react-router-dom";
+import SizesAtributes from "../PDP/SizesAtributes";
+import { changeAttrubute, addCartItem } from "../../../store/actions";
 
-import './ProductItem.css';
+import "./ProductItem.css";
 
 class ProductItem extends Component {
   constructor(props) {
@@ -33,11 +33,11 @@ class ProductItem extends Component {
   }
 
   linkComponent() {
-    if (!this.itemProduct.inStock) {
+    if (this.itemProduct.inStock) {
       return (
         <Link
           to={`/detials/${this.props.id}`}
-          style={{ textDecoration: 'none', color: 'black' }}
+          style={{ textDecoration: "none", color: "black" }}
         >
           <div className="item-image-container">
             <img
@@ -80,7 +80,7 @@ class ProductItem extends Component {
     }
 
     return (
-      <div className={this.props.inStock ? 'item out-of-stock' : 'item'}>
+      <div className={!this.props.inStock ? "item out-of-stock" : "item"}>
         {this.linkComponent()}
 
         <p className="title">{this.itemProduct.name}</p>
@@ -89,7 +89,7 @@ class ProductItem extends Component {
         }`}</p>
 
         <div className="add-to-cart-comp">
-          {!this.itemProduct.inStock && (
+          {this.itemProduct.inStock && (
             <AddToCartComp
               getOwnCartNoOfItems={this.getOwnCartNoOfItems}
               sentItem={this.itemProduct}
@@ -97,7 +97,7 @@ class ProductItem extends Component {
             />
           )}
         </div>
-        {this.attributes !== 0 && !this.itemProduct.inStock && (
+        {this.attributes !== 0 && this.itemProduct.inStock && (
           <SizesAtributes
             attributes={this.attributes}
             sentItem={this.itemProduct}
