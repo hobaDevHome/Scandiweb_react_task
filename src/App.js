@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Header from "../src/components/UI/Header/Header";
@@ -10,6 +9,8 @@ import Cart from "./components/screens/Cart/Cart";
 import { gql } from "@apollo/client";
 import { clientScandiweb } from "./Apollo";
 import { getProductsLists } from "./store/actions";
+
+import "./App.css";
 
 class App extends Component {
   state = { categories: undefined };
@@ -51,13 +52,10 @@ class App extends Component {
       })
       .then((result) => {
         this.setState({ categories: result.data.categories });
-
         this.props.getProductsLists(this.state.categories);
       });
   }
   render() {
-    if (this.state.categories !== undefined) {
-    }
     if (this.state.categories === undefined) {
       return <div>Loading</div>;
     }
