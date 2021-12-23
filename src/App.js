@@ -71,7 +71,7 @@ class App extends Component {
             top: 0,
             backgroundColor: 'white',
             zIndex: 25,
-            width: '80%',
+            width: '100%',
           }}
         />
 

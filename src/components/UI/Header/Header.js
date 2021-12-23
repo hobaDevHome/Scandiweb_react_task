@@ -75,73 +75,75 @@ class Header extends Component {
       this.getCurrencyNames();
     }
     return (
-      <div className="header-row" style={this.props.style}>
-        {this.state.showCurrency && (
-          <div className="currency-list">
-            {this.currencyNames.map((cur) => {
-              return (
-                <div
-                  key={cur.length}
-                  className="currency-item"
-                  onClick={() =>
-                    this.onChooseCurrencyHandler(cur.split(' ')[0])
-                  }
-                >
-                  {cur}
-                </div>
-              );
-            })}
-          </div>
-        )}
-        {this.state.showCartModal && (
-          <CartOverlay onHide={this.hideCartOverlay.bind(this)} />
-        )}
-        <div className="links-section">
-          <ul>
-            {this.categoryNames.map((cat) => {
-              return (
-                <Link to="/" key={cat.length}>
-                  <li
-                    className={`cat-link ${
-                      this.props.category === cat ? 'acitve-cat' : ''
-                    }`}
-                    onClick={() => this.onChosseCatHandler(cat)}
+      <div className="header-parent">
+        <div className="header-row" style={this.props.style}>
+          {this.state.showCurrency && (
+            <div className="currency-list">
+              {this.currencyNames.map((cur) => {
+                return (
+                  <div
+                    key={cur.length}
+                    className="currency-item"
+                    onClick={() =>
+                      this.onChooseCurrencyHandler(cur.split(' ')[0])
+                    }
                   >
-                    <p>{cat}</p>
-                  </li>
-                </Link>
-              );
-            })}
-          </ul>
-        </div>
-        <div className="bag-section">
-          <Link to="/">
-            <img src="./images/bag-icon.png" alt="" />
-          </Link>
-        </div>
-        <div className="cart-section">
-          <div
-            className="currency-icons-section"
-            onClick={this.toggleCurrencyList.bind(this)}
-          >
-            <div className="currencyAmount">{this.props.currency}</div>
-            <div className="currency">
-              {this.state.showCurrency ? (
-                <BsChevronUp size={10} />
-              ) : (
-                <BsChevronDown size={10} />
-              )}
+                    {cur}
+                  </div>
+                );
+              })}
             </div>
+          )}
+          {this.state.showCartModal && (
+            <CartOverlay onHide={this.hideCartOverlay.bind(this)} />
+          )}
+          <div className="links-section">
+            <ul>
+              {this.categoryNames.map((cat) => {
+                return (
+                  <Link to="/" key={cat.length}>
+                    <li
+                      className={`cat-link ${
+                        this.props.category === cat ? 'acitve-cat' : ''
+                      }`}
+                      onClick={() => this.onChosseCatHandler(cat)}
+                    >
+                      <p>{cat}</p>
+                    </li>
+                  </Link>
+                );
+              })}
+            </ul>
           </div>
+          <div className="bag-section">
+            <Link to="/">
+              <img src="./images/bag-icon.png" alt="" />
+            </Link>
+          </div>
+          <div className="cart-section">
+            <div
+              className="currency-icons-section"
+              onClick={this.toggleCurrencyList.bind(this)}
+            >
+              <div className="currencyAmount">{this.props.currency}</div>
+              <div className="currency">
+                {this.state.showCurrency ? (
+                  <BsChevronUp size={10} />
+                ) : (
+                  <BsChevronDown size={10} />
+                )}
+              </div>
+            </div>
 
-          <div
-            onClick={this.showCartOverlay.bind(this)}
-            className={`cart-icon ${
-              this.props.cartItems.length > 0 ? 'cart-badge-visible' : ''
-            }`}
-          >
-            <BsCart2 size={20} />
-            <div className="cart-badge">{this.numcerOfItems}</div>
+            <div
+              onClick={this.showCartOverlay.bind(this)}
+              className={`cart-icon ${
+                this.props.cartItems.length > 0 ? 'cart-badge-visible' : ''
+              }`}
+            >
+              <BsCart2 size={20} />
+              <div className="cart-badge">{this.numcerOfItems}</div>
+            </div>
           </div>
         </div>
       </div>
