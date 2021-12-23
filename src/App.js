@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import './App.css';
-import { Switch, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import Header from '../src/components/UI/Header/Header';
-import ProductsPage from './components/screens/PLP/ProductsPage';
-import ProductDescription from './components/screens/PDP/ProductDescription';
+import React, { Component } from "react";
+import "./App.css";
+import { Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import Header from "../src/components/UI/Header/Header";
+import ProductsPage from "./components/screens/PLP/ProductsPage";
+import ProductDescription from "./components/screens/PDP/ProductDescription";
 
-import Cart from './components/screens/Cart/Cart';
-import { gql } from '@apollo/client';
-import { clientScandiweb } from './Apollo';
-import { getProductsLists } from './store/actions';
+import Cart from "./components/screens/Cart/Cart";
+import { gql } from "@apollo/client";
+import { clientScandiweb } from "./Apollo";
+import { getProductsLists } from "./store/actions";
 
 class App extends Component {
   state = { categories: undefined };
@@ -67,11 +67,11 @@ class App extends Component {
         <Header
           categories={this.state.categories}
           style={{
-            position: 'fixed',
+            position: "fixed",
             top: 0,
-            backgroundColor: 'white',
+            backgroundColor: "white",
             zIndex: 25,
-            width: '100%',
+            width: "80%",
           }}
         />
 
