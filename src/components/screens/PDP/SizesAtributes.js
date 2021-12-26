@@ -26,7 +26,7 @@ class SizesAtributes extends Component {
     }
   }
   render() {
-    console.log("in att component", this.props.attributes);
+    // console.log("in att component", this.props.attributes);
     this.checkIfSelected();
     if (
       this.currentAttributes !== undefined &&

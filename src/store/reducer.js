@@ -130,18 +130,32 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       const name = action.payload.name;
       const addClickedattribute = { id, attribute, name };
       const clickedFound = state.clickedAttributes.find((atr) => atr.id === id);
+      // const sameAttr = clickedFound.name === name;
       if (!clickedFound) {
+        console.log("not found");
         return {
           ...state,
           clickedAttributes: [...state.clickedAttributes, addClickedattribute],
         };
       } else {
-        return {
-          ...state,
-          clickedAttributes: state.clickedAttributes.map((att) =>
-            att.id === id ? addClickedattribute : att
-          ),
-        };
+        if (clickedFound.name === name) {
+          console.log("found with same name");
+          return {
+            ...state,
+            clickedAttributes: state.clickedAttributes.map((att) =>
+              att.id === id && att.name === name ? addClickedattribute : att
+            ),
+          };
+        } else {
+          console.log("found with diff name");
+          return {
+            ...state,
+            clickedAttributes: [
+              ...state.clickedAttributes,
+              addClickedattribute,
+            ],
+          };
+        }
       }
 
     default:

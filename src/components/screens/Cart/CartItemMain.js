@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { connect } from 'react-redux';
-import { addCartItem } from '../../../store/actions';
-import { deleteCartItem } from '../../../store/actions';
+import { connect } from "react-redux";
+import { addCartItem } from "../../../store/actions";
+import { deleteCartItem } from "../../../store/actions";
 
-import { Link } from 'react-router-dom';
-import CartItemCarousel from './CartItemCarousel/CartItemCarousel';
-import AddRemove from '../../UI/Buttons/AddRemove';
-import SizeButton from '../../UI/Buttons/SizeButton';
-import ColorBtn from '../../UI/Buttons/ColorBtn';
-import './Cart.css';
+import { Link } from "react-router-dom";
+import CartItemCarousel from "./CartItemCarousel/CartItemCarousel";
+import AddRemove from "../../UI/Buttons/AddRemove";
+import SizeButton from "../../UI/Buttons/SizeButton";
+import ColorBtn from "../../UI/Buttons/ColorBtn";
+import "./Cart.css";
 
 class CartItemMain extends Component {
   constructor(props) {
@@ -48,6 +48,7 @@ class CartItemMain extends Component {
       }
     }
 
+    console.log("clicked", this.props.clickedAttributes);
     return (
       <div className="main-cart-item">
         <div className="cart-item-data">
@@ -60,16 +61,16 @@ class CartItemMain extends Component {
           ).toFixed(2)}`}</div>
 
           <div className="sizes-buttons">
-            {this.attrName === 'Color' ? (
+            {this.attrName === "Color" ? (
               <ColorBtn
                 style={{
                   backgroundColor: this.attrValue,
-                  border: '2px solid rgb(218, 48, 203)',
+                  border: "2px solid rgb(218, 48, 203)",
                 }}
               ></ColorBtn>
             ) : null}
-            {this.attrName === 'Size' || this.attrName === 'Capacity' ? (
-              <SizeButton style={{ backgroundColor: 'black', color: 'white' }}>
+            {this.attrName === "Size" || this.attrName === "Capacity" ? (
+              <SizeButton style={{ backgroundColor: "black", color: "white" }}>
                 {this.attrValue}
               </SizeButton>
             ) : null}
