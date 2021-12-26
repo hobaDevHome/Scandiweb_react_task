@@ -139,7 +139,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
         };
       } else {
         if (clickedFound.name === name) {
-          console.log("found with same name");
+          console.log("found with same name", name);
           return {
             ...state,
             clickedAttributes: state.clickedAttributes.map((att) =>
