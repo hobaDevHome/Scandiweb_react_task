@@ -13,8 +13,7 @@ class CartItemOverlay extends Component {
     this.onAddItem = this.onAddItem.bind(this);
     this.onDeleteItem = this.onDeleteItem.bind(this);
   }
-  attrValue;
-  attrName;
+  itemAttributes;
   correspondingProduct;
   onAddItem() {
     this.props.addCartItem(this.correspondingProduct);
@@ -28,18 +27,14 @@ class CartItemOverlay extends Component {
       price = this.props.cartItem.productPrice.find(
         (price) => price.currency.symbol === this.props.currency
       ).amount;
-      const found = this.props.clickedAttributes.find(
-        (att) => att.id === this.props.cartItem.id
-      );
       if (this.props.productsList.products !== undefined) {
         this.correspondingProduct = this.props.productsList.products.find(
           (prod) => prod.id === this.props.cartItem.id
         );
       }
-      if (found) {
-        this.attrName = found.name;
-        this.attrValue = found.attribute.value;
-      }
+      this.itemAttributes = this.props.clickedAttributes.filter(
+        (att) => att.id === this.props.cartItem.id
+      );
     }
 
     return (
@@ -54,25 +49,39 @@ class CartItemOverlay extends Component {
               price * this.props.cartItem.quantity
             ).toFixed(2)}`}
           </div>
+          {/* ---------------------------- */}
 
-          <div className="overlay-sizes-buttons">
-            {this.attrName === 'Color' ? (
-              <ColorBtn
-                style={{
-                  backgroundColor: this.attrValue,
-                  border: '2px solid rgb(218, 48, 203)',
-                }}
-              ></ColorBtn>
-            ) : null}
-            {this.attrName === 'Size' || this.attrName === 'Capacity' ? (
-              <OverlaySizeButton
-                style={{ backgroundColor: 'black', color: 'white' }}
-              >
-                {this.attrValue}
-              </OverlaySizeButton>
-            ) : null}
+          <div className="attr-buttons-cont">
+            {this.itemAttributes !== undefined &&
+              this.itemAttributes.map((attr) => {
+                if (attr.name === 'Color') {
+                  return (
+                    <div className="att-button-cart">
+                      <div className="attr-name-cart">{attr.name}</div>
+                      <ColorBtn
+                        style={{
+                          backgroundColor: attr.attribute.value,
+                          border: '2px solid rgb(218, 48, 203)',
+                        }}
+                      ></ColorBtn>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div className="att-button-cart">
+                      <div className="attr-name-cart">{attr.name}</div>
+                      <OverlaySizeButton
+                        style={{ backgroundColor: 'black', color: 'white' }}
+                      >
+                        {attr.attribute.value}
+                      </OverlaySizeButton>
+                    </div>
+                  );
+                }
+              })}
           </div>
         </div>
+        {/* ---------------------------------- */}
         <div className="overlay-item-images-quantity">
           <div className="overlay-quantity-div">
             <OverlayAddRemove onClick={this.onAddItem}>+</OverlayAddRemove>

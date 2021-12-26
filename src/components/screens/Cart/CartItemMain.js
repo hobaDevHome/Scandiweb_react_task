@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { connect } from "react-redux";
-import { addCartItem } from "../../../store/actions";
-import { deleteCartItem } from "../../../store/actions";
+import { connect } from 'react-redux';
+import { addCartItem } from '../../../store/actions';
+import { deleteCartItem } from '../../../store/actions';
 
-import { Link } from "react-router-dom";
-import CartItemCarousel from "./CartItemCarousel/CartItemCarousel";
-import AddRemove from "../../UI/Buttons/AddRemove";
-import SizeButton from "../../UI/Buttons/SizeButton";
-import ColorBtn from "../../UI/Buttons/ColorBtn";
-import "./Cart.css";
+import { Link } from 'react-router-dom';
+import CartItemCarousel from './CartItemCarousel/CartItemCarousel';
+import AddRemove from '../../UI/Buttons/AddRemove';
+import SizeButton from '../../UI/Buttons/SizeButton';
+import ColorBtn from '../../UI/Buttons/ColorBtn';
+import './Cart.css';
 
 class CartItemMain extends Component {
   constructor(props) {
@@ -17,8 +17,8 @@ class CartItemMain extends Component {
     this.onAddItem = this.onAddItem.bind(this);
     this.onDeleteItem = this.onDeleteItem.bind(this);
   }
-  attrValue;
-  attrName;
+  itemAttributes;
+
   correspondingProduct;
   onAddItem() {
     this.props.addCartItem(this.correspondingProduct);
@@ -39,16 +39,13 @@ class CartItemMain extends Component {
           (prod) => prod.id === this.props.cartItem.id
         );
       }
-      const found = this.props.clickedAttributes.find(
+      this.itemAttributes = this.props.clickedAttributes.filter(
         (att) => att.id === this.props.cartItem.id
       );
-      if (found) {
-        this.attrName = found.name;
-        this.attrValue = found.attribute.value;
-      }
+      // console.log('found', this.itemAttributes);
     }
 
-    console.log("clicked", this.props.clickedAttributes);
+    // console.log('clicked', this.props.clickedAttributes);
     return (
       <div className="main-cart-item">
         <div className="cart-item-data">
@@ -60,20 +57,34 @@ class CartItemMain extends Component {
             price * this.props.cartItem.quantity
           ).toFixed(2)}`}</div>
 
-          <div className="sizes-buttons">
-            {this.attrName === "Color" ? (
-              <ColorBtn
-                style={{
-                  backgroundColor: this.attrValue,
-                  border: "2px solid rgb(218, 48, 203)",
-                }}
-              ></ColorBtn>
-            ) : null}
-            {this.attrName === "Size" || this.attrName === "Capacity" ? (
-              <SizeButton style={{ backgroundColor: "black", color: "white" }}>
-                {this.attrValue}
-              </SizeButton>
-            ) : null}
+          <div className="attr-buttons-cont">
+            {this.itemAttributes !== undefined &&
+              this.itemAttributes.map((attr) => {
+                if (attr.name === 'Color') {
+                  return (
+                    <div className="att-button-cart">
+                      <div className="attr-name-cart">{attr.name}</div>
+                      <ColorBtn
+                        style={{
+                          backgroundColor: attr.attribute.value,
+                          border: '2px solid rgb(218, 48, 203)',
+                        }}
+                      ></ColorBtn>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div className="att-button-cart">
+                      <div className="attr-name-cart">{attr.name}</div>
+                      <SizeButton
+                        style={{ backgroundColor: 'black', color: 'white' }}
+                      >
+                        {attr.attribute.value}
+                      </SizeButton>
+                    </div>
+                  );
+                }
+              })}
           </div>
         </div>
         <div className="cart-item-images-quantity">
