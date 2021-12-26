@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import ColorBtn from '../../UI/Buttons/ColorBtn';
-import SizeButton from '../../UI/Buttons/SizeButton';
-import { connect } from 'react-redux';
-import { changeAttrubute } from '../../../store/actions';
-import './SizesAtributes.css';
+import React, { Component } from "react";
+import ColorBtn from "../../UI/Buttons/ColorBtn";
+import SizeButton from "../../UI/Buttons/SizeButton";
+import { connect } from "react-redux";
+import { changeAttrubute } from "../../../store/actions";
+import "./SizesAtributes.css";
 
 class SizesAtributes extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class SizesAtributes extends Component {
     this.attrHandler = this.attrHandler.bind(this);
   }
   state = { checked: false };
-  currentAttributes = this.props.attributes;
+  currentAttributes = this.props.attributes[0];
 
   foundVlue;
   attrHandler(id, attr, name) {
@@ -26,48 +26,65 @@ class SizesAtributes extends Component {
     }
   }
   render() {
+    console.log("in att component", this.props.attributes);
     this.checkIfSelected();
     if (
-      this.props.attributes !== undefined &&
-      this.props.attributes.items.length > 0
+      this.currentAttributes !== undefined &&
+      this.props.attributes.length > 0
     ) {
       return (
-        <div>
-          <div className="size">{this.currentAttributes.name}</div>
-
+        <div className="atts-containter">
           <div className="sizes-buttons">
-            {this.currentAttributes.name === 'Color'
-              ? this.currentAttributes.items.map((attr) => {
-                  return (
-                    <ColorBtn
-                      style={{ backgroundColor: attr.value }}
-                      checked={this.foundVlue === attr.value}
-                      onClick={() =>
-                        this.attrHandler(
-                          this.props.id,
-                          attr,
-                          this.currentAttributes.name
-                        )
-                      }
-                    ></ColorBtn>
-                  );
-                })
-              : this.currentAttributes.items.map((attr) => {
-                  return (
-                    <SizeButton
-                      onClick={() =>
-                        this.attrHandler(
-                          this.props.id,
-                          attr,
-                          this.currentAttributes.name
-                        )
-                      }
-                      checked={this.foundVlue === attr.value}
-                    >
-                      {attr.value}
-                    </SizeButton>
-                  );
-                })}
+            {this.props.attributes.map((attKind) => {
+              if (attKind.name === "Color") {
+                return (
+                  <div className="att-cont">
+                    <div className="att-name">{attKind.name}</div>
+                    <div className="att-list">
+                      {attKind.items.map((attr) => {
+                        return (
+                          <ColorBtn
+                            style={{ backgroundColor: attr.value }}
+                            checked={this.foundVlue === attr.value}
+                            onClick={() =>
+                              this.attrHandler(
+                                this.props.id,
+                                attr,
+                                attKind.name
+                              )
+                            }
+                          ></ColorBtn>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="att-cont">
+                    <div className="att-name">{attKind.name}</div>
+                    <div className="att-list">
+                      {attKind.items.map((attr) => {
+                        return (
+                          <SizeButton
+                            onClick={() =>
+                              this.attrHandler(
+                                this.props.id,
+                                attr,
+                                attKind.name
+                              )
+                            }
+                            checked={this.foundVlue === attr.value}
+                          >
+                            {attr.value}
+                          </SizeButton>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              }
+            })}
           </div>
         </div>
       );

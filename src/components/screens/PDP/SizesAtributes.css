@@ -1,17 +1,35 @@
-.size {
-  font-family: 'Roboto Condensed';
+.att-name {
+  font-family: "Roboto Condensed";
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
   line-height: 18px;
-
   margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
 }
 
 .sizes-buttons {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin-bottom: 5px;
+  align-items: flex-start;
+}
 
-  justify-content: flex-start;
+.att-containter {
+  /* display: flex;
+  flex-direction: column;
+  margin-bottom: 5px; */
+}
+
+.att-cont {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  align-self: flex-start;
+}
+
+.att-list {
+  display: flex;
 }

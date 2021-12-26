@@ -76,7 +76,7 @@ class ProductItem extends Component {
       this.props.product.attributes[0] &&
       this.props.product.attributes[0].items !== undefined
     ) {
-      this.attributes = this.props.product.attributes[0];
+      this.attributes = this.props.product.attributes;
     }
 
     return (

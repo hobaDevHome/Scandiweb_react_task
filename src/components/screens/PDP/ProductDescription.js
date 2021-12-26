@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import ProdcutMainImage from './ProductMainImage';
+import ProdcutMainImage from "./ProductMainImage";
 
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
-import SizesAtributes from './SizesAtributes';
-import { changeAttrubute } from '../../../store/actions';
-import ProductsCarousel from './ProductsCarousel';
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import AddToCartComp from "../../UI/AddToCartComp/AddToCartComp";
+import SizesAtributes from "./SizesAtributes";
+import { changeAttrubute } from "../../../store/actions";
+import ProductsCarousel from "./ProductsCarousel";
 
-import './ProductDescription.css';
+import "./ProductDescription.css";
 
 class ProductDescription extends Component {
   constructor(props) {
@@ -59,7 +59,7 @@ class ProductDescription extends Component {
         (price) => price.currency.symbol === this.props.currency
       ).amount;
 
-      this.attributes = this.selecteProduct.attributes[0];
+      this.attributes = this.selecteProduct.attributes;
 
       return (
         <div className="main">
@@ -103,7 +103,7 @@ class ProductDescription extends Component {
               dangerouslySetInnerHTML={{
                 __html: this.selecteProduct.description.replace(
                   /(<? *script)/gi,
-                  'illegalscript'
+                  "illegalscript"
                 ),
               }}
             />
