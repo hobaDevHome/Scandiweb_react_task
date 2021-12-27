@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import AddRemove from '../Buttons/AddRemove';
-import WideButton from '../Buttons/WideButton';
-import { BsCart2 } from 'react-icons/bs';
-import { connect } from 'react-redux';
-import { addCartItem } from '../../../store/actions';
-import { deleteCartItem } from '../../../store/actions';
-import './AddToCartComp.css';
+import React, { Component } from "react";
+import AddRemove from "../Buttons/AddRemove";
+import WideButton from "../Buttons/WideButton";
+import { BsCart2 } from "react-icons/bs";
+import { connect } from "react-redux";
+import { addCartItem } from "../../../store/actions";
+import { deleteCartItem } from "../../../store/actions";
+import "./AddToCartComp.css";
 
 class AddToCartComp extends Component {
   constructor(props) {
@@ -30,8 +30,9 @@ class AddToCartComp extends Component {
     if (this.props.sentItem.attributes.length < 1) {
       this.props.addCartItem(this.props.sentItem);
     } else {
-      const found = clicked.find((el) => el.id === this.props.sentItem.id);
-      if (found) {
+      const found = clicked.filter((el) => el.id === this.props.sentItem.id);
+      // console.log(found);
+      if (found.length === this.props.sentItem.attributes.length) {
         this.props.addCartItem(this.props.sentItem);
         this.setState({ showMsg: false });
       } else {
@@ -48,18 +49,18 @@ class AddToCartComp extends Component {
     return (
       <div className="add-to-cart-comp-containter">
         {this.state.showMsg && (
-          <div className="pleas-add">* Please select an attribute</div>
+          <div className="pleas-add">*Please select the desired options</div>
         )}
         <div className="cart-buttons-component">
           <div
             className={
               this.props.sentItem.inStock
-                ? 'item-cart-icon'
-                : 'item-cart-icon item-in-stock'
+                ? "item-cart-icon"
+                : "item-cart-icon item-in-stock"
             }
             onClick={() => this.onAddItem(this.props.clickedAttributes)}
           >
-            <BsCart2 size={20} color={'white'} />
+            <BsCart2 size={20} color={"white"} />
           </div>
           {this.myItemsNo !== 0 && (
             <AddRemove onClick={this.onDeleteItem}>-</AddRemove>

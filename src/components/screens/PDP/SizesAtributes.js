@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import ColorBtn from '../../UI/Buttons/ColorBtn';
-import SizeButton from '../../UI/Buttons/SizeButton';
-import { connect } from 'react-redux';
-import { changeAttrubute } from '../../../store/actions';
-import './SizesAtributes.css';
+import React, { Component } from "react";
+import ColorBtn from "../../UI/Buttons/ColorBtn";
+import SizeButton from "../../UI/Buttons/SizeButton";
+import { connect } from "react-redux";
+import { changeAttrubute } from "../../../store/actions";
+import "./SizesAtributes.css";
 
 class SizesAtributes extends Component {
   constructor(props) {
@@ -14,11 +14,11 @@ class SizesAtributes extends Component {
   currentAttributes = this.props.attributes[0];
 
   attrHandler(id, attr, name) {
-    console.log(this.props.clickedAttributes);
+    // console.log(this.props.clickedAttributes);
     this.props.changeAttrubute(id, attr, name);
   }
   checkIfSelected(attrib, attNanme) {
-    console.log(this.props.clickedAttributes);
+    // console.log(this.props.clickedAttributes);
     const found = this.props.clickedAttributes.find(
       (att) =>
         att.id === this.props.id &&
@@ -26,7 +26,7 @@ class SizesAtributes extends Component {
         attrib.value === att.attribute.value
     );
     if (found) {
-      console.log('found attr');
+      console.log("found attr");
       return true;
     }
     return false;
@@ -42,7 +42,7 @@ class SizesAtributes extends Component {
         <div className="atts-containter">
           <div className="sizes-buttons">
             {this.props.attributes.map((attKind) => {
-              if (attKind.name === 'Color') {
+              if (attKind.name === "Color") {
                 return (
                   <div className="att-cont">
                     <div className="att-name">{attKind.name}</div>
