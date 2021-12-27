@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import CartItemMain from './CartItemMain';
-import { connect } from 'react-redux';
-import { calculateTotal } from '../../../store/actions';
-import './Cart.css';
+import React, { Component } from "react";
+import CartItemMain from "./CartItemMain";
+import { connect } from "react-redux";
+import { calculateTotal } from "../../../store/actions";
+import "./Cart.css";
 
 class Cart extends Component {
   render() {
@@ -22,8 +22,10 @@ class Cart extends Component {
                 </div>
               );
             })}
-            <div className="cart-total">Total:</div>
-            <div className="total">{`${this.props.currency} ${this.props.totalAmount}`}</div>
+            <div className="total-main-div">
+              <div className="cart-total">Total: </div>
+              <div className="total">{`${this.props.currency} ${this.props.totalAmount}`}</div>
+            </div>
           </div>
         ) : (
           <div className="no-items">Your shopping bag is empty right now</div>

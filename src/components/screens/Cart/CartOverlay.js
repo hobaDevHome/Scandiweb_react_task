@@ -28,7 +28,26 @@ class CartModal extends Component {
 const portalElement = document.getElementById("overlays");
 
 class CartOverlay extends Component {
+  constructor(props) {
+    super(props);
+    this.getTotalCartItems = this.getTotalCartItems.bind(this);
+  }
+  itemsNo = 0;
+  componentDidUpdate() {
+    this.getTotalCartItems();
+  }
+  getTotalCartItems() {
+    this.itemsNo = 0;
+    if (this.props.cartItems.length > 0) {
+      for (let i = 0; i < this.props.cartItems.length; i++) {
+        const item = this.props.cartItems[i];
+
+        this.itemsNo = this.itemsNo + item.quantity;
+      }
+    }
+  }
   render() {
+    this.getTotalCartItems();
     if (this.props.cartItems !== undefined) {
       this.props.calculateTotal(this.props.cartItems);
     }
@@ -44,7 +63,7 @@ class CartOverlay extends Component {
               {this.props.cartItems.length > 0 ? (
                 <div>
                   <div className="overlay-item-titles">
-                    My Bag. {this.props.cartItems.length} items
+                    My Bag. {this.itemsNo} items
                   </div>
                   <div className="overlay-items-containter">
                     {this.props.cartItems.map((item) => {

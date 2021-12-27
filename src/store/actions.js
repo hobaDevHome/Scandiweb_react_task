@@ -36,7 +36,6 @@ export const calculateTotal = (items) => {
   };
 };
 export const changeAttrubute = (id, attribute, name) => {
-  // console.log("action called to change att", attribute, name);
   return {
     type: "change_attribute",
     payload: { id, attribute, name },

@@ -132,9 +132,8 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       const foundAttributesArray = state.clickedAttributes.filter(
         (atr) => atr.id === id
       );
-      console.log("found array", foundAttributesArray);
+
       if (foundAttributesArray.length === 0) {
-        // console.log("not found");
         return {
           ...state,
           clickedAttributes: [...state.clickedAttributes, addClickedattribute],
@@ -144,7 +143,6 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
           (att) => att.name === name
         );
         if (foundCurrentAttib) {
-          console.log("found with same name", name);
           return {
             ...state,
             clickedAttributes: state.clickedAttributes.map((att) =>
@@ -152,7 +150,6 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
             ),
           };
         } else {
-          console.log("found with diff name");
           return {
             ...state,
             clickedAttributes: [

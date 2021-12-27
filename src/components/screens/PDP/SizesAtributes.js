@@ -14,7 +14,6 @@ class SizesAtributes extends Component {
   currentAttributes = this.props.attributes[0];
 
   attrHandler(id, attr, name) {
-    console.log(this.props.clickedAttributes);
     this.props.changeAttrubute(id, attr, name);
   }
   checkIfSelected(attrib, attNanme) {

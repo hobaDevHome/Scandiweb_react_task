@@ -39,6 +39,7 @@
 .overlay-total-containt {
   display: flex;
   justify-content: space-between;
+  margin-right: 10px;
 }
 
 .overlay-buttons-div {
