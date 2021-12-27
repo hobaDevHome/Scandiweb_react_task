@@ -14,11 +14,10 @@ class SizesAtributes extends Component {
   currentAttributes = this.props.attributes[0];
 
   attrHandler(id, attr, name) {
-    // console.log(this.props.clickedAttributes);
+    console.log(this.props.clickedAttributes);
     this.props.changeAttrubute(id, attr, name);
   }
   checkIfSelected(attrib, attNanme) {
-    // console.log(this.props.clickedAttributes);
     const found = this.props.clickedAttributes.find(
       (att) =>
         att.id === this.props.id &&
@@ -26,13 +25,11 @@ class SizesAtributes extends Component {
         attrib.value === att.attribute.value
     );
     if (found) {
-      console.log("found attr");
       return true;
     }
     return false;
   }
   render() {
-    // console.log("in att component", this.props.attributes);
     this.checkIfSelected();
     if (
       this.currentAttributes !== undefined &&

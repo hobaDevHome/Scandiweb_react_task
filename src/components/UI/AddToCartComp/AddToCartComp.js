@@ -31,7 +31,7 @@ class AddToCartComp extends Component {
       this.props.addCartItem(this.props.sentItem);
     } else {
       const found = clicked.filter((el) => el.id === this.props.sentItem.id);
-      // console.log(found);
+
       if (found.length === this.props.sentItem.attributes.length) {
         this.props.addCartItem(this.props.sentItem);
         this.setState({ showMsg: false });
