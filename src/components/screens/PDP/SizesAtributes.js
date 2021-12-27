@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import ColorBtn from "../../UI/Buttons/ColorBtn";
-import SizeButton from "../../UI/Buttons/SizeButton";
-import { connect } from "react-redux";
-import { changeAttrubute } from "../../../store/actions";
-import "./SizesAtributes.css";
+import React, { Component } from 'react';
+import ColorBtn from '../../UI/Buttons/ColorBtn';
+import SizeButton from '../../UI/Buttons/SizeButton';
+import { connect } from 'react-redux';
+import { changeAttrubute } from '../../../store/actions';
+import './SizesAtributes.css';
 
 class SizesAtributes extends Component {
   constructor(props) {
@@ -13,17 +13,23 @@ class SizesAtributes extends Component {
   state = { checked: false };
   currentAttributes = this.props.attributes[0];
 
-  foundVlue;
   attrHandler(id, attr, name) {
+    console.log(this.props.clickedAttributes);
     this.props.changeAttrubute(id, attr, name);
   }
-  checkIfSelected() {
+  checkIfSelected(attrib, attNanme) {
+    console.log(this.props.clickedAttributes);
     const found = this.props.clickedAttributes.find(
-      (att) => att.id === this.props.id
+      (att) =>
+        att.id === this.props.id &&
+        att.name === attNanme &&
+        attrib.value === att.attribute.value
     );
     if (found) {
-      this.foundVlue = found.attribute.value;
+      console.log('found attr');
+      return true;
     }
+    return false;
   }
   render() {
     // console.log("in att component", this.props.attributes);
@@ -36,7 +42,7 @@ class SizesAtributes extends Component {
         <div className="atts-containter">
           <div className="sizes-buttons">
             {this.props.attributes.map((attKind) => {
-              if (attKind.name === "Color") {
+              if (attKind.name === 'Color') {
                 return (
                   <div className="att-cont">
                     <div className="att-name">{attKind.name}</div>
@@ -45,7 +51,7 @@ class SizesAtributes extends Component {
                         return (
                           <ColorBtn
                             style={{ backgroundColor: attr.value }}
-                            checked={this.foundVlue === attr.value}
+                            checked={this.checkIfSelected(attr, attKind.name)}
                             onClick={() =>
                               this.attrHandler(
                                 this.props.id,
@@ -74,7 +80,7 @@ class SizesAtributes extends Component {
                                 attKind.name
                               )
                             }
-                            checked={this.foundVlue === attr.value}
+                            checked={this.checkIfSelected(attr, attKind.name)}
                           >
                             {attr.value}
                           </SizeButton>
