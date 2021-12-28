@@ -1,11 +1,16 @@
-import React, { Component } from "react";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import "./CartItemCarousel.css";
+import React, { Component } from 'react';
+
+import './CartItemCarousel.css';
 
 export default class CartItemCarousel extends Component {
-  state = { current: 0 };
-  SliderData = this.props.cartItem.gallery;
-  length = this.SliderData.length;
+  constructor(props) {
+    super(props);
+    this.state = { current: 0 };
+
+    this.SliderData = this.props.cartItem.gallery;
+    this.length = this.SliderData.length;
+  }
+
   nextSlide() {
     this.setState({
       current:
@@ -23,7 +28,7 @@ export default class CartItemCarousel extends Component {
   render() {
     return (
       <section className="slider">
-        <div className={`left-arrow ${this.length > 1 ? "" : "arrows-off"}`}>
+        <div className={`left-arrow ${this.length > 1 ? '' : 'arrows-off'}`}>
           <img
             src="./images/arrow-left.png"
             alt="left arrow"
@@ -31,7 +36,7 @@ export default class CartItemCarousel extends Component {
             onClick={this.prevSlide.bind(this)}
           />
         </div>
-        <div className={`right-arrow ${this.length > 1 ? "" : "arrows-off"}`}>
+        <div className={`right-arrow ${this.length > 1 ? '' : 'arrows-off'}`}>
           <img
             src="./images/arrow-right.png"
             alt="left arrow"
@@ -44,7 +49,7 @@ export default class CartItemCarousel extends Component {
           return (
             <div
               className={
-                index === this.state.current ? "slide active" : "slide"
+                index === this.state.current ? 'slide active' : 'slide'
               }
               key={index}
             >

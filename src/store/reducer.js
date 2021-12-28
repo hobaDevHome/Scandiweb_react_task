@@ -1,9 +1,9 @@
-import CartItemModel from "../components/Models/CartItemModel";
+import CartItemModel from '../components/Models/CartItemModel';
 
 const INITIAL_STATE = {
   query: [],
-  currency: "$",
-  category: "all",
+  currency: '$',
+  category: 'all',
   productsList: [],
   selectedList: [],
   cartItems: [],
@@ -13,11 +13,11 @@ const INITIAL_STATE = {
 
 export const productsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case "change_currency":
+    case 'change_currency':
       return { ...state, currency: action.payload };
 
-    case "get_products_list":
-      localStorage.setItem("selectedList", action.payload[0]);
+    case 'get_products_list':
+      localStorage.setItem('selectedList', action.payload[0]);
       return {
         ...state,
         productsList: action.payload[0],
@@ -25,11 +25,12 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
         query: action.payload,
       };
 
-    case "get_slelected_products_list":
+    case 'get_slelected_products_list': {
       const newList = state.query.filter((cat) => cat.name === action.payload);
       return { ...state, category: action.payload, selectedList: newList[0] };
+    }
 
-    case "add_cart_item":
+    case 'add_cart_item': {
       const addedProduct = action.payload;
       const prodPrice = addedProduct.prices;
       const prodTitle = addedProduct.name;
@@ -71,40 +72,45 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
           cartItems: [...state.cartItems, newCartItem],
         };
       }
+    }
 
-    case "delete_cart_item":
-      const selectedCartItem = state.cartItems.find(
-        (item) => item.id === action.payload
-      );
+    case 'delete_cart_item':
+      {
+        const selectedCartItem = state.cartItems.find(
+          (item) => item.id === action.payload
+        );
 
-      if (selectedCartItem) {
-        const currentQty = selectedCartItem.quantity;
+        if (selectedCartItem) {
+          const currentQty = selectedCartItem.quantity;
 
-        if (currentQty > 1) {
-          const updatedCartItem = new CartItemModel(
-            selectedCartItem.quantity - 1,
-            selectedCartItem.productPrice,
-            selectedCartItem.productTitle,
-            selectedCartItem.attributes,
-            selectedCartItem.id,
-            selectedCartItem.gallery
-          );
-          return {
-            ...state,
-            cartItems: state.cartItems.map((el) =>
-              el.id === selectedCartItem.id ? updatedCartItem : el
-            ),
-          };
-        } else {
-          return {
-            ...state,
-            cartItems: state.cartItems.filter((el) => el.id !== action.payload),
-          };
+          if (currentQty > 1) {
+            const updatedCartItem = new CartItemModel(
+              selectedCartItem.quantity - 1,
+              selectedCartItem.productPrice,
+              selectedCartItem.productTitle,
+              selectedCartItem.attributes,
+              selectedCartItem.id,
+              selectedCartItem.gallery
+            );
+            return {
+              ...state,
+              cartItems: state.cartItems.map((el) =>
+                el.id === selectedCartItem.id ? updatedCartItem : el
+              ),
+            };
+          } else {
+            return {
+              ...state,
+              cartItems: state.cartItems.filter(
+                (el) => el.id !== action.payload
+              ),
+            };
+          }
         }
       }
       break;
 
-    case "clac_total":
+    case 'clac_total': {
       let calculatedAmount = 0;
       const items = action.payload;
       const prodcusPricesList = items.map((cartItem) => {
@@ -118,13 +124,14 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
           }
         })
       );
-
+      console.log(amounts);
       return {
         ...state,
         totalAmount: calculatedAmount,
       };
+    }
 
-    case "change_attribute":
+    case 'change_attribute': {
       const id = action.payload.id;
       const attribute = action.payload.attribute;
       const name = action.payload.name;
@@ -159,6 +166,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
           };
         }
       }
+    }
 
     default:
       return state;

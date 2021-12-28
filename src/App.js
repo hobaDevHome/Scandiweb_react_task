@@ -1,26 +1,25 @@
-import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
-import { connect } from "react-redux";
-import Header from "../src/components/UI/Header/Header";
-import ProductsPage from "./components/screens/PLP/ProductsPage";
-import ProductDescription from "./components/screens/PDP/ProductDescription";
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Header from '../src/components/UI/Header/Header';
+import ProductsPage from './components/screens/PLP/ProductsPage';
+import ProductDescription from './components/screens/PDP/ProductDescription';
 
-import Cart from "./components/screens/Cart/Cart";
-import { gql } from "@apollo/client";
-import { clientScandiweb } from "./Apollo";
-import { getProductsLists } from "./store/actions";
+import Cart from './components/screens/Cart/Cart';
+import { gql } from '@apollo/client';
+import { clientScandiweb } from './Apollo';
+import { getProductsLists } from './store/actions';
 
-import "./App.css";
+import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.setActive = this.setActive.bind(this);
-
     this.state = { categories: undefined, active: false };
   }
   setActive(s) {
-    console.log("clicked");
+    console.log('clicked');
     this.setState({ active: s });
   }
 
@@ -82,11 +81,11 @@ class App extends Component {
           setAtive={this.setActive}
           categories={this.state.categories}
           style={{
-            position: "fixed",
+            position: 'fixed',
             top: 0,
-            backgroundColor: "white",
+            backgroundColor: 'white',
             zIndex: 25,
-            width: "80%",
+            width: '80%',
           }}
         />
 
