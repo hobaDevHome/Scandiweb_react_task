@@ -13,7 +13,16 @@ import { getProductsLists } from "./store/actions";
 import "./App.css";
 
 class App extends Component {
-  state = { categories: undefined };
+  constructor(props) {
+    super(props);
+    this.setActive = this.setActive.bind(this);
+
+    this.state = { categories: undefined, active: false };
+  }
+  setActive(s) {
+    console.log("clicked");
+    this.setState({ active: s });
+  }
 
   componentDidMount() {
     clientScandiweb
@@ -62,7 +71,15 @@ class App extends Component {
 
     return (
       <div className="App">
+        {this.state.active ? (
+          <div
+            className="Invisible"
+            onClick={() => this.setActive(false)}
+          ></div>
+        ) : null}
         <Header
+          ifActive={this.state.active}
+          setAtive={this.setActive}
           categories={this.state.categories}
           style={{
             position: "fixed",

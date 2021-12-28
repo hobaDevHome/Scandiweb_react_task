@@ -15,9 +15,17 @@ body {
 .App {
   width: 75%;
   margin: 0 auto;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.Invisible {
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 0;
 }

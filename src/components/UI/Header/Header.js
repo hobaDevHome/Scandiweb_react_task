@@ -15,7 +15,7 @@ import {
 import "./Header.css";
 
 class Header extends Component {
-  state = { showCartModal: false, showCurrency: false };
+  state = { showCartModal: false, showCurrency: false, showInfo1: false };
 
   numcerOfItems = 0;
   categoryNames;
@@ -55,14 +55,22 @@ class Header extends Component {
   }
 
   showCurrencyList() {
+    this.props.setAtive(true);
     this.setState({ showCurrency: true });
   }
   hideCurrencyList() {
+    this.props.setAtive(false);
     this.setState({ showCurrency: false });
   }
   toggleCurrencyList() {
+    console.log("if acitvie in toggle", this.props.ifActive);
     this.hideCartOverlay();
     this.setState({ showCurrency: !this.state.showCurrency });
+    if (!this.props.ifActive) {
+      this.props.setAtive(true);
+    } else {
+      this.props.setAtive(false);
+    }
   }
 
   onChooseCurrencyHandler(newCurrency) {
@@ -95,6 +103,7 @@ class Header extends Component {
     }
   }
   render() {
+    console.log("re-redered ", this.props.ifActive);
     if (this.props.query !== undefined) {
       this.getCartItemsNo();
       this.getCategoriesNames();
@@ -102,7 +111,7 @@ class Header extends Component {
     }
     return (
       <div className="header-row" style={this.props.style}>
-        {this.state.showCurrency && (
+        {this.props.ifActive && (
           <div className="currency-list">
             {this.currencyNames.map((cur) => {
               return (
