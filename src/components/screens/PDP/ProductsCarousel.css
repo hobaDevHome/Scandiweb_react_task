@@ -21,6 +21,8 @@
   opacity: 1;
   cursor: pointer;
   user-select: none;
+  color: white;
+  background-color: rgb(78, 75, 75);
 }
 .up-arrow-c:hover,
 .down-arrow-c:hover {

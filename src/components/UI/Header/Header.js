@@ -4,6 +4,9 @@ import { BsCart2 } from "react-icons/bs";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { gql } from "@apollo/client";
+
+import { clientScandiweb } from "../../../Apollo";
 import {
   changeCurrency,
   getSelectedProductsLists,
@@ -13,9 +16,36 @@ import "./Header.css";
 
 class Header extends Component {
   state = { showCartModal: false, showCurrency: false };
+
   numcerOfItems = 0;
   categoryNames;
   currencyNames;
+  tempCurNames;
+
+  componentDidMount() {
+    clientScandiweb
+      .query({
+        query: gql`
+          query GetcurrncieNames {
+            categories {
+              products {
+                prices {
+                  currency {
+                    label
+                    symbol
+                  }
+                  amount
+                }
+              }
+            }
+          }
+        `,
+      })
+      .then((result) => {
+        this.tempCurNames = result.data.categories[0].products[0].prices;
+        console.log(this.tempCurNames);
+      });
+  }
   showCartOverlay() {
     this.setState({ showCartModal: true });
     this.hideCurrencyList();
@@ -58,14 +88,10 @@ class Header extends Component {
     }
   }
   getCurrencyNames() {
-    const prods = this.props.query;
-
-    if (prods.length > 0 && prods !== undefined) {
-      if (prods[0] !== undefined && prods[0].products !== undefined) {
-        this.currencyNames = prods[0].products[0].prices.map(
-          (prod) => `${prod.currency.symbol} ${prod.currency.label}`
-        );
-      }
+    if (this.tempCurNames !== undefined) {
+      this.currencyNames = this.tempCurNames.map(
+        (prod) => `${prod.currency.symbol} ${prod.currency.label}`
+      );
     }
   }
   render() {
@@ -86,6 +112,7 @@ class Header extends Component {
                   onClick={() =>
                     this.onChooseCurrencyHandler(cur.split(" ")[0])
                   }
+                  on
                 >
                   {cur}
                 </div>

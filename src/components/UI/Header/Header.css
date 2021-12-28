@@ -128,10 +128,17 @@
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
-  line-height: 160%;
-  margin: 10px 0;
+  line-height: 200%;
+  margin: 10px;
   cursor: pointer;
   user-select: none;
+  width: 100%;
+  margin: 10px;
+  text-align: center;
+}
+.currency-item:hover {
+  background-color: var(--greenColor);
+  color: white;
 }
 
 .currency-icons-section {

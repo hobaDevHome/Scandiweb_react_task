@@ -18,7 +18,7 @@ class CartItemMain extends Component {
     this.onDeleteItem = this.onDeleteItem.bind(this);
   }
   itemAttributes;
-
+  itemPrice;
   correspondingProduct;
   onAddItem() {
     this.props.addCartItem(this.correspondingProduct);
@@ -30,7 +30,7 @@ class CartItemMain extends Component {
   render() {
     let price;
     if (this.props.cartItems !== undefined) {
-      price = this.props.cartItem.productPrice.find(
+      this.itemPrice = this.props.cartItem.productPrice.find(
         (price) => price.currency.symbol === this.props.currency
       ).amount;
 
@@ -43,7 +43,7 @@ class CartItemMain extends Component {
         (att) => att.id === this.props.cartItem.id
       );
     }
-
+    console.log(this.props.cartItem);
     return (
       <div className="main-cart-item">
         <div className="cart-item-data">
@@ -51,9 +51,7 @@ class CartItemMain extends Component {
             {this.props.cartItem.productTitle}
           </div>
 
-          <div className="price-amount">{`${this.props.currency} ${parseFloat(
-            price * this.props.cartItem.quantity
-          ).toFixed(2)}`}</div>
+          <div className="price-amount">{`${this.props.currency} ${this.itemPrice}`}</div>
 
           <div className="attr-buttons-cont">
             {this.itemAttributes !== undefined &&
@@ -91,11 +89,14 @@ class CartItemMain extends Component {
             <div className="quantity">{this.props.cartItem.quantity}</div>
             <AddRemove onClick={this.onDeleteItem}>-</AddRemove>
           </div>
-          <Link to={`/detials/${this.props.cartItem.id}`}>
-            <div className="cart-item-pic-div">
+
+          <div className="cart-item-pic-div">
+            {this.props.cartItem.gallery.length > 1 ? (
               <CartItemCarousel cartItem={this.props.cartItem} />
-            </div>
-          </Link>
+            ) : (
+              <img src={this.props.cartItem.gallery[0]} alt="" />
+            )}
+          </div>
         </div>
       </div>
     );

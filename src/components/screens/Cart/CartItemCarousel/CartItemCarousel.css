@@ -1,31 +1,8 @@
 .slider {
   position: relative;
-
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.right-arrow {
-  position: absolute;
-  top: 50%;
-  right: 0px;
-  font-size: 3rem;
-  color: #000;
-  z-index: 10;
-  cursor: pointer;
-  user-select: none;
-}
-
-.left-arrow {
-  position: absolute;
-  top: 50%;
-  left: 20px;
-  font-size: 3rem;
-  color: #000;
-  z-index: 10;
-  cursor: pointer;
-  user-select: none;
 }
 
 .slide {
@@ -38,4 +15,30 @@
 
 .arrows-off {
   opacity: 0;
+}
+.left-arrow,
+.right-arrow {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 25;
+  top: 50%;
+  opacity: 1;
+}
+.left-arrow {
+  left: 20px;
+}
+.right-arrow {
+  right: 0px;
+}
+
+.left-arrow-img {
+  background-color: gray;
+  width: 20px;
+  max-height: 20px;
+  height: auto;
+  cursor: pointer;
+  z-index: 26;
+  padding: 3px;
+  border-radius: 2px;
 }

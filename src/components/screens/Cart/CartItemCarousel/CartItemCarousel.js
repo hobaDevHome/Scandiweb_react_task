@@ -23,18 +23,23 @@ export default class CartItemCarousel extends Component {
   render() {
     return (
       <section className="slider">
-        <FiChevronLeft
-          className={`left-arrow ${this.length > 1 ? "" : "arrows-off"}`}
-          color="white"
-          size={24}
-          onClick={this.prevSlide.bind(this)}
-        />
-        <FiChevronRight
-          className={`right-arrow ${this.length > 1 ? "" : "arrows-off"}`}
-          color="white"
-          size={24}
-          onClick={this.nextSlide.bind(this)}
-        />
+        <div className={`left-arrow ${this.length > 1 ? "" : "arrows-off"}`}>
+          <img
+            src="./images/arrow-left.png"
+            alt="left arrow"
+            className="left-arrow-img"
+            onClick={this.prevSlide.bind(this)}
+          />
+        </div>
+        <div className={`right-arrow ${this.length > 1 ? "" : "arrows-off"}`}>
+          <img
+            src="./images/arrow-right.png"
+            alt="left arrow"
+            className="left-arrow-img"
+            onClick={this.nextSlide.bind(this)}
+          />
+        </div>
+
         {this.SliderData.map((slide, index) => {
           return (
             <div

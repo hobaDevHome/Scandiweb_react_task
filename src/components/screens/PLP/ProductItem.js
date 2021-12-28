@@ -33,26 +33,11 @@ class ProductItem extends Component {
   }
 
   linkComponent() {
-    if (this.itemProduct.inStock) {
-      return (
-        <Link
-          to={`/detials/${this.props.id}`}
-          style={{ textDecoration: "none", color: "black" }}
-        >
-          <div className="item-image-container">
-            <img
-              className="item-image out-of-stock"
-              src={this.itemImage}
-              alt=""
-            />
-            <div className="out-lable">
-              <p>OUT OF STOCK</p>
-            </div>
-          </div>
-        </Link>
-      );
-    } else {
-      return (
+    return (
+      <Link
+        to={`/detials/${this.props.id}`}
+        style={{ textDecoration: "none", color: "black" }}
+      >
         <div className="item-image-container">
           <img
             className="item-image out-of-stock"
@@ -63,8 +48,8 @@ class ProductItem extends Component {
             <p>OUT OF STOCK</p>
           </div>
         </div>
-      );
-    }
+      </Link>
+    );
   }
 
   render() {
@@ -84,6 +69,7 @@ class ProductItem extends Component {
         {this.linkComponent()}
 
         <p className="title">{this.itemProduct.name}</p>
+        <p className="title">Brand : {this.itemProduct.brand}</p>
         <p className="price">{`${this.props.currency} ${
           +Math.round(this.price * this.state.noOfItmesInCart * 100) / 100
         }`}</p>

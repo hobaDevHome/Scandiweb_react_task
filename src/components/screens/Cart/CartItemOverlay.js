@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addCartItem } from '../../../store/actions';
-import { deleteCartItem } from '../../../store/actions';
-import OverlayAddRemove from '../../UI/Buttons/OverlayAddRemove';
-import ColorBtn from '../../UI/Buttons/ColorBtn';
-import OverlaySizeButton from '../../UI/Buttons/OverlaySizeButton';
-import './CartItemOverlay.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addCartItem } from "../../../store/actions";
+import { deleteCartItem } from "../../../store/actions";
+import OverlayAddRemove from "../../UI/Buttons/OverlayAddRemove";
+import ColorBtn from "../../UI/Buttons/ColorBtn";
+import OverlaySizeButton from "../../UI/Buttons/OverlaySizeButton";
+import "./CartItemOverlay.css";
 
 class CartItemOverlay extends Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class CartItemOverlay extends Component {
   }
   itemAttributes;
   correspondingProduct;
+  itemPrice;
   onAddItem() {
     this.props.addCartItem(this.correspondingProduct);
   }
@@ -24,7 +25,7 @@ class CartItemOverlay extends Component {
   render() {
     let price;
     if (this.props.cartItems !== undefined) {
-      price = this.props.cartItem.productPrice.find(
+      this.itemPrice = this.props.cartItem.productPrice.find(
         (price) => price.currency.symbol === this.props.currency
       ).amount;
       if (this.props.productsList.products !== undefined) {
@@ -45,23 +46,21 @@ class CartItemOverlay extends Component {
           </div>
 
           <div className="overlay-price-amount">
-            {`${this.props.currency} ${parseFloat(
-              price * this.props.cartItem.quantity
-            ).toFixed(2)}`}
+            {`${this.props.currency} ${this.itemPrice}`}
           </div>
           {/* ---------------------------- */}
 
           <div className="attr-buttons-cont">
             {this.itemAttributes !== undefined &&
               this.itemAttributes.map((attr) => {
-                if (attr.name === 'Color') {
+                if (attr.name === "Color") {
                   return (
                     <div className="att-button-cart">
                       <div className="attr-name-cart">{attr.name}</div>
                       <ColorBtn
                         style={{
                           backgroundColor: attr.attribute.value,
-                          border: '2px solid rgb(218, 48, 203)',
+                          border: "2px solid rgb(218, 48, 203)",
                         }}
                       ></ColorBtn>
                     </div>
@@ -71,7 +70,7 @@ class CartItemOverlay extends Component {
                     <div className="att-button-cart">
                       <div className="attr-name-cart">{attr.name}</div>
                       <OverlaySizeButton
-                        style={{ backgroundColor: 'black', color: 'white' }}
+                        style={{ backgroundColor: "black", color: "white" }}
                       >
                         {attr.attribute.value}
                       </OverlaySizeButton>
