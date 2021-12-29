@@ -55,9 +55,13 @@
   text-decoration: none;
 }
 .overlay-items-containter {
-  overflow-y: scroll;
+  
   overflow-x: hidden;
   max-height: 600px;
+}
+.overlay-items-containter.scroll {
+  overflow-y: scroll;
+ ;
 }
 
 .no-items-overlay {
