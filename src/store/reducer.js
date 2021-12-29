@@ -116,14 +116,23 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       const prodcusPricesList = items.map((cartItem) => {
         return { l: cartItem.productPrice, q: cartItem.quantity };
       });
+
       const amounts = prodcusPricesList.map((priceList) =>
         priceList.l.map((price) => {
           if (price.currency.symbol === state.currency) {
             calculatedAmount += price.amount * priceList.q;
-            calculatedAmount = parseFloat(calculatedAmount).toFixed(2);
+            console.log(
+              'price.amount',
+              price.amount,
+              'priceList.q',
+              priceList.q,
+              'calculatedAmount',
+              calculatedAmount
+            );
           }
         })
       );
+      calculatedAmount = parseFloat(calculatedAmount).toFixed(2);
       console.log(amounts);
       return {
         ...state,
