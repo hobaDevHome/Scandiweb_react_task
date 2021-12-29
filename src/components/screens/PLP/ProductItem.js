@@ -34,10 +34,7 @@ class ProductItem extends Component {
 
   linkComponent() {
     return (
-      <Link
-        to={`/detials/${this.props.id}`}
-        style={{ textDecoration: "none", color: "black" }}
-      >
+      <Link to={`/detials/${this.props.id}`} className="linking">
         <div className="item-image-container">
           <img
             className="item-image out-of-stock"

@@ -55,13 +55,11 @@
   text-decoration: none;
 }
 .overlay-items-containter {
-  
   overflow-x: hidden;
   max-height: 600px;
 }
 .overlay-items-containter.scroll {
   overflow-y: scroll;
- ;
 }
 
 .no-items-overlay {
@@ -86,4 +84,15 @@ no-items-contianer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.linking {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.wide-bttn-in-overlay {
+  font-size: 14px;
+  font-weight: normal;
 }

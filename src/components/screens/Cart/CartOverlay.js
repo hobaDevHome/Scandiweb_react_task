@@ -81,18 +81,15 @@ class CartOverlay extends Component {
                     </div>
                   </div>
                   <div className="overlay-buttons-div">
-                    <Link
-                      to="/cart"
-                      style={{ textDecoration: "none", color: "black" }}
-                    >
+                    <Link to="/cart" className="linking">
                       <div className="btn" onClick={this.props.onHide}>
                         <ViewBagButton>view bag</ViewBagButton>
                       </div>
                     </Link>
                     <div className="btn">
                       <WideButton
+                        className="wide-bttn-in-overlay"
                         onClick={this.props.onHide}
-                        style={{ fontSize: "14px", fontWeight: "normal" }}
                       >
                         check out
                       </WideButton>
@@ -104,15 +101,7 @@ class CartOverlay extends Component {
                   <div className="no-items-overlay">
                     Your shopping bag is empty right now
                   </div>
-                  <Link
-                    style={{
-                      textDecoration: "none",
-                      color: "black",
-                      aligntSelf: "center",
-                    }}
-                    className="noItmesLink"
-                    to="/"
-                  >
+                  <Link className="linking noItmesLink" to="/">
                     <WideButton onClick={this.props.onHide}>
                       see some products
                     </WideButton>

@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { connect } from 'react-redux';
-import { addCartItem } from '../../../store/actions';
-import { deleteCartItem } from '../../../store/actions';
+import { connect } from "react-redux";
+import { addCartItem } from "../../../store/actions";
+import { deleteCartItem } from "../../../store/actions";
 
-import CartItemCarousel from './CartItemCarousel/CartItemCarousel';
-import AddRemove from '../../UI/Buttons/AddRemove';
-import SizeButton from '../../UI/Buttons/SizeButton';
-import ColorBtn from '../../UI/Buttons/ColorBtn';
-import './Cart.css';
+import CartItemCarousel from "./CartItemCarousel/CartItemCarousel";
+import AddRemove from "../../UI/Buttons/AddRemove";
+import SizeButton from "../../UI/Buttons/SizeButton";
+import ColorBtn from "../../UI/Buttons/ColorBtn";
+import "./Cart.css";
 
 class CartItemMain extends Component {
   constructor(props) {
@@ -54,27 +54,25 @@ class CartItemMain extends Component {
           <div className="attr-buttons-cont">
             {this.itemAttributes !== undefined &&
               this.itemAttributes.map((attr) => {
-                if (attr.name === 'Color') {
+                if (attr.name === "Color") {
                   return (
                     <div className="att-button-cart">
                       <div className="attr-name-cart">{attr.name}</div>
-                      <ColorBtn
+                      <div
+                        className="color-btn-in-item1"
                         style={{
                           backgroundColor: attr.attribute.value,
-                          border: '2px solid rgb(218, 48, 203)',
                         }}
-                      ></ColorBtn>
+                      ></div>
                     </div>
                   );
                 } else {
                   return (
                     <div className="att-button-cart">
                       <div className="attr-name-cart">{attr.name}</div>
-                      <SizeButton
-                        style={{ backgroundColor: 'black', color: 'white' }}
-                      >
+                      <div className="size-btn-in-item">
                         {attr.attribute.value}
-                      </SizeButton>
+                      </div>
                     </div>
                   );
                 }

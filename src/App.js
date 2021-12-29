@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import Header from '../src/components/UI/Header/Header';
-import ProductsPage from './components/screens/PLP/ProductsPage';
-import ProductDescription from './components/screens/PDP/ProductDescription';
+import React, { Component } from "react";
+import { Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import Header from "../src/components/UI/Header/Header";
+import ProductsPage from "./components/screens/PLP/ProductsPage";
+import ProductDescription from "./components/screens/PDP/ProductDescription";
 
-import Cart from './components/screens/Cart/Cart';
-import { gql } from '@apollo/client';
-import { clientScandiweb } from './Apollo';
-import { getProductsLists } from './store/actions';
+import Cart from "./components/screens/Cart/Cart";
+import { gql } from "@apollo/client";
+import { clientScandiweb } from "./Apollo";
+import { getProductsLists } from "./store/actions";
 
-import './App.css';
+import "./App.css";
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class App extends Component {
     this.state = { categories: undefined, active: false };
   }
   setActive(s) {
-    console.log('clicked');
+    console.log("clicked");
     this.setState({ active: s });
   }
 
@@ -69,37 +69,40 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
+      <div className="app-container">
         {this.state.active ? (
           <div
             className="Invisible"
             onClick={() => this.setActive(false)}
           ></div>
         ) : null}
-        <Header
-          ifActive={this.state.active}
-          setAtive={this.setActive}
-          categories={this.state.categories}
-          style={{
-            position: 'fixed',
-            top: 0,
-            backgroundColor: 'white',
-            zIndex: 25,
-            width: '80%',
-          }}
-        />
+        <div className="App">
+          <Header
+            ifActive={this.state.active}
+            setAtive={this.setActive}
+            categories={this.state.categories}
+            // className="header-in-app"
+            style={{
+              position: "fixed",
+              top: 0,
+              backgroundColor: "white",
+              zIndex: 25,
+              width: "80%",
+            }}
+          />
 
-        <Switch>
-          <Route exact path="/">
-            <ProductsPage cats={this.state.categories} />
-          </Route>
-          <Route path="/cart">
-            <Cart />
-          </Route>
-          <Route path="/detials/:porductid">
-            <ProductDescription />
-          </Route>
-        </Switch>
+          <Switch>
+            <Route exact path="/">
+              <ProductsPage cats={this.state.categories} />
+            </Route>
+            <Route path="/cart">
+              <Cart />
+            </Route>
+            <Route path="/detials/:porductid">
+              <ProductDescription />
+            </Route>
+          </Switch>
+        </div>
       </div>
     );
   }

@@ -4,13 +4,16 @@
   --modalBg: #d4d3d7;
 }
 html {
-  scroll-behaviour: smooth;
+  scroll-behavior: smooth;
 }
 body {
   font-family: "Raleway";
   font-style: normal;
   font-weight: normal;
   box-sizing: border-box;
+}
+.app-container {
+  width: 100%;
 }
 .App {
   width: 75%;
@@ -19,13 +22,21 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
-.Invisible {
-  height: 100vh;
-  left: 0;
+.header-in-app {
   position: fixed;
   top: 0;
-  width: 100vw;
+  background-color: rgb(197, 50, 50);
+  z-index: 60;
+  width: 80%;
+}
+.Invisible {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
   z-index: 0;
 }
