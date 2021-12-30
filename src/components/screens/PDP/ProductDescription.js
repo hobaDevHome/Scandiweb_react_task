@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import ProdcutMainImage from './ProductMainImage';
+import ProdcutMainImage from "./ProductMainImage";
 
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
-import SizesAtributes from './SizesAtributes';
-import { changeAttrubute } from '../../../store/actions';
-import ProductsCarousel from './ProductsCarousel';
-import { gql } from '@apollo/client';
-import { clientScandiweb } from '../../../Apollo';
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import AddToCartComp from "../../UI/AddToCartComp/AddToCartComp";
+import SizesAtributes from "./SizesAtributes";
+import { changeAttrubute } from "../../../store/actions";
+import ProductsCarousel from "./ProductsCarousel";
+import { gql } from "@apollo/client";
+import { clientScandiweb } from "../../../Apollo";
 
-import './ProductDescription.css';
+import "./ProductDescription.css";
 
 class ProductDescription extends Component {
   constructor(props) {
@@ -36,41 +36,41 @@ class ProductDescription extends Component {
     const sentId = this.props.match.params.porductid;
     this.setState({ id: sentId });
 
-    clientScandiweb
-      .query({
-        query: gql`
-          query GetAlbumById($is: String = sentId) {
-            product(id: $is) {
-              id
-              name
-              inStock
-              gallery
-              attributes {
-                name
-                type
-                items {
-                  displayValue
+    // clientScandiweb
+    //   .query({
+    //     query: gql`
+    //       query GetAlbumById($is: String = sentId) {
+    //         product(id: $is) {
+    //           id
+    //           name
+    //           inStock
+    //           gallery
+    //           attributes {
+    //             name
+    //             type
+    //             items {
+    //               displayValue
 
-                  value
-                }
-              }
-              prices {
-                currency {
-                  label
-                  symbol
-                }
-                amount
-              }
-              brand
-              description
-            }
-          }
-        `,
-      })
-      .then((result) => {
-        this.setState({ currentProduct: result.data.product });
-        console.log('currentproduct', this.state.currentProduct);
-      });
+    //               value
+    //             }
+    //           }
+    //           prices {
+    //             currency {
+    //               label
+    //               symbol
+    //             }
+    //             amount
+    //           }
+    //           brand
+    //           description
+    //         }
+    //       }
+    //     `,
+    //   })
+    //   .then((result) => {
+    //     this.setState({ currentProduct: result.data.product });
+    //     console.log('currentproduct', this.state.currentProduct);
+    //   });
   }
   getOwnCartNoOfItems(quantity) {
     this.setState({ noOfItmesInCart: quantity });
@@ -88,25 +88,28 @@ class ProductDescription extends Component {
     this.setState({ currentImage: thumb });
   }
   render() {
-    if (this.state.currentProduct) {
-      //   this.selecteProduct = this.props.productsList.products.find(
-      //     (prod) => prod.id === this.state.id
-      //   );
+    if (
+      this.state.id !== undefined &&
+      this.props.productsList.products !== undefined
+    ) {
+      this.selecteProduct = this.props.productsList.products.find(
+        (prod) => prod.id === this.state.id
+      );
 
-      this.detailsImages = this.state.currentProduct.gallery;
+      this.detailsImages = this.selecteProduct.gallery;
       this.currentImage = this.detailsImages[0];
-      this.price = this.state.currentProduct.prices.find(
+      this.price = this.selecteProduct.prices.find(
         (price) => price.currency.symbol === this.props.currency
       ).amount;
 
-      this.attributes = this.state.currentProduct.attributes;
+      this.attributes = this.selecteProduct.attributes;
 
       return (
         <div className="main">
           <div className="prodcut-desc-container">
             <div className="details-pic-div">
               <ProductsCarousel
-                pics={this.state.currentProduct.gallery}
+                pics={this.selecteProduct.gallery}
                 onClick={this.onThumbClickHandler}
               />
             </div>
@@ -120,10 +123,10 @@ class ProductDescription extends Component {
               />
             </div>
             <div className="prodcut-data-div">
-              <div className="prod-title">{this.state.currentProduct.name}</div>
+              <div className="prod-title">{this.selecteProduct.name}</div>
               <SizesAtributes
                 attributes={this.attributes}
-                sentItme={this.state.currentProduct}
+                sentItme={this.selecteProduct}
                 id={this.state.id}
               />
 
@@ -133,7 +136,7 @@ class ProductDescription extends Component {
                 +Math.round(this.price * this.state.noOfItmesInCart * 100) / 100
               }`}</div>
               <AddToCartComp
-                sentItem={this.state.currentProduct}
+                sentItem={this.selecteProduct}
                 getOwnCartNoOfItems={this.getOwnCartNoOfItems}
               />
             </div>
@@ -141,9 +144,9 @@ class ProductDescription extends Component {
           <p className="prod-long-desc">
             <span
               dangerouslySetInnerHTML={{
-                __html: this.state.currentProduct.description.replace(
+                __html: this.selecteProduct.description.replace(
                   /(<? *script)/gi,
-                  'illegalscript'
+                  "illegalscript"
                 ),
               }}
             />

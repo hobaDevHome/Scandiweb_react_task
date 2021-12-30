@@ -119,7 +119,7 @@ class Header extends Component {
       this.getCurrencyNames();
     }
     return (
-      <div className="header-row" style={this.props.style}>
+      <div className="header-row  header-in-app">
         {this.props.ifActive && (
           <div className="currency-list">
             {this.currencyNames.map((cur) => {

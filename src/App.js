@@ -70,25 +70,17 @@ class App extends Component {
 
     return (
       <div className="app-container">
-        {this.state.active ? (
+        {/* {this.state.active ? (
           <div
             className="Invisible"
             onClick={() => this.setActive(false)}
           ></div>
-        ) : null}
+        ) : null} */}
         <div className="App">
           <Header
             ifActive={this.state.active}
             setAtive={this.setActive}
             categories={this.state.categories}
-            // className="header-in-app"
-            style={{
-              position: "fixed",
-              top: 0,
-              backgroundColor: "white",
-              zIndex: 25,
-              width: "80%",
-            }}
           />
 
           <Switch>
