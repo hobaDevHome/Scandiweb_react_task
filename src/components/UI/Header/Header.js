@@ -73,22 +73,22 @@ class Header extends Component {
   }
 
   showCurrencyList() {
-    this.props.setAtive(true);
+    // this.props.setAtive(true);
     this.setState({ showCurrency: true });
   }
   hideCurrencyList() {
-    this.props.setAtive(false);
+    // this.props.setAtive(false);
     this.setState({ showCurrency: false });
   }
   toggleCurrencyList() {
-    console.log("if acitvie in toggle", this.props.ifActive);
+    // console.log("if acitvie in toggle", this.props.ifActive);
     this.hideCartOverlay();
     this.setState({ showCurrency: !this.state.showCurrency });
-    if (!this.props.ifActive) {
-      this.props.setAtive(true);
-    } else {
-      this.props.setAtive(false);
-    }
+    // if (!this.props.ifActive) {
+    //   this.props.setAtive(true);
+    // } else {
+    //   this.props.setAtive(false);
+    // }
   }
 
   onChooseCurrencyHandler(newCurrency) {
@@ -131,7 +131,7 @@ class Header extends Component {
     }
     return (
       <div className="header-row  header-in-app">
-        {this.props.ifActive && (
+        {this.state.showCurrency && (
           <CurrencytOverlay
             onHide={this.hideCurrencyList}
             currNames={this.currencyNames}

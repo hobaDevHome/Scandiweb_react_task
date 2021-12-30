@@ -15,12 +15,8 @@ import "./App.css";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.setActive = this.setActive.bind(this);
-    this.state = { categories: undefined, active: false };
-  }
-  setActive(s) {
-    console.log("clicked");
-    this.setState({ active: s });
+
+    this.state = { categories: undefined };
   }
 
   componentDidMount() {
@@ -70,12 +66,6 @@ class App extends Component {
 
     return (
       <div className="app-container">
-        {this.state.active ? (
-          <div
-            className="Invisible"
-            onClick={() => this.setActive(false)}
-          ></div>
-        ) : null}
         <div className="App">
           <Header
             ifActive={this.state.active}
