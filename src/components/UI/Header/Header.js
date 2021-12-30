@@ -5,6 +5,7 @@ import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { gql } from "@apollo/client";
+import CurrencytOverlay from "./CurrencyOverlay";
 
 import { clientScandiweb } from "../../../Apollo";
 import {
@@ -17,6 +18,16 @@ import "./Header.css";
 class Header extends Component {
   constructor(props) {
     super(props);
+    this.showCartOverlay = this.showCartOverlay.bind(this);
+    this.hideCartOverlay = this.hideCartOverlay.bind(this);
+    this.showCurrencyList = this.showCurrencyList.bind(this);
+    this.hideCurrencyList = this.hideCurrencyList.bind(this);
+    this.toggleCurrencyList = this.toggleCurrencyList.bind(this);
+    this.onChooseCurrencyHandler = this.onChooseCurrencyHandler.bind(this);
+    this.onChosseCatHandler = this.onChosseCatHandler.bind(this);
+    this.getCartItemsNo = this.getCartItemsNo.bind(this);
+    this.getCategoriesNames = this.getCategoriesNames.bind(this);
+    this.getCurrencyNames = this.getCurrencyNames.bind(this);
 
     this.state = {
       showCartModal: false,
@@ -121,23 +132,13 @@ class Header extends Component {
     return (
       <div className="header-row  header-in-app">
         {this.props.ifActive && (
-          <div className="currency-list">
-            {this.currencyNames.map((cur) => {
-              return (
-                <div
-                  key={cur.length}
-                  className="currency-item"
-                  onClick={() =>
-                    this.onChooseCurrencyHandler(cur.split(" ")[0])
-                  }
-                  on
-                >
-                  {cur}
-                </div>
-              );
-            })}
-          </div>
+          <CurrencytOverlay
+            onHide={this.hideCurrencyList}
+            currNames={this.currencyNames}
+            onChooseCurrencyHandler={this.onChooseCurrencyHandler}
+          />
         )}
+
         {this.state.showCartModal && (
           <CartOverlay onHide={this.hideCartOverlay.bind(this)} />
         )}

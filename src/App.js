@@ -70,12 +70,12 @@ class App extends Component {
 
     return (
       <div className="app-container">
-        {/* {this.state.active ? (
+        {this.state.active ? (
           <div
             className="Invisible"
             onClick={() => this.setActive(false)}
           ></div>
-        ) : null} */}
+        ) : null}
         <div className="App">
           <Header
             ifActive={this.state.active}
