@@ -1,4 +1,6 @@
 import CartItemModel from '../components/Models/CartItemModel';
+import { gql } from '@apollo/client';
+import { clientScandiweb } from '../Apollo';
 
 const INITIAL_STATE = {
   query: [],
@@ -121,19 +123,19 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
         priceList.l.map((price) => {
           if (price.currency.symbol === state.currency) {
             calculatedAmount += price.amount * priceList.q;
-            console.log(
-              'price.amount',
-              price.amount,
-              'priceList.q',
-              priceList.q,
-              'calculatedAmount',
-              calculatedAmount
-            );
+            // console.log(
+            //   'price.amount',
+            //   price.amount,
+            //   'priceList.q',
+            //   priceList.q,
+            //   'calculatedAmount',
+            //   calculatedAmount
+            // );
           }
         })
       );
       calculatedAmount = parseFloat(calculatedAmount).toFixed(2);
-      console.log(amounts);
+      // console.log(amounts);
       return {
         ...state,
         totalAmount: calculatedAmount,
@@ -181,3 +183,44 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       return state;
   }
 };
+
+async function fetchItems(cat) {
+  // console.log('cat', this.props.category);
+  let temp;
+  temp = await clientScandiweb.query({
+    query: gql`
+      query {
+        category(input: { title: "${cat}" }) {
+          name
+          products {
+            id
+            name
+            inStock
+            gallery
+            description
+            category
+            attributes {
+              name
+              items {
+                displayValue
+                value
+                id
+              }
+            }
+            prices {
+              currency {
+                label
+                symbol
+              }
+              amount
+            }
+            brand
+          }
+        }
+      }
+    `,
+  });
+
+  return temp.data.category.products;
+  // console.log(this.state.selectedProducts);
+}

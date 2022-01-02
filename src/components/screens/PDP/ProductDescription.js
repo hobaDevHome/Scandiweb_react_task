@@ -1,17 +1,17 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import ProdcutMainImage from "./ProductMainImage";
+import ProdcutMainImage from './ProductMainImage';
 
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import AddToCartComp from "../../UI/AddToCartComp/AddToCartComp";
-import SizesAtributes from "./SizesAtributes";
-import { changeAttrubute } from "../../../store/actions";
-import ProductsCarousel from "./ProductsCarousel";
-import { gql } from "@apollo/client";
-import { clientScandiweb } from "../../../Apollo";
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
+import SizesAtributes from './SizesAtributes';
+import { changeAttrubute } from '../../../store/actions';
+import ProductsCarousel from './ProductsCarousel';
+import { gql } from '@apollo/client';
+import { clientScandiweb } from '../../../Apollo';
 
-import "./ProductDescription.css";
+import './ProductDescription.css';
 
 class ProductDescription extends Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class ProductDescription extends Component {
   async componentDidMount() {
     const sentId = this.props.match.params.porductid;
     this.setState({ id: sentId });
-    console.log(this.props.match.params.porductid);
+    // console.log(this.props.match.params.porductid);
     let temp;
     temp = await clientScandiweb.query({
       query: gql`
@@ -73,7 +73,7 @@ class ProductDescription extends Component {
       currentProduct: temp.data.product,
       // currentImage : temp.data.product.gallery[0],
     });
-    console.log(this.state.currentProduct);
+    // console.log(this.state.currentProduct);
   }
 
   getOwnCartNoOfItems(quantity) {
@@ -148,7 +148,7 @@ class ProductDescription extends Component {
               dangerouslySetInnerHTML={{
                 __html: this.selecteProduct.description.replace(
                   /(<? *script)/gi,
-                  "illegalscript"
+                  'illegalscript'
                 ),
               }}
             />
