@@ -94,11 +94,9 @@ class ProductDescription extends Component {
   render() {
     if (
       this.state.id !== undefined &&
-      this.props.productsList.products !== undefined
+      this.state.currentProduct !== undefined
     ) {
-      this.selecteProduct = this.props.productsList.products.find(
-        (prod) => prod.id === this.state.id
-      );
+      this.selecteProduct = this.state.currentProduct;
 
       this.detailsImages = this.selecteProduct.gallery;
       this.currentImage = this.detailsImages[0];
