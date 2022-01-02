@@ -134,9 +134,7 @@ class ProductDescription extends Component {
 
               <div className="size-desc">PRICE:</div>
               <div className="price-amount-desc">{`${this.props.currency} 
-              ${
-                +Math.round(this.price * this.state.noOfItmesInCart * 100) / 100
-              }`}</div>
+              ${this.price}`}</div>
               <AddToCartComp
                 sentItem={this.selecteProduct}
                 getOwnCartNoOfItems={this.getOwnCartNoOfItems}
