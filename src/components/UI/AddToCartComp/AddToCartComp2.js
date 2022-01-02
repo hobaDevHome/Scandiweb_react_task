@@ -5,7 +5,7 @@ import { BsCart2 } from "react-icons/bs";
 import { connect } from "react-redux";
 import { addCartItem } from "../../../store/actions";
 import { deleteCartItem } from "../../../store/actions";
-import "./AddToCartComp.css";
+import "./AddToCartComp2.css";
 
 class AddToCartComp extends Component {
   constructor(props) {
@@ -13,8 +13,8 @@ class AddToCartComp extends Component {
     this.state = { showMsg: false };
     this.onAddItem = this.onAddItem.bind(this);
     this.onDeleteItem = this.onDeleteItem.bind(this);
-    this.getOwnCartNoOfItems = this.getOwnCartNoOfItems.bind(this);
     this.myItemsNo = 0;
+    this.addedItemArray = [];
   }
   getOwnCartNoOfItems() {
     const mine = this.props.cartItems.find(
@@ -27,6 +27,7 @@ class AddToCartComp extends Component {
       this.myItemsNo = 0;
     }
   }
+
   onAddItem(clicked) {
     if (this.props.sentItem.attributes.length < 1) {
       this.props.addCartItem(this.props.sentItem);

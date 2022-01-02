@@ -1,62 +1,64 @@
-import React, { Component } from 'react';
-import ProductItem from './ProductItem';
-import { connect } from 'react-redux';
-// import { gql } from '@apollo/client';
-// import { clientScandiweb } from './Apollo';
-import './ProductsPage.css';
+import React, { Component } from "react";
+import ProductItem from "./ProductItem";
+import { connect } from "react-redux";
+import { gql } from "@apollo/client";
+import { clientScandiweb } from "../../../Apollo";
+import "./ProductsPage.css";
 
 class ProductsPage extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { loaded: false };
+    this.state = { loaded: false, theSelectedList: undefined };
   }
 
   catNames = {
-    tech: 'Tech Category Products',
-    clothes: 'Clothes Category Products',
-    all: 'All Products',
+    tech: "Tech Category Products",
+    clothes: "Clothes Category Products",
+    all: "All Products",
   };
+
   // componentDidMount() {
-  //   clientScandiweb
-  //     .query({
-  //       query: gql`
-  //         query GetCategories {
-  //           categories {
-  //             name
-  //             products {
-  //               id
-  //               name
-  //               inStock
-  //               gallery
-  //               description
-  //               category
-  //               attributes {
-  //                 name
-  //                 items {
-  //                   displayValue
-  //                   value
-  //                   id
-  //                 }
-  //               }
-  //               prices {
-  //                 currency {
-  //                   label
-  //                   symbol
-  //                 }
-  //                 amount
-  //               }
-  //               brand
-  //             }
-  //           }
-  //         }
-  //       `,
-  //     })
-  //     .then((result) => {
-  //       this.setState({ categories: result.data.categories });
-  //       this.props.getProductsLists(this.state.categories);
-  //     });
+  //   this.getProducts();
   // }
+
+  async getProducts() {
+    let temp;
+    temp = await clientScandiweb.query({
+      query: gql`
+        query {
+          category {
+            products {
+              id
+              gallery
+              name
+              category
+              inStock
+              attributes {
+                id
+                type
+                name
+                items {
+                  id
+                  displayValue
+                  value
+                }
+              }
+              prices {
+                currency
+                amount
+              }
+            }
+          }
+        }
+      `,
+    });
+
+    this.setState({
+      products: temp.data,
+    });
+  }
+
   render() {
     return (
       <div className="products">

@@ -32,46 +32,50 @@ class ProductDescription extends Component {
     this.currentImage;
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const sentId = this.props.match.params.porductid;
     this.setState({ id: sentId });
+    console.log(this.props.match.params.porductid);
+    let temp;
+    temp = await clientScandiweb.query({
+      query: gql`
+                query {
+                  product(id: "${this.props.match.params.porductid}"){
+                    id
+                    name
+                    inStock
+                    gallery
+                    description
+                    category
+                    attributes {
+                         name
+                        items {
+                          displayValue
+                          value
+                          id
+                        }
+                    }
+                    prices {
+                      currency {
+                        label
+                        symbol
+                      }
+                      amount
+                    }
+                  brand
+                  }
+                }   
+               
+            `,
+    });
 
-    // clientScandiweb
-    //   .query({
-    //     query: gql`
-    //       query GetAlbumById($is: String = sentId) {
-    //         product(id: $is) {
-    //           id
-    //           name
-    //           inStock
-    //           gallery
-    //           attributes {
-    //             name
-    //             type
-    //             items {
-    //               displayValue
-
-    //               value
-    //             }
-    //           }
-    //           prices {
-    //             currency {
-    //               label
-    //               symbol
-    //             }
-    //             amount
-    //           }
-    //           brand
-    //           description
-    //         }
-    //       }
-    //     `,
-    //   })
-    //   .then((result) => {
-    //     this.setState({ currentProduct: result.data.product });
-    //     console.log('currentproduct', this.state.currentProduct);
-    //   });
+    this.setState({
+      currentProduct: temp.data.product,
+      // currentImage : temp.data.product.gallery[0],
+    });
+    console.log(this.state.currentProduct);
   }
+
   getOwnCartNoOfItems(quantity) {
     this.setState({ noOfItmesInCart: quantity });
   }
