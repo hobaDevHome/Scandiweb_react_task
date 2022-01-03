@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import ProductItem from './ProductItem';
-import { connect } from 'react-redux';
-import { gql } from '@apollo/client';
-import { clientScandiweb } from '../../../Apollo';
-import './ProductsPage.css';
+import React, { Component } from "react";
+import ProductItem from "./ProductItem";
+import { connect } from "react-redux";
+import { gql } from "@apollo/client";
+import { clientScandiweb } from "../../../Apollo";
+import "./ProductsPage.css";
 
 class ProductsPage extends Component {
   constructor(props) {
@@ -17,12 +17,12 @@ class ProductsPage extends Component {
   }
 
   catNames = {
-    tech: 'Tech Category Products',
-    clothes: 'Clothes Category Products',
-    all: 'All Products',
+    tech: "Tech Category Products",
+    clothes: "Clothes Category Products",
+    all: "All Products",
   };
   async fetchItems() {
-    console.log('cat', this.props.category);
+    // console.log('cat', this.props.category);
     let temp;
     temp = await clientScandiweb.query({
       query: gql`
@@ -59,7 +59,7 @@ class ProductsPage extends Component {
     });
 
     this.setState({ theSelectedList: temp.data.category.products });
-    console.log(this.state.theSelectedList);
+    // console.log(this.state.theSelectedList);
   }
 
   componentDidMount() {

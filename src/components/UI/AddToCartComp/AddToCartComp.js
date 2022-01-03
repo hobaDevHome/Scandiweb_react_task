@@ -15,6 +15,7 @@ class AddToCartComp extends Component {
     this.onDeleteItem = this.onDeleteItem.bind(this);
     this.getOwnCartNoOfItems = this.getOwnCartNoOfItems.bind(this);
     this.myItemsNo = 0;
+    this.state = { currentCartItemId: undefined };
   }
   getOwnCartNoOfItems() {
     const mine = this.props.cartItems.find(

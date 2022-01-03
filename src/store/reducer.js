@@ -1,25 +1,24 @@
-import CartItemModel from '../components/Models/CartItemModel';
-import { gql } from '@apollo/client';
-import { clientScandiweb } from '../Apollo';
+import CartItemModel from "../components/Models/CartItemModel";
 
 const INITIAL_STATE = {
   query: [],
-  currency: '$',
-  category: 'all',
+  currency: "$",
+  category: "all",
   productsList: [],
   selectedList: [],
   cartItems: [],
   clickedAttributes: [],
   totalAmount: 0,
+  currentCartItemId: undefined,
 };
 
 export const productsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'change_currency':
+    case "change_currency":
       return { ...state, currency: action.payload };
 
-    case 'get_products_list':
-      localStorage.setItem('selectedList', action.payload[0]);
+    case "get_products_list":
+      localStorage.setItem("selectedList", action.payload[0]);
       return {
         ...state,
         productsList: action.payload[0],
@@ -27,56 +26,125 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
         query: action.payload,
       };
 
-    case 'get_slelected_products_list': {
+    case "get_slelected_products_list": {
       const newList = state.query.filter((cat) => cat.name === action.payload);
       return { ...state, category: action.payload, selectedList: newList[0] };
     }
 
-    case 'add_cart_item': {
-      const addedProduct = action.payload;
-      const prodPrice = addedProduct.prices;
-      const prodTitle = addedProduct.name;
-      const prodAttributes = addedProduct.attributes;
-      const prodId = addedProduct.id;
-      const prodGallery = addedProduct.gallery;
+    case "add_cart_item":
+      {
+        const addedProduct = action.payload;
+        const prodPrice = addedProduct.prices;
+        const prodTitle = addedProduct.name;
+        const prodAttributes = addedProduct.attributes;
+        const prodId = addedProduct.id;
+        const prodGallery = addedProduct.gallery;
 
-      const fouund = state.cartItems.find(
-        (item) => item.id === addedProduct.id
-      );
-      const indexOfFound = state.cartItems.indexOf(fouund);
+        const fouund = state.cartItems.find(
+          (item) => item.id === addedProduct.id
+        );
+        const indexOfFound = state.cartItems.indexOf(fouund);
 
-      if (fouund) {
-        const updatedCartItem = new CartItemModel(
-          state.cartItems[indexOfFound].quantity + 1,
-          prodPrice,
-          prodTitle,
-          prodAttributes,
-          prodId,
-          prodGallery
+        const foundItemsArray = state.cartItems.filter(
+          (item) => item.id === addedProduct.id
         );
-        return {
-          ...state,
-          cartItems: state.cartItems.map((el) =>
-            el.id === prodId ? updatedCartItem : el
-          ),
-        };
-      } else {
-        const newCartItem = new CartItemModel(
-          1,
-          prodPrice,
-          prodTitle,
-          prodAttributes,
-          prodId,
-          prodGallery
+        const indexOfFoundArray = foundItemsArray.map((item) =>
+          state.cartItems.indexOf(item)
         );
-        return {
-          ...state,
-          cartItems: [...state.cartItems, newCartItem],
-        };
+
+        const foundAttributesArray = state.clickedAttributes.filter(
+          (atr) => atr.id === prodId
+        );
+
+        console.log("foundItemsArray", foundItemsArray);
+        console.log("indexOfFoundArray", indexOfFoundArray);
+        console.log("state.cartItems", state.cartItems);
+
+        if (fouund) {
+          console.log("found");
+          if (foundAttributesArray.length === 0) {
+            console.log("found with no attributes");
+            const updatedCartItem = new CartItemModel(
+              state.cartItems[indexOfFound].itemid,
+              state.cartItems[indexOfFound].quantity + 1,
+              prodPrice,
+              prodTitle,
+              prodAttributes,
+              prodId,
+              prodGallery,
+              foundAttributesArray
+            );
+            return {
+              ...state,
+              cartItems: state.cartItems.map((el) =>
+                el.id === prodId ? updatedCartItem : el
+              ),
+            };
+          } else {
+            console.log("found with attributes");
+            const currattr = state.cartItems[indexOfFound].itemAttr;
+
+            console.log("found attributes array", foundAttributesArray);
+            console.log("current attributes", currattr);
+            const newAttributesItem = checkEqualAttributes(
+              foundAttributesArray,
+              currattr
+            );
+            if (!newAttributesItem) {
+              const updatedCartItem = new CartItemModel(
+                state.cartItems[indexOfFound].itemid,
+                state.cartItems[indexOfFound].quantity + 1,
+                prodPrice,
+                prodTitle,
+                prodAttributes,
+                prodId,
+                prodGallery,
+                foundAttributesArray
+              );
+              return {
+                ...state,
+                cartItems: state.cartItems.map((el) =>
+                  el.id === prodId ? updatedCartItem : el
+                ),
+              };
+            } else {
+              const newCartItem = new CartItemModel(
+                new Date().toString(),
+                1,
+                prodPrice,
+                prodTitle,
+                prodAttributes,
+                prodId,
+                prodGallery,
+                foundAttributesArray
+              );
+              return {
+                ...state,
+                cartItems: [...state.cartItems, newCartItem],
+              };
+            }
+          }
+        } else if (!fouund) {
+          console.log(" not found");
+          const newCartItem = new CartItemModel(
+            new Date().toString(),
+            1,
+            prodPrice,
+            prodTitle,
+            prodAttributes,
+            prodId,
+            prodGallery,
+            foundAttributesArray
+          );
+          return {
+            ...state,
+            cartItems: [...state.cartItems, newCartItem],
+          };
+        }
       }
-    }
+      break;
 
-    case 'delete_cart_item':
+    case "delete_cart_item":
       {
         const selectedCartItem = state.cartItems.find(
           (item) => item.id === action.payload
@@ -112,7 +180,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       }
       break;
 
-    case 'clac_total': {
+    case "clac_total": {
       let calculatedAmount = 0;
       const items = action.payload;
       const prodcusPricesList = items.map((cartItem) => {
@@ -142,7 +210,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       };
     }
 
-    case 'change_attribute': {
+    case "change_attribute": {
       const id = action.payload.id;
       const attribute = action.payload.attribute;
       const name = action.payload.name;
@@ -184,43 +252,14 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-async function fetchItems(cat) {
-  // console.log('cat', this.props.category);
-  let temp;
-  temp = await clientScandiweb.query({
-    query: gql`
-      query {
-        category(input: { title: "${cat}" }) {
-          name
-          products {
-            id
-            name
-            inStock
-            gallery
-            description
-            category
-            attributes {
-              name
-              items {
-                displayValue
-                value
-                id
-              }
-            }
-            prices {
-              currency {
-                label
-                symbol
-              }
-              amount
-            }
-            brand
-          }
-        }
-      }
-    `,
+function checkEqualAttributes(arr1, arr2) {
+  console.log(arr1);
+  console.log(arr2);
+  const common = arr1.filter((item, index) => {
+    if (item.attribute.value !== arr2[index].attribute.value) {
+      return item;
+    }
   });
-
-  return temp.data.category.products;
-  // console.log(this.state.selectedProducts);
+  console.log("common", common);
+  return common.length > 0;
 }
