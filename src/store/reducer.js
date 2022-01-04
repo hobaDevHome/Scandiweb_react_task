@@ -56,14 +56,14 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
           (atr) => atr.id === prodId
         );
 
-        console.log("foundItemsArray", foundItemsArray);
-        console.log("indexOfFoundArray", indexOfFoundArray);
-        console.log("state.cartItems", state.cartItems);
+        // console.log("foundItemsArray", foundItemsArray);
+        // console.log("indexOfFoundArray", indexOfFoundArray);
+        // console.log("state.cartItems", state.cartItems);
 
         if (fouund) {
           console.log("found");
           if (foundAttributesArray.length === 0) {
-            console.log("found with no attributes");
+            // console.log("found with no attributes");
             const updatedCartItem = new CartItemModel(
               state.cartItems[indexOfFound].itemid,
               state.cartItems[indexOfFound].quantity + 1,
@@ -81,14 +81,14 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
               ),
             };
           } else {
-            console.log("found with attributes");
+            // console.log("found with attributes");
             const currattr = state.cartItems[indexOfFound].itemAttr;
 
-            console.log("found attributes array", foundAttributesArray);
-            console.log("current attributes", currattr);
+            // console.log("found attributes array", foundAttributesArray);
+            // console.log("current attributes", currattr);
             const newAttributesItem = checkEqualAttributes(
-              foundAttributesArray,
-              currattr
+              foundItemsArray,
+              foundAttributesArray
             );
             if (!newAttributesItem) {
               const updatedCartItem = new CartItemModel(
@@ -125,7 +125,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
             }
           }
         } else if (!fouund) {
-          console.log(" not found");
+          // console.log(" not found");
           const newCartItem = new CartItemModel(
             new Date().toString(),
             1,
@@ -253,13 +253,21 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
 };
 
 function checkEqualAttributes(arr1, arr2) {
-  console.log(arr1);
-  console.log(arr2);
-  const common = arr1.filter((item, index) => {
-    if (item.attribute.value !== arr2[index].attribute.value) {
-      return item;
-    }
-  });
-  console.log("common", common);
-  return common.length > 0;
+  // console.log(arr1);
+  // console.log(arr2);
+  const chosenAttrs = arr2.map((at) => at.attribute.value);
+  const attsInCart = arr1.map((at) => [
+    at.itemAttr.map((at2) => at2.attribute.value),
+    at.itemid,
+  ]);
+
+  const id = attsInCart.find(
+    (at) => at[0][0] === chosenAttrs[0] && at[0][1] === chosenAttrs[1]
+  );
+
+  // console.log("chosenAttrs", chosenAttrs);
+  // console.log("attsInCart", attsInCart);
+  console.log("id", id);
+  // return common.length > 0;
+  return id === undefined;
 }
