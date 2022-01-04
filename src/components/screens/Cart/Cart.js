@@ -9,6 +9,7 @@ class Cart extends Component {
     if (this.props.cartItems !== undefined) {
       this.props.calculateTotal(this.props.cartItems);
     }
+    console.log(this.props.cartItems);
     return (
       <div className="cart-container">
         <div className="cart-title">Cart</div>

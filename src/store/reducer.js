@@ -86,25 +86,31 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
 
             // console.log("found attributes array", foundAttributesArray);
             // console.log("current attributes", currattr);
-            const newAttributesItem = checkEqualAttributes(
+            const addItemId = checkEqualAttributes(
               foundItemsArray,
               foundAttributesArray
             );
-            if (!newAttributesItem) {
+            if (addItemId) {
+              const fouund2 = state.cartItems.find(
+                (item) => item.itemid === addItemId[1]
+              );
+              const indexOfFound2 = state.cartItems.indexOf(fouund2);
+              console.log(state.cartItems[indexOfFound2].itemAttr);
+
               const updatedCartItem = new CartItemModel(
-                state.cartItems[indexOfFound].itemid,
-                state.cartItems[indexOfFound].quantity + 1,
+                state.cartItems[indexOfFound2].itemid,
+                state.cartItems[indexOfFound2].quantity + 1,
                 prodPrice,
                 prodTitle,
                 prodAttributes,
                 prodId,
                 prodGallery,
-                foundAttributesArray
+                state.cartItems[indexOfFound2].itemAttr
               );
               return {
                 ...state,
                 cartItems: state.cartItems.map((el) =>
-                  el.id === prodId ? updatedCartItem : el
+                  el.itemid === addItemId[1] ? updatedCartItem : el
                 ),
               };
             } else {
@@ -269,5 +275,5 @@ function checkEqualAttributes(arr1, arr2) {
   // console.log("attsInCart", attsInCart);
   console.log("id", id);
   // return common.length > 0;
-  return id === undefined;
+  return id;
 }
