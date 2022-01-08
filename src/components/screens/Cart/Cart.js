@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import CartItemMain from "./CartItemMain";
-import { connect } from "react-redux";
-import { calculateTotal } from "../../../store/actions";
-import "./Cart.css";
+import React, { Component } from 'react';
+import CartItemMain from './CartItemMain';
+import { connect } from 'react-redux';
+import { calculateTotal, addCartItemFromCart } from '../../../store/actions';
+import './Cart.css';
 
 class Cart extends Component {
   render() {
@@ -46,6 +46,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     calculateTotal: (items) => dispatch(calculateTotal(items)),
+    addCartItemFromCart: (item) => dispatch(addCartItemFromCart(item)),
   };
 };
 
