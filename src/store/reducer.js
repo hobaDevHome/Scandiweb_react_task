@@ -177,26 +177,35 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
 
     case 'delete_cart_item':
       {
-        const selectedCartItem = state.cartItems.find(
+        const foundItemsArray = state.cartItems.filter(
           (item) => item.id === action.payload
         );
 
-        if (selectedCartItem) {
-          const currentQty = selectedCartItem.quantity;
+        const foundAttributesArray = state.clickedAttributes.filter(
+          (atr) => atr.id === action.payload
+        );
+        const selectedCartItem = state.cartItems.find(
+          (item) => item.id === action.payload
+        );
+        const indexOfFound = state.cartItems.indexOf(selectedCartItem);
 
+        if (foundAttributesArray.length === 0) {
+          const currentQty = selectedCartItem.quantity;
           if (currentQty > 1) {
             const updatedCartItem = new CartItemModel(
+              state.cartItems[indexOfFound].itemid,
               selectedCartItem.quantity - 1,
               selectedCartItem.productPrice,
               selectedCartItem.productTitle,
               selectedCartItem.attributes,
               selectedCartItem.id,
-              selectedCartItem.gallery
+              selectedCartItem.gallery,
+              state.cartItems[indexOfFound].itemAttr
             );
             return {
               ...state,
               cartItems: state.cartItems.map((el) =>
-                el.id === selectedCartItem.id ? updatedCartItem : el
+                el.itemid === selectedCartItem.itemid ? updatedCartItem : el
               ),
             };
           } else {
@@ -206,6 +215,45 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
                 (el) => el.id !== action.payload
               ),
             };
+          }
+        } else {
+          const addItemId = checkEqualAttributes(
+            foundItemsArray,
+            foundAttributesArray
+          );
+          if (addItemId) {
+            const fouund2 = state.cartItems.find(
+              (item) => item.itemid === addItemId[1]
+            );
+            const indexOfFound2 = state.cartItems.indexOf(fouund2);
+            console.log(state.cartItems[indexOfFound2].itemAttr);
+            const currentQty2 = fouund2.quantity;
+
+            if (currentQty2 > 1) {
+              const updatedCartItem = new CartItemModel(
+                state.cartItems[indexOfFound2].itemid,
+                selectedCartItem.quantity - 1,
+                selectedCartItem.productPrice,
+                selectedCartItem.productTitle,
+                selectedCartItem.attributes,
+                selectedCartItem.id,
+                selectedCartItem.gallery,
+                state.cartItems[indexOfFound2].itemAttr
+              );
+              return {
+                ...state,
+                cartItems: state.cartItems.map((el) =>
+                  el.itemid === addItemId[1] ? updatedCartItem : el
+                ),
+              };
+            } else {
+              return {
+                ...state,
+                cartItems: state.cartItems.filter(
+                  (el) => el.itemid !== addItemId[1]
+                ),
+              };
+            }
           }
         }
       }

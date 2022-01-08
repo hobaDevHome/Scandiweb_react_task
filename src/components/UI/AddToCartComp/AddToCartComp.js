@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import AddRemove from "../Buttons/AddRemove";
-import WideButton from "../Buttons/WideButton";
-import { BsCart2 } from "react-icons/bs";
-import { connect } from "react-redux";
-import { addCartItem } from "../../../store/actions";
-import { deleteCartItem } from "../../../store/actions";
-import "./AddToCartComp.css";
+import React, { Component } from 'react';
+import AddRemove from '../Buttons/AddRemove';
+import WideButton from '../Buttons/WideButton';
+import { BsCart2 } from 'react-icons/bs';
+import { connect } from 'react-redux';
+import { addCartItem } from '../../../store/actions';
+import { deleteCartItem, deleteCartItemFromCart } from '../../../store/actions';
+import './AddToCartComp.css';
 
 class AddToCartComp extends Component {
   constructor(props) {
@@ -57,12 +57,12 @@ class AddToCartComp extends Component {
           <div
             className={
               this.props.sentItem.inStock
-                ? "item-cart-icon"
-                : "item-cart-icon item-in-stock"
+                ? 'item-cart-icon'
+                : 'item-cart-icon item-in-stock'
             }
             onClick={() => this.onAddItem(this.props.clickedAttributes)}
           >
-            <BsCart2 size={20} color={"white"} />
+            <BsCart2 size={20} color={'white'} />
           </div>
           {this.myItemsNo !== 0 && (
             <AddRemove onClick={this.onDeleteItem}>-</AddRemove>
@@ -101,6 +101,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addCartItem: (item) => dispatch(addCartItem(item)),
     deleteCartItem: (id) => dispatch(deleteCartItem(id)),
+    deleteCartItemFromCart: (id) => dispatch(deleteCartItemFromCart(id)),
   };
 };
 
