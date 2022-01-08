@@ -1,11 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addCartItem } from "../../../store/actions";
-import { deleteCartItem } from "../../../store/actions";
-import OverlayAddRemove from "../../UI/Buttons/OverlayAddRemove";
-import ColorBtn from "../../UI/Buttons/ColorBtn";
-import OverlaySizeButton from "../../UI/Buttons/OverlaySizeButton";
-import "./CartItemOverlay.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addCartItem } from '../../../store/actions';
+import {
+  deleteCartItem,
+  addCartItemFromCart,
+  deleteCartItemFromCart,
+} from '../../../store/actions';
+import OverlayAddRemove from '../../UI/Buttons/OverlayAddRemove';
+import ColorBtn from '../../UI/Buttons/ColorBtn';
+import OverlaySizeButton from '../../UI/Buttons/OverlaySizeButton';
+import './CartItemOverlay.css';
 
 class CartItemOverlay extends Component {
   constructor(props) {
@@ -17,10 +21,10 @@ class CartItemOverlay extends Component {
     this.itemPrice;
   }
   onAddItem() {
-    this.props.addCartItem(this.correspondingProduct);
+    this.props.addCartItemFromCart(this.props.cartItem);
   }
   onDeleteItem() {
-    this.props.deleteCartItem(this.props.cartItem.id);
+    this.props.deleteCartItemFromCart(this.props.cartItem);
   }
   render() {
     if (this.props.cartItems !== undefined) {
@@ -52,7 +56,7 @@ class CartItemOverlay extends Component {
           <div className="attr-buttons-cont">
             {this.itemAttributes !== undefined &&
               this.itemAttributes.map((attr) => {
-                if (attr.name === "Color") {
+                if (attr.name === 'Color') {
                   return (
                     <div className="att-button-cart">
                       <div className="attr-name-cart">{attr.name}</div>
@@ -109,6 +113,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addCartItem: (item) => dispatch(addCartItem(item)),
     deleteCartItem: (id) => dispatch(deleteCartItem(id)),
+    addCartItemFromCart: (id) => dispatch(addCartItemFromCart(id)),
+    deleteCartItemFromCart: (id) => dispatch(deleteCartItemFromCart(id)),
   };
 };
 
