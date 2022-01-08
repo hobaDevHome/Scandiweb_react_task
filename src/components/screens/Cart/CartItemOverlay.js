@@ -36,9 +36,7 @@ class CartItemOverlay extends Component {
           (prod) => prod.id === this.props.cartItem.id
         );
       }
-      this.itemAttributes = this.props.clickedAttributes.filter(
-        (att) => att.id === this.props.cartItem.id
-      );
+      this.itemAttributes = this.props.cartItem.itemAttr;
     }
 
     return (
