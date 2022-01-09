@@ -38,7 +38,7 @@ export const deleteCartItem = (id) => {
   };
 };
 export const deleteCartItemFromCart = (item) => {
-  console.log('action called to delete from cart', item);
+  // console.log('action called to delete from cart', item);
 
   return {
     type: 'delete_cart_item_from_cart',

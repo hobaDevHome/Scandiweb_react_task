@@ -27,6 +27,13 @@ class AddToCartComp extends Component {
     } else {
       this.myItemsNo = 0;
     }
+    if (this.props.currentCartItemId) {
+      const foundCartItem = this.props.cartItems.find(
+        (el) => el.itemid === this.props.currentCartItemId
+      );
+      console.log('foundCartItem', foundCartItem.quantity);
+      // this.myItemsNo = foundCartItem.quantity;
+    }
   }
   onAddItem(clicked) {
     if (this.props.sentItem.attributes.length < 1) {
@@ -94,6 +101,7 @@ const mapStateToProps = (state) => {
   return {
     cartItems: state.cartItems,
     clickedAttributes: state.clickedAttributes,
+    currentCartItemId: state.currentCartItemId,
   };
 };
 

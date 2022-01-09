@@ -86,7 +86,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
         // console.log("state.cartItems", state.cartItems);
 
         if (fouund) {
-          console.log('found');
+          // console.log('found');
           if (foundAttributesArray.length === 0) {
             // console.log("found with no attributes");
             const updatedCartItem = new CartItemModel(
@@ -120,7 +120,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
                 (item) => item.itemid === addItemId[1]
               );
               const indexOfFound2 = state.cartItems.indexOf(fouund2);
-              console.log(state.cartItems[indexOfFound2].itemAttr);
+              // console.log(state.cartItems[indexOfFound2].itemAttr);
 
               const updatedCartItem = new CartItemModel(
                 state.cartItems[indexOfFound2].itemid,
@@ -226,7 +226,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
               (item) => item.itemid === addItemId[1]
             );
             const indexOfFound2 = state.cartItems.indexOf(fouund2);
-            console.log(state.cartItems[indexOfFound2].itemAttr);
+            // console.log(state.cartItems[indexOfFound2].itemAttr);
             const currentQty2 = fouund2.quantity;
 
             if (currentQty2 > 1) {
@@ -279,7 +279,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
               selectedCartItem.gallery,
               selectedCartItem.itemAttr
             );
-            console.log('updatedCartItem', updatedCartItem);
+            // console.log('updatedCartItem', updatedCartItem);
             return {
               ...state,
               cartItems: state.cartItems.map((el) =>
@@ -333,13 +333,30 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       const attribute = action.payload.attribute;
       const name = action.payload.name;
       const addClickedattribute = { id, attribute, name };
+
       const foundAttributesArray = state.clickedAttributes.filter(
         (atr) => atr.id === id
       );
 
+      const foundItemsArray = state.cartItems.filter((item) => item.id === id);
+
+      const addItemId = checkEqualAttributes(
+        foundItemsArray,
+        foundAttributesArray
+      );
+
+      if (addItemId) {
+        const fouund2 = state.cartItems.find(
+          (item) => item.itemid === addItemId[1]
+        );
+        const currentQuntity = fouund2.quantity;
+        console.log('q', fouund2.quantity);
+      }
+
       if (foundAttributesArray.length === 0) {
         return {
           ...state,
+          currentCartItemId: addItemId ? addItemId[1] : undefined,
           clickedAttributes: [...state.clickedAttributes, addClickedattribute],
         };
       } else {
@@ -349,6 +366,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
         if (foundCurrentAttib) {
           return {
             ...state,
+            currentCartItemId: addItemId ? addItemId[1] : undefined,
             clickedAttributes: state.clickedAttributes.map((att) =>
               att.id === id && att.name === name ? addClickedattribute : att
             ),
@@ -356,6 +374,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
         } else {
           return {
             ...state,
+            ccurrentCartItemId: addItemId ? addItemId[1] : undefined,
             clickedAttributes: [
               ...state.clickedAttributes,
               addClickedattribute,
@@ -385,7 +404,7 @@ function checkEqualAttributes(arr1, arr2) {
 
   // console.log("chosenAttrs", chosenAttrs);
   // console.log("attsInCart", attsInCart);
-  console.log('id', id);
+  // console.log('id', id);
   // return common.length > 0;
   return id;
 }
