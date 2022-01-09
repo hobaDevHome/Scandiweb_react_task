@@ -33,7 +33,7 @@ class AddToCartComp extends Component {
       } else {
         this.myItemsNo = 0;
       }
-      console.log("cItem", cItem);
+      // console.log("cItem", cItem);
     }
   }
   componentDidMount() {

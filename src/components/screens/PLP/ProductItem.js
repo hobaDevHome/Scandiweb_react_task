@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import ProdcutsDetailsInPLP from "./ProdcutsDetailsInPLP";
 
 import { connect } from "react-redux";
+import { BsCart2 } from "react-icons/bs";
 import AddToCartComp from "../../UI/AddToCartComp/AddToCartComp";
 import { Link } from "react-router-dom";
 import SizesAtributes from "../PDP/SizesAtributes";
@@ -14,14 +16,23 @@ class ProductItem extends Component {
     this.state = { showMsg: false };
     this.getOwnCartNoOfItems = this.getOwnCartNoOfItems.bind(this);
     this.onAddItem = this.onAddItem.bind(this);
+    this.showProcutDetailsHandler = this.showProcutDetailsHandler.bind(this);
+    this.hideProcutDetailsHandler = this.hideProcutDetailsHandler.bind(this);
 
-    this.state = { noOfItmesInCart: 1 };
+    this.state = { noOfItmesInCart: 1, showProcutDetails: false };
   }
 
   itemProduct = this.props.product;
   price = 0;
   itemImage;
   attributes = 0;
+
+  showProcutDetailsHandler() {
+    this.setState({ showProcutDetails: true });
+  }
+  hideProcutDetailsHandler() {
+    this.setState({ showProcutDetails: false });
+  }
 
   onAddItem(item) {
     this.setState({ noOfItmesInCart: this.state.noOfItmesInCart + 1 });
@@ -71,7 +82,19 @@ class ProductItem extends Component {
           +Math.round(this.price * this.state.noOfItmesInCart * 100) / 100
         }`}</p>
 
-        <div className="add-to-cart-comp">
+        <div
+          className="item-cart-icon"
+          onClick={this.showProcutDetailsHandler.bind(this)}
+        >
+          <BsCart2 size={20} color={"white"} />
+        </div>
+        {this.state.showProcutDetails && (
+          <ProdcutsDetailsInPLP
+            onHide={this.hideProcutDetailsHandler.bind(this)}
+          />
+        )}
+
+        {/* <div className="add-to-cart-comp">
           {this.itemProduct.inStock && (
             <AddToCartComp
               getOwnCartNoOfItems={this.getOwnCartNoOfItems}
@@ -79,14 +102,14 @@ class ProductItem extends Component {
               clicked={this.props.clickedAttributes}
             />
           )}
-        </div>
-        {this.attributes !== 0 && this.itemProduct.inStock && (
+        </div> */}
+        {/* {this.attributes !== 0 && this.itemProduct.inStock && (
           <SizesAtributes
             attributes={this.attributes}
             sentItem={this.itemProduct}
             id={this.itemProduct.id}
           />
-        )}
+        )} */}
       </div>
     );
   }

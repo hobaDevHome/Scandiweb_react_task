@@ -353,7 +353,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
           };
         } else {
           if (foundCommonAtt) {
-            console.log("found cross id ", foundCommonAtt[1]);
+            // console.log("found cross id ", foundCommonAtt[1]);
             return {
               ...state,
               currentCartItemId: foundCommonAtt[1],
