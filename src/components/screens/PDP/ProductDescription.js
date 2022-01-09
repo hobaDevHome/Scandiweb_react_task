@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import ProdcutMainImage from './ProductMainImage';
+import ProdcutMainImage from "./ProductMainImage";
 
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
-import SizesAtributes from './SizesAtributes';
-import { changeAttrubute } from '../../../store/actions';
-import ProductsCarousel from './ProductsCarousel';
-import { gql } from '@apollo/client';
-import { clientScandiweb } from '../../../Apollo';
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import AddToCartComp from "../../UI/AddToCartComp/AddToCartComp";
+import SizesAtributes from "./SizesAtributes";
+import { changeAttrubute } from "../../../store/actions";
+import ProductsCarousel from "./ProductsCarousel";
+import { gql } from "@apollo/client";
+import { clientScandiweb } from "../../../Apollo";
 
-import './ProductDescription.css';
+import "./ProductDescription.css";
 
 class ProductDescription extends Component {
   constructor(props) {
@@ -135,10 +135,12 @@ class ProductDescription extends Component {
               <div className="size-desc">PRICE:</div>
               <div className="price-amount-desc">{`${this.props.currency} 
               ${this.price}`}</div>
-              <AddToCartComp
-                sentItem={this.selecteProduct}
-                getOwnCartNoOfItems={this.getOwnCartNoOfItems}
-              />
+              {this.selecteProduct.inStock && (
+                <AddToCartComp
+                  sentItem={this.selecteProduct}
+                  getOwnCartNoOfItems={this.getOwnCartNoOfItems}
+                />
+              )}
             </div>
           </div>
           <p className="prod-long-desc">
@@ -146,7 +148,7 @@ class ProductDescription extends Component {
               dangerouslySetInnerHTML={{
                 __html: this.selecteProduct.description.replace(
                   /(<? *script)/gi,
-                  'illegalscript'
+                  "illegalscript"
                 ),
               }}
             />

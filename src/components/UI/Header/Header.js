@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import CartOverlay from '../../screens/Cart/CartOverlay';
-import { BsCart2 } from 'react-icons/bs';
-import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { gql } from '@apollo/client';
-import CurrencytOverlay from './CurrencyOverlay';
+import React, { Component } from "react";
+import CartOverlay from "../../screens/Cart/CartOverlay";
+import { BsCart2 } from "react-icons/bs";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { gql } from "@apollo/client";
+import CurrencytOverlay from "./CurrencyOverlay";
 
-import { clientScandiweb } from '../../../Apollo';
+import { clientScandiweb } from "../../../Apollo";
 import {
   changeCurrency,
   getSelectedProductsLists,
-} from '../../../store/actions';
+} from "../../../store/actions";
 
-import './Header.css';
+import "./Header.css";
 
 class Header extends Component {
   constructor(props) {
@@ -99,7 +99,7 @@ class Header extends Component {
 
   onChosseCatHandler(choosecCat) {
     this.props.getSelectedProductsLists(choosecCat);
-    localStorage.setItem('category', choosecCat);
+    localStorage.setItem("category", choosecCat);
   }
   getCartItemsNo() {
     let amuont = 0;
@@ -149,7 +149,7 @@ class Header extends Component {
                 <Link to="/" key={cat.length}>
                   <li
                     className={`cat-link ${
-                      this.props.category === cat ? 'acitve-cat' : ''
+                      this.props.category === cat ? "acitve-cat" : ""
                     }`}
                     onClick={() => this.onChosseCatHandler(cat)}
                   >
@@ -183,7 +183,7 @@ class Header extends Component {
           <div
             onClick={this.showCartOverlay.bind(this)}
             className={`cart-icon ${
-              this.props.cartItems.length > 0 ? 'cart-badge-visible' : ''
+              this.props.cartItems.length > 0 ? "cart-badge-visible" : ""
             }`}
           >
             <BsCart2 size={20} />

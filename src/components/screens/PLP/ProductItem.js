@@ -75,41 +75,29 @@ class ProductItem extends Component {
     return (
       <div className={!this.props.inStock ? "item out-of-stock" : "item"}>
         {this.linkComponent()}
-
         <p className="title">{this.itemProduct.name}</p>
         <p className="title">Brand : {this.itemProduct.brand}</p>
         <p className="price">{`${this.props.currency} ${
           +Math.round(this.price * this.state.noOfItmesInCart * 100) / 100
         }`}</p>
-
-        <div
-          className="item-cart-icon"
-          onClick={this.showProcutDetailsHandler.bind(this)}
-        >
-          <BsCart2 size={20} color={"white"} />
-        </div>
-        {this.state.showProcutDetails && (
-          <ProdcutsDetailsInPLP
-            onHide={this.hideProcutDetailsHandler.bind(this)}
-          />
+        {this.props.inStock && (
+          <div
+            className="item-cart-icon"
+            onClick={this.showProcutDetailsHandler.bind(this)}
+          >
+            <BsCart2 size={20} color={"white"} />
+          </div>
         )}
 
-        {/* <div className="add-to-cart-comp">
-          {this.itemProduct.inStock && (
-            <AddToCartComp
-              getOwnCartNoOfItems={this.getOwnCartNoOfItems}
-              sentItem={this.itemProduct}
-              clicked={this.props.clickedAttributes}
-            />
-          )}
-        </div> */}
-        {/* {this.attributes !== 0 && this.itemProduct.inStock && (
-          <SizesAtributes
+        {this.state.showProcutDetails && (
+          <ProdcutsDetailsInPLP
             attributes={this.attributes}
             sentItem={this.itemProduct}
             id={this.itemProduct.id}
+            clicked={this.props.clickedAttributes}
+            onHide={this.hideProcutDetailsHandler.bind(this)}
           />
-        )} */}
+        )}
       </div>
     );
   }

@@ -1,14 +1,10 @@
 import React, { Component } from "react";
 import AddRemove from "../Buttons/AddRemove";
 import WideButton from "../Buttons/WideButton";
-import { BsCart2 } from "react-icons/bs";
+
 import { connect } from "react-redux";
 import { addCartItem } from "../../../store/actions";
-import {
-  deleteCartItem,
-  deleteCartItemFromCart,
-  getCurrentItemNo,
-} from "../../../store/actions";
+import { deleteCartItem, getCurrentItemNo } from "../../../store/actions";
 import "./AddToCartComp.css";
 
 class AddToCartComp extends Component {
@@ -33,7 +29,7 @@ class AddToCartComp extends Component {
       } else {
         this.myItemsNo = 0;
       }
-      // console.log("cItem", cItem);
+      console.log("this.props.currentCartItemId", this.props.currentCartItemId);
     }
   }
   componentDidMount() {
@@ -68,16 +64,6 @@ class AddToCartComp extends Component {
           <div className="pleas-add">*Please select the desired options</div>
         )}
         <div className="cart-buttons-component">
-          <div
-            className={
-              this.props.sentItem.inStock
-                ? "item-cart-icon"
-                : "item-cart-icon item-in-stock"
-            }
-            onClick={() => this.onAddItem(this.props.clickedAttributes)}
-          >
-            <BsCart2 size={20} color={"white"} />
-          </div>
           {this.myItemsNo !== 0 && (
             <AddRemove onClick={this.onDeleteItem}>-</AddRemove>
           )}
@@ -117,7 +103,6 @@ const mapDispatchToProps = (dispatch) => {
     addCartItem: (item) => dispatch(addCartItem(item)),
     deleteCartItem: (id) => dispatch(deleteCartItem(id)),
     getCurrentItemNo: (id) => dispatch(getCurrentItemNo(id)),
-    deleteCartItemFromCart: (id) => dispatch(deleteCartItemFromCart(id)),
   };
 };
 
