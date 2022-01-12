@@ -6,6 +6,7 @@
   justify-content: center;
   margin-bottom: 30px;
   margin-top: 50px;
+  /* border: 1px solid black; */
 }
 .cat-name-containger {
   margin-top: 20px;
@@ -13,8 +14,9 @@
   font-weight: normal;
 }
 .product-list-contianer {
+  /* border: 1px solid black; */
   display: grid;
   gap: 40px;
-  grid-template-columns: 370px 370px 370px;
+  grid-template-columns: repeat(3, 370px);
   justify-items: center;
 }

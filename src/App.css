@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 :root {
   --greenColor: #5ece7b;
   --modalBg: #d4d3d7;
@@ -6,14 +6,17 @@
 }
 html {
   scroll-behavior: smooth;
+  overflow-y: scroll;
 }
 body {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: normal;
   box-sizing: border-box;
 }
 .app-container {
+  /* overflow: hidden; */
+  /* border: 1px solid red; */
   width: 100%;
   padding: 0;
   margin: 0;
@@ -26,6 +29,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
+  /* border: 1px solid red; */
 }
 
 .header-in-app {
