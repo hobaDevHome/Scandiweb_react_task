@@ -1,10 +1,10 @@
-import { act } from "react-dom/cjs/react-dom-test-utils.production.min";
-import CartItemModel from "../components/Models/CartItemModel";
+import { act } from 'react-dom/cjs/react-dom-test-utils.production.min';
+import CartItemModel from '../components/Models/CartItemModel';
 
 const INITIAL_STATE = {
   query: [],
-  currency: "$",
-  category: "all",
+  currency: '$',
+  category: 'all',
   productsList: [],
   selectedList: [],
   cartItems: [],
@@ -15,11 +15,11 @@ const INITIAL_STATE = {
 
 export const productsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case "change_currency":
+    case 'change_currency':
       return { ...state, currency: action.payload };
 
-    case "get_products_list":
-      localStorage.setItem("selectedList", action.payload[0]);
+    case 'get_products_list':
+      localStorage.setItem('selectedList', action.payload[0]);
       return {
         ...state,
         productsList: action.payload[0],
@@ -27,12 +27,12 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
         query: action.payload,
       };
 
-    case "get_slelected_products_list": {
+    case 'get_slelected_products_list': {
       const newList = state.query.filter((cat) => cat.name === action.payload);
       return { ...state, category: action.payload, selectedList: newList[0] };
     }
 
-    case "add_cart_item_from_cart": {
+    case 'add_cart_item_from_cart': {
       const prod = action.payload;
       const fouund = state.cartItems.find(
         (item) => item.itemid === prod.itemid
@@ -57,7 +57,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       };
     }
 
-    case "add_cart_item":
+    case 'add_cart_item':
       {
         const addedProduct = action.payload;
         const prodPrice = addedProduct.prices;
@@ -176,7 +176,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       }
       break;
 
-    case "delete_cart_item":
+    case 'delete_cart_item':
       {
         const foundItemsArray = state.cartItems.filter(
           (item) => item.id === action.payload
@@ -260,7 +260,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       }
       break;
 
-    case "delete_cart_item_from_cart":
+    case 'delete_cart_item_from_cart':
       {
         const selectedCartItem = state.cartItems.find(
           (item) => item.itemid === action.payload.itemid
@@ -299,7 +299,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       }
       break;
 
-    case "clac_total": {
+    case 'clac_total': {
       let calculatedAmount = 0;
       const items = action.payload;
       const prodcusPricesList = items.map((cartItem) => {
@@ -329,15 +329,16 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       };
     }
 
-    case "count_itmes": {
-      // console.log(action.payload);
+    case 'count_itmes': {
       const id = action.payload.id;
+      // console.log('sent item id', action.payload.id);
+
       const foundAttributesArray = state.clickedAttributes.filter(
         (atr) => atr.id === id
       );
       const foundItemsArray = state.cartItems.filter((item) => item.id === id);
       const fouund = state.cartItems.find((item) => item.id === id);
-      // console.log(fouund);
+      console.log('found', fouund);
       const foundCommonAtt = checkEqualAttributes(
         foundItemsArray,
         foundAttributesArray
@@ -365,11 +366,15 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
             };
           }
         }
+      } else {
+        return {
+          ...state,
+          currentCartItemId: undefined,
+        };
       }
-      return state;
     }
 
-    case "change_attribute": {
+    case 'change_attribute': {
       const id = action.payload.id;
       const attribute = action.payload.attribute;
       const name = action.payload.name;

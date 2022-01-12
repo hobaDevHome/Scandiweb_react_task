@@ -1,16 +1,15 @@
-import React, { Component } from "react";
-import AddRemove from "../Buttons/AddRemove";
-import WideButton from "../Buttons/WideButton";
+import React, { Component } from 'react';
+import AddRemove from '../Buttons/AddRemove';
+import WideButton from '../Buttons/WideButton';
 
-import { connect } from "react-redux";
-import { addCartItem } from "../../../store/actions";
-import { deleteCartItem, getCurrentItemNo } from "../../../store/actions";
-import "./AddToCartComp.css";
+import { connect } from 'react-redux';
+import { addCartItem } from '../../../store/actions';
+import { deleteCartItem, getCurrentItemNo } from '../../../store/actions';
+import './AddToCartComp.css';
 
 class AddToCartComp extends Component {
   constructor(props) {
     super(props);
-
     this.state = { showMsg: false, currentCartItemId: undefined, attItemNo: 0 };
     this.onAddItem = this.onAddItem.bind(this);
     this.onDeleteItem = this.onDeleteItem.bind(this);
@@ -18,8 +17,10 @@ class AddToCartComp extends Component {
     this.myItemsNo = 0;
   }
   getOwnCartNoOfItems() {
+    // console.log('sent item', this.props.sentItem);
     if (this.props.sentItem) {
       this.props.getCurrentItemNo(this.props.sentItem);
+      // console.log('cItem id', this.props.currentCartItemId);
       const cItem = this.props.cartItems.find(
         (el) => el.itemid === this.props.currentCartItemId
       );
@@ -29,14 +30,13 @@ class AddToCartComp extends Component {
       } else {
         this.myItemsNo = 0;
       }
-      console.log("this.props.currentCartItemId", this.props.currentCartItemId);
     }
   }
   componentDidMount() {
-    this.getOwnCartNoOfItems();
+    // this.getOwnCartNoOfItems();
   }
   componentDidUpdate() {
-    this.getOwnCartNoOfItems();
+    // this.getOwnCartNoOfItems();
   }
   onAddItem(clicked) {
     if (this.props.sentItem.attributes.length < 1) {
