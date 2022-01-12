@@ -5,7 +5,7 @@
   width: 100%;
 }
 .cart-title {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: bold;
   font-size: 32px;
@@ -33,7 +33,7 @@
 }
 
 .cart-item-title {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: 600;
   font-size: 30px;
@@ -42,7 +42,7 @@
 }
 
 .cart-item-shore-desc {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: normal;
   font-size: 30px;
@@ -61,6 +61,7 @@
   margin-bottom: 10px;
   display: flex;
   align-items: center;
+  /* flex-direction: row; */
 }
 .attr-buttons {
   display: flex;
@@ -70,7 +71,7 @@
   justify-content: flex-start;
 }
 .price-amount {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -95,7 +96,7 @@
   align-items: center;
 }
 .quantity {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -103,7 +104,7 @@
 }
 
 .cart-total {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -117,7 +118,7 @@
 }
 
 .no-items {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: 600;
   font-size: 30px;
@@ -136,22 +137,40 @@
 }
 
 .size-btn-in-item {
-  width: 63px;
+  min-width: 45px;
   height: 45px;
   display: flex;
-
+  padding: 5px;
+  justify-content: center;
   align-items: center;
   font-family: Source Sans Pro;
   font-style: normal;
   margin-left: 10px;
   font-size: 18px;
   line-height: 18px;
-  font-weight: bold;
+
+  background-color: black;
+  color: white;
 }
 
 .color-btn-in-item1 {
-  width: 25px;
-  height: 25px;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 18px;
+  margin-left: 6px;
+
+  border: 2px solid rgb(218, 48, 203);
+}
+.color-btn-in-item2 {
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,18 +185,19 @@
 }
 
 .overlat-att-in-item {
-  min-width: 40px;
-  min-height: 40px;
+  min-width: 20px;
+  min-height: 20px;
   max-width: fit-content;
   padding: 5px;
 
   display: flex;
+  border: 1px solid black;
 
   align-items: center;
   font-family: Source Sans Pro;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 12px;
   line-height: 18px;
-  margin-right: 6px;
+  margin-left: 6px;
 }

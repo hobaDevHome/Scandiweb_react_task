@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import ProdcutsDetailsInPLP from "./ProdcutsDetailsInPLP";
+import React, { Component } from 'react';
+import ProdcutsDetailsInPLP from './ProdcutsDetailsInPLP';
 
-import { connect } from "react-redux";
-import { BsCart2 } from "react-icons/bs";
-import AddToCartComp from "../../UI/AddToCartComp/AddToCartComp";
-import { Link } from "react-router-dom";
-import SizesAtributes from "../PDP/SizesAtributes";
-import { changeAttrubute, addCartItem } from "../../../store/actions";
+import { connect } from 'react-redux';
+import { BsCart2 } from 'react-icons/bs';
 
-import "./ProductItem.css";
+import { Link } from 'react-router-dom';
+
+import { changeAttrubute, addCartItem } from '../../../store/actions';
+
+import './ProductItem.css';
 
 class ProductItem extends Component {
   constructor(props) {
@@ -28,7 +28,11 @@ class ProductItem extends Component {
   attributes = 0;
 
   showProcutDetailsHandler() {
-    this.setState({ showProcutDetails: true });
+    if (this.attributes !== 0) {
+      this.setState({ showProcutDetails: true });
+    } else {
+      this.onAddItem(this.itemProduct);
+    }
   }
   hideProcutDetailsHandler() {
     this.setState({ showProcutDetails: false });
@@ -73,19 +77,17 @@ class ProductItem extends Component {
     }
 
     return (
-      <div className={!this.props.inStock ? "item out-of-stock" : "item"}>
+      <div className={!this.props.inStock ? 'item out-of-stock' : 'item'}>
         {this.linkComponent()}
         <p className="title">{this.itemProduct.name}</p>
         <p className="title">Brand : {this.itemProduct.brand}</p>
-        <p className="price">{`${this.props.currency} ${
-          +Math.round(this.price * this.state.noOfItmesInCart * 100) / 100
-        }`}</p>
+        <p className="price">{`${this.props.currency} ${this.price}`}</p>
         {this.props.inStock && (
           <div
             className="item-cart-icon"
             onClick={this.showProcutDetailsHandler.bind(this)}
           >
-            <BsCart2 size={20} color={"white"} />
+            <BsCart2 size={20} color={'white'} />
           </div>
         )}
 
