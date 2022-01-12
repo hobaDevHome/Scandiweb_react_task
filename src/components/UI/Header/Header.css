@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
+html {
+  box-sizing: border-box;
+}
 .header-row {
   width: 100%;
   display: flex;
@@ -110,7 +112,7 @@
 .currency-list {
   position: absolute;
   top: 60px;
-  right: 20px;
+  right: 110px;
   width: 114px;
   height: fit-content;
   display: flex;
@@ -119,7 +121,7 @@
   z-index: 101;
   align-items: center;
   background-color: #fff;
-  filter: drop-shadow(0px 4px 35px rgba(85, 88, 90, 0.3));
+  filter: drop-shadow(0px 4px 35px rgba(194, 207, 214, 0.3));
 }
 
 .currency-item {

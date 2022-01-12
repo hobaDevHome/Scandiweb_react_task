@@ -2,6 +2,7 @@
 :root {
   --greenColor: #5ece7b;
   --modalBg: #d4d3d7;
+  box-sizing: border-box;
 }
 html {
   scroll-behavior: smooth;
@@ -18,7 +19,7 @@ body {
   margin: 0;
 }
 .App {
-  width: 75%;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -32,7 +33,7 @@ body {
   top: 0;
   background-color: white;
   z-index: 60;
-  width: 80%;
+  max-width: 1200px;
 }
 .Invisible {
   height: 100%;

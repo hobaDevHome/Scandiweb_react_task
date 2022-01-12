@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addCartItem } from '../../../store/actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addCartItem } from "../../../store/actions";
 import {
   deleteCartItem,
   addCartItemFromCart,
   deleteCartItemFromCart,
-} from '../../../store/actions';
-import OverlayAddRemove from '../../UI/Buttons/OverlayAddRemove';
-import ColorBtn from '../../UI/Buttons/ColorBtn';
-import OverlaySizeButton from '../../UI/Buttons/OverlaySizeButton';
-import './CartItemOverlay.css';
+} from "../../../store/actions";
+import OverlayAddRemove from "../../UI/Buttons/OverlayAddRemove";
+import ColorBtn from "../../UI/Buttons/ColorBtn";
+import OverlaySizeButton from "../../UI/Buttons/OverlaySizeButton";
+import "./CartItemOverlay.css";
 
 class CartItemOverlay extends Component {
   constructor(props) {
@@ -54,10 +54,10 @@ class CartItemOverlay extends Component {
           <div className="attr-buttons-cont">
             {this.itemAttributes !== undefined &&
               this.itemAttributes.map((attr) => {
-                if (attr.name === 'Color') {
+                if (attr.name === "Color") {
                   return (
                     <div className="att-button-cart">
-                      <div className="attr-name-cart">{attr.name}</div>
+                      <div className="attr-name-cart">{attr.name} : </div>
                       <div
                         className="color-btn-in-item1"
                         style={{
@@ -69,7 +69,7 @@ class CartItemOverlay extends Component {
                 } else {
                   return (
                     <div className="att-button-cart">
-                      <div className="attr-name-cart">{attr.name}</div>
+                      <div className="attr-name-cart">{attr.name} : </div>
                       <div className="overlat-att-in-item">
                         {attr.attribute.value}
                       </div>

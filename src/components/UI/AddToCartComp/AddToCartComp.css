@@ -29,8 +29,8 @@
 
 .item-cart-icon {
   position: absolute;
-  left: 320px;
-  bottom: 120px;
+  left: 300px;
+  bottom: 90px;
   width: 52px;
   height: 52px;
   background-color: var(--greenColor);
@@ -39,9 +39,14 @@
   justify-content: center;
   align-items: center;
   opacity: 1;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
   cursor: pointer;
   user-select: none;
+  transition: all 0.3s;
+}
+
+.item-cart-icon:hover {
+  transform: scale(1.2);
 }
 .item-in-stock.item-cart-icon {
   opacity: 1;

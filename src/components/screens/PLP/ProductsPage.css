@@ -14,7 +14,7 @@
 }
 .product-list-contianer {
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  grid-template-columns: 386px 386px 386px;
   justify-items: center;
 }
