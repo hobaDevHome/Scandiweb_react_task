@@ -30,12 +30,12 @@
 }
 
 .up-arrow-c {
-  top: 10px;
-  left: 50px;
+  top: 0px;
+  left: 30px;
 }
 .down-arrow-c {
-  bottom: -90px;
-  left: 50px;
+  bottom: -110px;
+  left: 30px;
 }
 .arrows-off-c {
   opacity: 0;

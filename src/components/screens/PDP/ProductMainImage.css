@@ -3,10 +3,11 @@
 
   user-select: none;
   /* box-shadow: 4px 4px 2px 1px rgba(155, 155, 160, 0.2); */
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 }
 .product-mainImage {
   min-width: 600px;
   max-height: 450px;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: 100% 0;
 }
