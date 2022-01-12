@@ -13,9 +13,11 @@
 
 .cart-modal-product {
   position: fixed;
-  top: 200px;
-  right: 50%;
-  width: 350px;
+
+  width: 800px;
+  top: 250px;
+  right: 500px;
+
   background-color: white;
   padding: 10;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
@@ -28,4 +30,8 @@
 
   margin-top: 5px;
   padding: 15px;
+}
+
+.details-screen-title {
+  font-size: 20px;
 }

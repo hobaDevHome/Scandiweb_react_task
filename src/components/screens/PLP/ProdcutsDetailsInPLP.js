@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from "react";
-import ReactDOM from "react-dom";
-import SizesAtributes from "../PDP/SizesAtributes";
-import "./ProdcutsDetailsInPLP.css";
-import AddToCartComp from "../../UI/AddToCartComp/AddToCartComp";
+import React, { Component, Fragment } from 'react';
+import ReactDOM from 'react-dom';
+import SizesAtributes from '../PDP/SizesAtributes';
+import './ProdcutsDetailsInPLP.css';
+import AddToCartComp from '../../UI/AddToCartComp/AddToCartComp';
 
 class Backdrop extends Component {
   render() {
@@ -20,7 +20,7 @@ class ProductCard extends Component {
   }
 }
 
-const portalElement = document.getElementById("productAttirbutes");
+const portalElement = document.getElementById('productAttirbutes');
 
 class ProdcutsDetailsInPLP extends Component {
   render() {
@@ -32,7 +32,9 @@ class ProdcutsDetailsInPLP extends Component {
         )}
         {ReactDOM.createPortal(
           <ProductCard>
-            <div>prodcut details temp</div>
+            <div className="details-screen-title">
+              Please selecet the desired options:
+            </div>
             {this.props.attributes !== 0 && (
               <SizesAtributes
                 attributes={this.props.attributes}
