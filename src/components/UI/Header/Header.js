@@ -61,7 +61,6 @@ class Header extends Component {
       })
       .then((result) => {
         this.tempCurNames = result.data.categories[0].products[0].prices;
-        // console.log(this.tempCurNames);
       });
   }
   showCartOverlay() {
@@ -73,22 +72,14 @@ class Header extends Component {
   }
 
   showCurrencyList() {
-    // this.props.setAtive(true);
     this.setState({ showCurrency: true });
   }
   hideCurrencyList() {
-    // this.props.setAtive(false);
     this.setState({ showCurrency: false });
   }
   toggleCurrencyList() {
-    // console.log("if acitvie in toggle", this.props.ifActive);
     this.hideCartOverlay();
     this.setState({ showCurrency: !this.state.showCurrency });
-    // if (!this.props.ifActive) {
-    //   this.props.setAtive(true);
-    // } else {
-    //   this.props.setAtive(false);
-    // }
   }
 
   onChooseCurrencyHandler(newCurrency) {
@@ -103,7 +94,7 @@ class Header extends Component {
   }
   getCartItemsNo() {
     let amuont = 0;
-    // mapping
+
     this.props.cartItems.map((el) => (amuont += el.quantity));
 
     this.numcerOfItems = amuont;
@@ -123,7 +114,6 @@ class Header extends Component {
     }
   }
   render() {
-    // console.log("re-redered ", this.props.ifActive);
     if (this.props.query !== undefined) {
       this.getCartItemsNo();
       this.getCategoriesNames();

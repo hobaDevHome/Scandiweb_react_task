@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addCartItem } from '../../../store/actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addCartItem } from "../../../store/actions";
 import {
   deleteCartItem,
   addCartItemFromCart,
   deleteCartItemFromCart,
-} from '../../../store/actions';
-import OverlayAddRemove from '../../UI/Buttons/OverlayAddRemove';
-import ColorBtn from '../../UI/Buttons/ColorBtn';
-import OverlaySizeButton from '../../UI/Buttons/OverlaySizeButton';
-import './CartItemOverlay.css';
+} from "../../../store/actions";
+import OverlayAddRemove from "../../UI/Buttons/OverlayAddRemove";
+import ColorBtn from "../../UI/Buttons/ColorBtn";
+import OverlaySizeButton from "../../UI/Buttons/OverlaySizeButton";
+import "./CartItemOverlay.css";
 
 class CartItemOverlay extends Component {
   constructor(props) {
@@ -49,12 +49,11 @@ class CartItemOverlay extends Component {
           <div className="overlay-price-amount">
             {`${this.props.currency} ${this.itemPrice}`}
           </div>
-          {/* ---------------------------- */}
 
           <div className="attr-buttons-cont">
             {this.itemAttributes !== undefined &&
               this.itemAttributes.map((attr) => {
-                if (attr.name === 'Color') {
+                if (attr.name === "Color") {
                   return (
                     <div className="att-button-cart">
                       <div>
@@ -72,7 +71,7 @@ class CartItemOverlay extends Component {
                   return (
                     <div className="att-button-cart">
                       <div>
-                        <p className="attr-name-cart-t">{attr.name} : </p>{' '}
+                        <p className="attr-name-cart-t">{attr.name} : </p>{" "}
                       </div>
 
                       <div className="overlat-att-in-item">
@@ -84,7 +83,7 @@ class CartItemOverlay extends Component {
               })}
           </div>
         </div>
-        {/* ---------------------------------- */}
+
         <div className="overlay-item-images-quantity">
           <div className="overlay-quantity-div">
             <OverlayAddRemove onClick={this.onAddItem}>+</OverlayAddRemove>

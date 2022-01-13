@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import CartItemMain from './CartItemMain';
-import { connect } from 'react-redux';
-import { calculateTotal, addCartItemFromCart } from '../../../store/actions';
-import './Cart.css';
+import React, { Component } from "react";
+import CartItemMain from "./CartItemMain";
+import { connect } from "react-redux";
+import { calculateTotal, addCartItemFromCart } from "../../../store/actions";
+import "./Cart.css";
 
 class Cart extends Component {
   render() {
     if (this.props.cartItems !== undefined) {
       this.props.calculateTotal(this.props.cartItems);
     }
-    // console.log(this.props.cartItems);
+
     return (
       <div className="cart-container">
         <div className="cart-title">Cart</div>

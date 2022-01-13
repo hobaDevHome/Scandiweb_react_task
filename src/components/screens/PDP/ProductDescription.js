@@ -35,7 +35,7 @@ class ProductDescription extends Component {
   async componentDidMount() {
     const sentId = this.props.match.params.porductid;
     this.setState({ id: sentId });
-    // console.log(this.props.match.params.porductid);
+
     let temp;
     temp = await clientScandiweb.query({
       query: gql`
@@ -71,9 +71,7 @@ class ProductDescription extends Component {
 
     this.setState({
       currentProduct: temp.data.product,
-      // currentImage : temp.data.product.gallery[0],
     });
-    // console.log(this.state.currentProduct);
   }
 
   getOwnCartNoOfItems(quantity) {

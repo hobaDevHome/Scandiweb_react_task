@@ -1,10 +1,10 @@
-import { act } from 'react-dom/cjs/react-dom-test-utils.production.min';
-import CartItemModel from '../components/Models/CartItemModel';
+import { act } from "react-dom/cjs/react-dom-test-utils.production.min";
+import CartItemModel from "../components/Models/CartItemModel";
 
 const INITIAL_STATE = {
   query: [],
-  currency: '$',
-  category: 'all',
+  currency: "$",
+  category: "all",
   productsList: [],
   selectedList: [],
   cartItems: [],
@@ -15,11 +15,11 @@ const INITIAL_STATE = {
 
 export const productsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'change_currency':
+    case "change_currency":
       return { ...state, currency: action.payload };
 
-    case 'get_products_list':
-      localStorage.setItem('selectedList', action.payload[0]);
+    case "get_products_list":
+      localStorage.setItem("selectedList", action.payload[0]);
       return {
         ...state,
         productsList: action.payload[0],
@@ -27,12 +27,12 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
         query: action.payload,
       };
 
-    case 'get_slelected_products_list': {
+    case "get_slelected_products_list": {
       const newList = state.query.filter((cat) => cat.name === action.payload);
       return { ...state, category: action.payload, selectedList: newList[0] };
     }
 
-    case 'add_cart_item_from_cart': {
+    case "add_cart_item_from_cart": {
       const prod = action.payload;
       const fouund = state.cartItems.find(
         (item) => item.itemid === prod.itemid
@@ -57,7 +57,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       };
     }
 
-    case 'add_cart_item':
+    case "add_cart_item":
       {
         const addedProduct = action.payload;
         const prodPrice = addedProduct.prices;
@@ -82,14 +82,8 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
           (atr) => atr.id === prodId
         );
 
-        // console.log("foundItemsArray", foundItemsArray);
-        // console.log("indexOfFoundArray", indexOfFoundArray);
-        // console.log("state.cartItems", state.cartItems);
-
         if (fouund) {
-          // console.log('found');
           if (foundAttributesArray.length === 0) {
-            // console.log("found with no attributes");
             const updatedCartItem = new CartItemModel(
               state.cartItems[indexOfFound].itemid,
               state.cartItems[indexOfFound].quantity + 1,
@@ -107,11 +101,8 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
               ),
             };
           } else {
-            // console.log("found with attributes");
             const currattr = state.cartItems[indexOfFound].itemAttr;
 
-            // console.log("found attributes array", foundAttributesArray);
-            // console.log("current attributes", currattr);
             const addItemId = checkEqualAttributes(
               foundItemsArray,
               foundAttributesArray
@@ -121,7 +112,6 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
                 (item) => item.itemid === addItemId[1]
               );
               const indexOfFound2 = state.cartItems.indexOf(fouund2);
-              // console.log(state.cartItems[indexOfFound2].itemAttr);
 
               const updatedCartItem = new CartItemModel(
                 state.cartItems[indexOfFound2].itemid,
@@ -157,7 +147,6 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
             }
           }
         } else if (!fouund) {
-          // console.log(" not found");
           const newCartItem = new CartItemModel(
             new Date().toString(),
             1,
@@ -176,7 +165,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       }
       break;
 
-    case 'delete_cart_item':
+    case "delete_cart_item":
       {
         const foundItemsArray = state.cartItems.filter(
           (item) => item.id === action.payload
@@ -227,7 +216,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
               (item) => item.itemid === addItemId[1]
             );
             const indexOfFound2 = state.cartItems.indexOf(fouund2);
-            // console.log(state.cartItems[indexOfFound2].itemAttr);
+
             const currentQty2 = fouund2.quantity;
 
             if (currentQty2 > 1) {
@@ -260,7 +249,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       }
       break;
 
-    case 'delete_cart_item_from_cart':
+    case "delete_cart_item_from_cart":
       {
         const selectedCartItem = state.cartItems.find(
           (item) => item.itemid === action.payload.itemid
@@ -280,7 +269,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
               selectedCartItem.gallery,
               selectedCartItem.itemAttr
             );
-            // console.log('updatedCartItem', updatedCartItem);
+
             return {
               ...state,
               cartItems: state.cartItems.map((el) =>
@@ -299,7 +288,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       }
       break;
 
-    case 'clac_total': {
+    case "clac_total": {
       let calculatedAmount = 0;
       const items = action.payload;
       const prodcusPricesList = items.map((cartItem) => {
@@ -310,35 +299,26 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
         priceList.l.map((price) => {
           if (price.currency.symbol === state.currency) {
             calculatedAmount += price.amount * priceList.q;
-            // console.log(
-            //   'price.amount',
-            //   price.amount,
-            //   'priceList.q',
-            //   priceList.q,
-            //   'calculatedAmount',
-            //   calculatedAmount
-            // );
           }
         })
       );
       calculatedAmount = parseFloat(calculatedAmount).toFixed(2);
-      // console.log(amounts);
+
       return {
         ...state,
         totalAmount: calculatedAmount,
       };
     }
 
-    case 'count_itmes': {
+    case "count_itmes": {
       const id = action.payload.id;
-      // console.log('sent item id', action.payload.id);
 
       const foundAttributesArray = state.clickedAttributes.filter(
         (atr) => atr.id === id
       );
       const foundItemsArray = state.cartItems.filter((item) => item.id === id);
       const fouund = state.cartItems.find((item) => item.id === id);
-      console.log('found', fouund);
+
       const foundCommonAtt = checkEqualAttributes(
         foundItemsArray,
         foundAttributesArray
@@ -347,14 +327,13 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       if (fouund) {
         if (foundAttributesArray.length === 0) {
           const myId = fouund.itemid;
-          // console.log("myId", myId);
+
           return {
             ...state,
             currentCartItemId: myId,
           };
         } else {
           if (foundCommonAtt) {
-            // console.log("found cross id ", foundCommonAtt[1]);
             return {
               ...state,
               currentCartItemId: foundCommonAtt[1],
@@ -374,7 +353,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       }
     }
 
-    case 'change_attribute': {
+    case "change_attribute": {
       const id = action.payload.id;
       const attribute = action.payload.attribute;
       const name = action.payload.name;
@@ -420,8 +399,6 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
 };
 
 function checkEqualAttributes(arr1, arr2) {
-  // console.log(arr1);
-  // console.log(arr2);
   const chosenAttrs = arr2.map((at) => at.attribute.value);
   const attsInCart = arr1.map((at) => [
     at.itemAttr.map((at2) => at2.attribute.value),
@@ -432,9 +409,5 @@ function checkEqualAttributes(arr1, arr2) {
     (at) => at[0][0] === chosenAttrs[0] && at[0][1] === chosenAttrs[1]
   );
 
-  // console.log("chosenAttrs", chosenAttrs);
-  // console.log("attsInCart", attsInCart);
-  // console.log("id", id);
-  // return common.length > 0;
   return id;
 }

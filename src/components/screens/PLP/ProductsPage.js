@@ -22,7 +22,6 @@ class ProductsPage extends Component {
     all: "All Products",
   };
   async fetchItems() {
-    // console.log('cat', this.props.category);
     let temp;
     temp = await clientScandiweb.query({
       query: gql`
@@ -59,7 +58,6 @@ class ProductsPage extends Component {
     });
 
     this.setState({ theSelectedList: temp.data.category.products });
-    // console.log(this.state.theSelectedList);
   }
 
   componentDidMount() {
@@ -75,7 +73,6 @@ class ProductsPage extends Component {
   }
 
   render() {
-    // console.log(this.props.selectedList.products);
     return (
       <div className="products">
         <div className="cat-name-containger">

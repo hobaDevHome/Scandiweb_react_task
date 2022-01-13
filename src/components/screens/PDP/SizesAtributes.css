@@ -17,12 +17,6 @@
   align-items: flex-start;
 }
 
-.att-containter {
-  /* display: flex;
-  flex-direction: column;
-  margin-bottom: 5px; */
-}
-
 .att-cont {
   display: flex;
   flex-direction: column;

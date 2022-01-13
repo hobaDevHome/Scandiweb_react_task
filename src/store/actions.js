@@ -11,14 +11,12 @@ export const getProductsLists = (allProducts) => {
   };
 };
 export const getSelectedProductsLists = (sentCategory) => {
-  // console.log("acton call weit", sentCategory);
   return {
     type: "get_slelected_products_list",
     payload: sentCategory,
   };
 };
 export const addCartItem = (item) => {
-  // console.log("action called thie");
   return {
     type: "add_cart_item",
     payload: item,
@@ -57,7 +55,6 @@ export const changeAttrubute = (id, attribute, name) => {
   };
 };
 export const getCurrentItemNo = (item) => {
-  // console.log("action called to count items", item);
   return {
     type: "count_itmes",
     payload: item,
