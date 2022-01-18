@@ -115,6 +115,7 @@ class ProductDescription extends Component {
             </div>
             <div className="product-img-div">
               <ProdcutMainImage
+                inStock={this.selecteProduct.inStock}
                 mainImage={
                   this.state.currentImage === undefined
                     ? this.currentImage
