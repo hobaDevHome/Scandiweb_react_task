@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+
 import { connect } from "react-redux";
 
 import "./Header.css";
@@ -31,31 +31,33 @@ class CurrencytOverlay extends Component {
   render() {
     return (
       <Fragment>
-        {ReactDOM.createPortal(
-          <CurrBackdrop onCurrHide={this.props.onHide} />,
-          portalElement
-        )}
-        {ReactDOM.createPortal(
-          <CurrencyModal>
-            <div className="currency-list">
-              {this.props.currNames.map((cur) => {
-                return (
-                  <div
-                    key={cur.length}
-                    className="currency-item"
-                    onClick={() =>
-                      this.props.onChooseCurrencyHandler(cur.split(" ")[0])
-                    }
-                    on
-                  >
-                    {cur}
-                  </div>
-                );
-              })}
-            </div>
-          </CurrencyModal>,
-          portalElement
-        )}
+        <div className="mian-cur-cont">
+          {ReactDOM.createPortal(
+            <CurrBackdrop onCurrHide={this.props.onHide} />,
+            portalElement
+          )}
+          {ReactDOM.createPortal(
+            <CurrencyModal className="currency-modal">
+              <div className="currency-list">
+                {this.props.currNames.map((cur) => {
+                  return (
+                    <div
+                      key={cur.length}
+                      className="currency-item"
+                      onClick={() =>
+                        this.props.onChooseCurrencyHandler(cur.split(" ")[0])
+                      }
+                      on
+                    >
+                      {cur}
+                    </div>
+                  );
+                })}
+              </div>
+            </CurrencyModal>,
+            portalElement
+          )}
+        </div>
       </Fragment>
     );
   }

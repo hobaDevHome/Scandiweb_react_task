@@ -17,7 +17,7 @@ export default class ProductsCarousel extends Component {
     this.props.onClick(thumb);
   }
   next() {
-    if (this.state.current_card < (this.props.pics.length - 1) / 3) {
+    if (this.state.current_card < (this.props.pics.length - 1) / 4) {
       this.setState({ current_card: this.state.current_card + 1 }, () => {
         this.card_container.style.transitionDuration = "0.5s";
         this.card_container.style.transform = `translateY(-${
@@ -41,7 +41,7 @@ export default class ProductsCarousel extends Component {
       <div className="contianer">
         <FiChevronUp
           className={`up-arrow-c ${
-            this.state.current_card < (this.props.pics.length - 1) / 3
+            this.state.current_card < (this.props.pics.length - 1) / 4
               ? ""
               : "arrows-off-c"
           }`}

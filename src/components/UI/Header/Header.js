@@ -44,23 +44,16 @@ class Header extends Component {
     clientScandiweb
       .query({
         query: gql`
-          query GetcurrncieNames {
-            categories {
-              products {
-                prices {
-                  currency {
-                    label
-                    symbol
-                  }
-                  amount
-                }
-              }
+          query getCurr {
+            currencies {
+              label
+              symbol
             }
           }
         `,
       })
       .then((result) => {
-        this.tempCurNames = result.data.categories[0].products[0].prices;
+        this.tempCurNames = result.data.currencies;
       });
   }
   showCartOverlay() {
@@ -109,7 +102,7 @@ class Header extends Component {
   getCurrencyNames() {
     if (this.tempCurNames !== undefined) {
       this.currencyNames = this.tempCurNames.map(
-        (prod) => `${prod.currency.symbol} ${prod.currency.label}`
+        (prod) => `${prod.symbol} ${prod.label}`
       );
     }
   }
