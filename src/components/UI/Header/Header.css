@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 html {
   box-sizing: border-box;
 }
@@ -66,6 +66,7 @@ html {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  position: relative;
 }
 .currencyAmount {
   font-size: 18px;
@@ -91,7 +92,7 @@ html {
   height: 20px;
   border-radius: 10px;
   background-color: black;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
@@ -109,23 +110,9 @@ html {
 .cart-badge-visible .cart-badge {
   opacity: 1;
 }
-.currency-list {
-  position: absolute;
-  top: 60px;
-  right: 7%;
-  width: 114px;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 101;
-  align-items: center;
-  background-color: #fff;
-  filter: drop-shadow(0px 4px 35px rgba(194, 207, 214, 0.5));
-}
 
 .currency-item {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
@@ -144,6 +131,7 @@ html {
 
 .currency-icons-section {
   display: flex;
+  /* flex-direction: column; */
 }
 
 .currbackdrop {
@@ -156,10 +144,18 @@ html {
   background-color: rgba(218, 60, 60, 0.01);
 }
 
-.curr-content {
-  /* position: fixed;
+.test {
+  background-color: red;
+  width: 200px;
+  position: absolute;
   top: 20px;
-  right: 80px;
+  right: 20px;
+}
+
+.currency-list {
+  position: absolute;
+  top: 80px;
+
   width: 114px;
   height: fit-content;
   display: flex;
@@ -168,8 +164,17 @@ html {
   z-index: 101;
   align-items: center;
   background-color: #fff;
-  filter: drop-shadow(0px 4px 35px rgba(210, 219, 224, 0.5)); */
+  filter: drop-shadow(0px 4px 35px rgba(194, 207, 214, 0.5));
 }
 
-.mian-cur-cont {
+.currency-modal {
+  position: relative;
+  right: 200px;
+}
+
+.currency-currencyoverlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid red;
 }
