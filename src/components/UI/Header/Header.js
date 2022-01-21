@@ -110,10 +110,6 @@ class Header extends Component {
     }
     return (
       <div className="header-row  header-in-app">
-        {this.state.showCartModal && (
-          <CartOverlay onHide={this.hideCartOverlay.bind(this)} />
-        )}
-
         <div className="links-section">
           <ul>
             {this.categoryNames.map((cat) => {
@@ -138,10 +134,20 @@ class Header extends Component {
           </Link>
         </div>
         <div className="cart-section">
+          <div className="currency-modal">
+            {this.state.showCartModal && (
+              <CartOverlay onHide={this.hideCartOverlay.bind(this)} />
+            )}
+          </div>
           <div
             className="currency-icons-section"
             onClick={this.toggleCurrencyList.bind(this)}
           >
+            <div className="currency-modal">
+              {this.state.showCartModal && (
+                <CartOverlay onHide={this.hideCartOverlay.bind(this)} />
+              )}
+            </div>
             <div className="currency-modal">
               {this.state.showCurrency && (
                 <CurrencytOverlay
@@ -153,14 +159,7 @@ class Header extends Component {
               )}
             </div>
             <div className="currencyAmount">{this.props.currency}</div>
-            <div
-              className="currency"
-              ref={(el) => {
-                if (!el) return;
-                console.log(el.getBoundingClientRect());
-                this.rightOffset = el.getBoundingClientRect().right;
-              }}
-            >
+            <div className="currency">
               {this.state.showCurrency ? (
                 <BsChevronUp size={10} />
               ) : (

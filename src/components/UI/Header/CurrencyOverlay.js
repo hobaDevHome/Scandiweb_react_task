@@ -14,8 +14,8 @@ class CurrBackdrop extends Component {
 class CurrencyModal extends Component {
   render() {
     return (
-      <div className="curr-modal">
-        <div className="curr-content">{this.props.children}</div>
+      <div>
+        <div>{this.props.children}</div>
       </div>
     );
   }
@@ -25,7 +25,6 @@ const portalElement = document.getElementById('curroverlays');
 
 class CurrencytOverlay extends Component {
   render() {
-    console.log(this.props.offset);
     return (
       <Fragment>
         <div className="mian-cur-cont">
@@ -37,10 +36,7 @@ class CurrencytOverlay extends Component {
             <CurrencyModal>
               <div className="header-clone">
                 <div className="header-row-clone">
-                  <div
-                    className="currency-list"
-                    style={{ postion: 'absolute', left: this.props.offset }}
-                  >
+                  <div className="currency-list">
                     {this.props.currNames.map((cur) => {
                       return (
                         <div
