@@ -1,25 +1,25 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { connect } from "react-redux";
-import { addCartItem } from "../../../store/actions";
+import { connect } from 'react-redux';
+import { addCartItem } from '../../../store/actions';
 import {
   deleteCartItem,
   addCartItemFromCart,
   deleteCartItemFromCart,
-} from "../../../store/actions";
+} from '../../../store/actions';
 
-import CartItemCarousel from "./CartItemCarousel/CartItemCarousel";
-import AddRemove from "../../UI/Buttons/AddRemove";
-import "./Cart.css";
+import CartItemCarousel from './CartItemCarousel/CartItemCarousel';
+import AddRemove from '../../UI/Buttons/AddRemove';
+import './Cart.css';
 
 class CartItemMain extends Component {
   constructor(props) {
     super(props);
     this.onAddItem = this.onAddItem.bind(this);
     this.onDeleteItem = this.onDeleteItem.bind(this);
-    this.itemAttributes;
-    this.itemPrice;
-    this.correspondingProduct;
+    this.itemAttributes = undefined;
+    this.itemPrice = undefined;
+    this.correspondingProduct = undefined;
   }
   onAddItem() {
     this.props.addCartItemFromCart(this.props.cartItem);
@@ -54,7 +54,7 @@ class CartItemMain extends Component {
           <div className="attr-buttons-cont">
             {this.itemAttributes !== undefined &&
               this.itemAttributes.map((attr) => {
-                if (attr.name === "Color") {
+                if (attr.name === 'Color') {
                   return (
                     <div className="att-button-cart">
                       <div className="attr-name-cart">{attr.name} : </div>

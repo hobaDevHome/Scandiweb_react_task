@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from "react";
-import ReactDOM from "react-dom";
+import React, { Component, Fragment } from 'react';
+import ReactDOM from 'react-dom';
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import "./Header.css";
+import './Header.css';
 
 class CurrBackdrop extends Component {
   render() {
@@ -21,13 +21,9 @@ class CurrencyModal extends Component {
   }
 }
 
-const portalElement = document.getElementById("curroverlays");
+const portalElement = document.getElementById('curroverlays');
 
 class CurrencytOverlay extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     console.log(this.props.offset);
     return (
@@ -43,7 +39,7 @@ class CurrencytOverlay extends Component {
                 <div className="header-row-clone">
                   <div
                     className="currency-list"
-                    style={{ postion: "absolute", left: this.props.offset }}
+                    style={{ postion: 'absolute', left: this.props.offset }}
                   >
                     {this.props.currNames.map((cur) => {
                       return (
@@ -52,7 +48,7 @@ class CurrencytOverlay extends Component {
                           className="currency-item"
                           onClick={() =>
                             this.props.onChooseCurrencyHandler(
-                              cur.split(" ")[0]
+                              cur.split(' ')[0]
                             )
                           }
                         >
