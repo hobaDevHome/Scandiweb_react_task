@@ -36,6 +36,15 @@ class CartOverlay extends Component {
   componentDidUpdate() {
     this.getTotalCartItems();
   }
+
+  componentDidMount() {
+    document.body.classList.add('no-scroll');
+  }
+
+  componentWillUnmount() {
+    document.body.classList.remove('no-scroll');
+  }
+
   getTotalCartItems() {
     this.itemsNo = 0;
     if (this.props.cartItems.length > 0) {

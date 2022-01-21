@@ -110,6 +110,12 @@ class Header extends Component {
     }
     return (
       <div className="header-row  header-in-app">
+        <div className="currency-modal">
+          {this.state.showCartModal && (
+            <CartOverlay onHide={this.hideCartOverlay.bind(this)} />
+          )}
+        </div>
+
         <div className="links-section">
           <ul>
             {this.categoryNames.map((cat) => {
@@ -143,11 +149,6 @@ class Header extends Component {
             className="currency-icons-section"
             onClick={this.toggleCurrencyList.bind(this)}
           >
-            <div className="currency-modal">
-              {this.state.showCartModal && (
-                <CartOverlay onHide={this.hideCartOverlay.bind(this)} />
-              )}
-            </div>
             <div className="currency-modal">
               {this.state.showCurrency && (
                 <CurrencytOverlay

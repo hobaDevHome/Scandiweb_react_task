@@ -24,7 +24,6 @@ const portalElement = document.getElementById('productAttirbutes');
 
 class ProdcutsDetailsInPLP extends Component {
   componentDidMount() {
-    console.log('mnou');
     document.body.classList.add('no-scroll');
   }
 
