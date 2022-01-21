@@ -27,7 +27,7 @@ class Header extends Component {
     this.onChooseCurrencyHandler = this.onChooseCurrencyHandler.bind(this);
     this.onChosseCatHandler = this.onChosseCatHandler.bind(this);
     this.getCartItemsNo = this.getCartItemsNo.bind(this);
-    this.getCategoriesNames = this.getCategoriesNames.bind(this);
+
     this.getCurrencyNames = this.getCurrencyNames.bind(this);
 
     this.state = {
@@ -94,12 +94,7 @@ class Header extends Component {
 
     this.numcerOfItems = amuont;
   }
-  getCategoriesNames() {
-    // const prods = this.props.query;
-    // if (prods) {
-    //   this.categoryNames = prods.map((prod) => prod.name);
-    // }
-  }
+
   getCurrencyNames() {
     if (this.tempCurNames !== undefined) {
       this.currencyNames = this.tempCurNames.map(
@@ -110,7 +105,7 @@ class Header extends Component {
   render() {
     if (this.props.query !== undefined) {
       this.getCartItemsNo();
-      this.getCategoriesNames();
+
       this.getCurrencyNames();
     }
     return (
@@ -147,15 +142,16 @@ class Header extends Component {
             className="currency-icons-section"
             onClick={this.toggleCurrencyList.bind(this)}
           >
-            {this.state.showCurrency && (
-              <CurrencytOverlay
-                offset={this.rightOffset}
-                className="currency-modal"
-                onHide={this.hideCurrencyList}
-                currNames={this.currencyNames}
-                onChooseCurrencyHandler={this.onChooseCurrencyHandler}
-              />
-            )}
+            <div className="currency-modal">
+              {this.state.showCurrency && (
+                <CurrencytOverlay
+                  offset={this.rightOffset}
+                  onHide={this.hideCurrencyList}
+                  currNames={this.currencyNames}
+                  onChooseCurrencyHandler={this.onChooseCurrencyHandler}
+                />
+              )}
+            </div>
             <div className="currencyAmount">{this.props.currency}</div>
             <div
               className="currency"

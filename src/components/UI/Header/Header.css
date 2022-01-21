@@ -145,19 +145,6 @@ html {
   background-color: rgba(218, 60, 60, 0.01);
 }
 
-.test {
-  background-color: red;
-  width: 200px;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.currency-modal {
-  position: relative;
-  right: 200px;
-}
-
 .currency-currencyoverlay {
   display: flex;
   flex-direction: column;
@@ -166,21 +153,18 @@ html {
 }
 
 .header-clone {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: start;
-  align-items: flex-end; */
   background-color: transparent;
-  /* background-color: blue; */
+  z-index: 200;
 }
 
 .header-row-clone {
-  z-index: 131;
+  position: relative;
+  z-index: 201;
   max-width: 1200px;
   height: 80px;
   margin: 0 auto;
@@ -198,8 +182,20 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 101;
+  z-index: 1000;
   align-items: center;
   background-color: #fff;
   filter: drop-shadow(0px 4px 35px rgba(194, 207, 214, 0.5));
 }
+
+/* .curr-content {
+  position: relative;
+}
+.currency-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+} */

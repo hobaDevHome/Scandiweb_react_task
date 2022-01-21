@@ -6,8 +6,7 @@ import ProductsPage from './components/screens/PLP/ProductsPage';
 import ProductDescription from './components/screens/PDP/ProductDescription';
 
 import Cart from './components/screens/Cart/Cart';
-import { gql } from '@apollo/client';
-import { clientScandiweb } from './Apollo';
+
 import { getProductsLists } from './store/actions';
 
 import './App.css';
