@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import ProductItem from "./ProductItem";
-import { connect } from "react-redux";
-import { gql } from "@apollo/client";
-import { clientScandiweb } from "../../../Apollo";
-import "./ProductsPage.css";
+import React, { Component } from 'react';
+import ProductItem from './ProductItem';
+import { connect } from 'react-redux';
+import { gql } from '@apollo/client';
+import { clientScandiweb } from '../../../Apollo';
+import './ProductsPage.css';
 
 class ProductsPage extends Component {
   constructor(props) {
@@ -17,9 +17,9 @@ class ProductsPage extends Component {
   }
 
   catNames = {
-    tech: "Tech Category Products",
-    clothes: "Clothes Category Products",
-    all: "All Products",
+    tech: 'Tech Category Products',
+    clothes: 'Clothes Category Products',
+    all: 'All Products',
   };
   async fetchItems() {
     let temp;

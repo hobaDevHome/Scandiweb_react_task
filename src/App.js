@@ -18,47 +18,13 @@ class App extends Component {
     this.state = { categories: undefined, selectedProducts: undefined };
   }
 
-  componentDidMount() {
-    // this.fetchItems();
-    // clientScandiweb
-    //   .query({
-    //     query: gql`
-    //       query GetCategories {
-    //         categories {
-    //           name
-    //           products {
-    //             id
-    //             name
-    //             inStock
-    //             gallery
-    //             description
-    //             category
-    //             attributes {
-    //               name
-    //               items {
-    //                 displayValue
-    //                 value
-    //                 id
-    //               }
-    //             }
-    //             prices {
-    //               currency {
-    //                 label
-    //                 symbol
-    //               }
-    //               amount
-    //             }
-    //             brand
-    //           }
-    //         }
-    //       }
-    //     `,
-    //   })
-    //   .then((result) => {
-    //     this.setState({ categories: result.data.categories });
-    //     this.props.getProductsLists(this.state.categories);
-    //   });
-  }
+  // componentDidMount() {
+  //   document.body.style.overflow = 'hidden';
+  // }
+
+  // componentWillUnmount() {
+  //   document.body.style.overflow = 'unset';
+  // }
 
   render() {
     // if (this.state.categories === undefined) {
