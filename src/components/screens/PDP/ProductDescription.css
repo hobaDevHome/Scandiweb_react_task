@@ -1,12 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Roboto+Condensed&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Roboto+Condensed&display=swap');
 .main {
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 .prodcut-desc-container {
   margin-top: 150px;
   display: flex;
 
   width: 100%;
+  /* border: 1px solid red; */
 }
 
 .details-pic-div {
@@ -21,7 +25,7 @@
   flex-direction: column;
 }
 .size-desc {
-  font-family: "Roboto Condensed";
+  font-family: 'Roboto Condensed';
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -55,7 +59,7 @@
 }
 
 .price-amount-desc {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -65,7 +69,7 @@
 }
 
 .prod-long-desc {
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: normal;
   font-size: 16px;

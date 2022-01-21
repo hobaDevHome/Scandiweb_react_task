@@ -11,6 +11,7 @@ import { clientScandiweb } from '../../../Apollo';
 import {
   changeCurrency,
   getSelectedProductsLists,
+  changeCategory,
 } from '../../../store/actions';
 
 import './Header.css';
@@ -35,13 +36,14 @@ class Header extends Component {
       showInfo1: false,
     };
     this.numcerOfItems = 0;
-    this.categoryNames = undefined;
+    this.categoryNames = ['all', 'clothes', 'tech'];
     this.currencyNames = undefined;
     this.tempCurNames = undefined;
     this.rightOffset = 0;
   }
 
   componentDidMount() {
+    this.onChosseCatHandler(this.props.category);
     clientScandiweb
       .query({
         query: gql`
@@ -83,8 +85,7 @@ class Header extends Component {
   }
 
   onChosseCatHandler(choosecCat) {
-    this.props.getSelectedProductsLists(choosecCat);
-    localStorage.setItem('category', choosecCat);
+    this.props.changeCategory(choosecCat);
   }
   getCartItemsNo() {
     let amuont = 0;
@@ -94,11 +95,10 @@ class Header extends Component {
     this.numcerOfItems = amuont;
   }
   getCategoriesNames() {
-    const prods = this.props.query;
-
-    if (prods) {
-      this.categoryNames = prods.map((prod) => prod.name);
-    }
+    // const prods = this.props.query;
+    // if (prods) {
+    //   this.categoryNames = prods.map((prod) => prod.name);
+    // }
   }
   getCurrencyNames() {
     if (this.tempCurNames !== undefined) {
@@ -202,6 +202,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     changeCurrency: (curr) => dispatch(changeCurrency(curr)),
     getSelectedProductsLists: (cat) => dispatch(getSelectedProductsLists(cat)),
+    changeCategory: (cat) => dispatch(changeCategory(cat)),
   };
 };
 

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 html {
   box-sizing: border-box;
 }
@@ -10,6 +10,7 @@ html {
   align-items: center;
   height: 80px;
   position: relative;
+  /* border: 1px solid purple; */
   background-color: transparent;
 }
 .links-section {
@@ -92,7 +93,7 @@ html {
   height: 20px;
   border-radius: 10px;
   background-color: black;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
@@ -112,7 +113,7 @@ html {
 }
 
 .currency-item {
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
@@ -161,7 +162,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .header-clone {

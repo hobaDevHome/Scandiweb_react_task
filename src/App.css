@@ -20,6 +20,7 @@ body {
   margin: 0;
 }
 .App {
+  /* border: 1px solid blue; */
   max-width: 1200px;
   margin: 0 auto;
   display: flex;

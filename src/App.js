@@ -21,55 +21,50 @@ class App extends Component {
 
   componentDidMount() {
     // this.fetchItems();
-
-    clientScandiweb
-      .query({
-        query: gql`
-          query GetCategories {
-            categories {
-              name
-              products {
-                id
-                name
-                inStock
-                gallery
-                description
-                category
-                attributes {
-                  name
-                  items {
-                    displayValue
-                    value
-                    id
-                  }
-                }
-                prices {
-                  currency {
-                    label
-                    symbol
-                  }
-                  amount
-                }
-                brand
-              }
-            }
-          }
-        `,
-      })
-      .then((result) => {
-        this.setState({ categories: result.data.categories });
-        this.props.getProductsLists(this.state.categories);
-      });
-  }
-
-  componentDidUpdate() {
-    // this.fetchItems();
+    // clientScandiweb
+    //   .query({
+    //     query: gql`
+    //       query GetCategories {
+    //         categories {
+    //           name
+    //           products {
+    //             id
+    //             name
+    //             inStock
+    //             gallery
+    //             description
+    //             category
+    //             attributes {
+    //               name
+    //               items {
+    //                 displayValue
+    //                 value
+    //                 id
+    //               }
+    //             }
+    //             prices {
+    //               currency {
+    //                 label
+    //                 symbol
+    //               }
+    //               amount
+    //             }
+    //             brand
+    //           }
+    //         }
+    //       }
+    //     `,
+    //   })
+    //   .then((result) => {
+    //     this.setState({ categories: result.data.categories });
+    //     this.props.getProductsLists(this.state.categories);
+    //   });
   }
 
   render() {
-    if (this.state.categories === undefined) {
-      return <div>Loading</div>;
-    }
+    // if (this.state.categories === undefined) {
+    //   return <div>Loading</div>;
+    // }
 
     return (
       <div className="app-container">
@@ -77,7 +72,7 @@ class App extends Component {
           <Header
             ifActive={this.state.active}
             setAtive={this.setActive}
-            categories={this.state.categories}
+            // categories={this.state.categories}
           />
 
           <Switch>
