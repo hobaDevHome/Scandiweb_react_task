@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import CartItemMain from "./CartItemMain";
-import { connect } from "react-redux";
-import { calculateTotal, addCartItemFromCart } from "../../../store/actions";
-import "./Cart.css";
+import React, { Component } from 'react';
+import CartItemMain from './CartItemMain';
+import { connect } from 'react-redux';
+import { calculateTotal, addCartItemFromCart } from '../../../store/actions';
+import { generateKey } from '../../../GenerateKey';
+import './Cart.css';
 
 class Cart extends Component {
   render() {
@@ -18,7 +19,7 @@ class Cart extends Component {
             {this.props.cartItems.map((item) => {
               return (
                 <div>
-                  <CartItemMain key={item.id} cartItem={item} />
+                  <CartItemMain key={generateKey(item.id)} cartItem={item} />
                   <div className="divdier"></div>
                 </div>
               );

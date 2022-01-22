@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { gql } from '@apollo/client';
 import CurrencytOverlay from './CurrencyOverlay';
+import { generateKey } from '../../../GenerateKey';
 
 import { clientScandiweb } from '../../../Apollo';
 import {
@@ -103,7 +104,7 @@ class Header extends Component {
     }
   }
   render() {
-    console.log(this.state.showCartModal);
+    // console.log(this.state.showCartModal);
     if (this.props.query !== undefined) {
       this.getCartItemsNo();
 
@@ -124,7 +125,7 @@ class Header extends Component {
           <ul>
             {this.categoryNames.map((cat) => {
               return (
-                <Link to="/" key={cat.length}>
+                <Link to="/" key={cat.length} key={generateKey(cat.length)}>
                   <li
                     className={`cat-link ${
                       this.props.category === cat ? 'acitve-cat' : ''

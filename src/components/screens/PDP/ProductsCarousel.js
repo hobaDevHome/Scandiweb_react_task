@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { FiChevronUp, FiChevronDown } from "react-icons/fi";
-import ProdcutDetailsImage from "./ProdcutDetailsImage";
-import "./ProductsCarousel.css";
+import React, { Component } from 'react';
+import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
+import ProdcutDetailsImage from './ProdcutDetailsImage';
+import { generateKey } from '../../../GenerateKey';
+import './ProductsCarousel.css';
 
 export default class ProductsCarousel extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ export default class ProductsCarousel extends Component {
   next() {
     if (this.state.current_card < (this.props.pics.length - 1) / 4) {
       this.setState({ current_card: this.state.current_card + 1 }, () => {
-        this.card_container.style.transitionDuration = "0.5s";
+        this.card_container.style.transitionDuration = '0.5s';
         this.card_container.style.transform = `translateY(-${
           350 * this.state.current_card
         }px)`;
@@ -29,7 +30,7 @@ export default class ProductsCarousel extends Component {
   prev() {
     if (this.state.current_card > 0) {
       this.setState({ current_card: this.state.current_card - 1 }, () => {
-        this.card_container.style.transitionDuration = "0.5s";
+        this.card_container.style.transitionDuration = '0.5s';
         this.card_container.style.transform = `translateY(${
           -350 * this.state.current_card
         }px)`;
@@ -42,15 +43,15 @@ export default class ProductsCarousel extends Component {
         <FiChevronUp
           className={`up-arrow-c ${
             this.state.current_card < (this.props.pics.length - 1) / 4
-              ? ""
-              : "arrows-off-c"
+              ? ''
+              : 'arrows-off-c'
           }`}
           size={24}
           onClick={this.next}
         />
         <FiChevronDown
           className={`down-arrow-c ${
-            this.state.current_card > 0 ? "" : "arrows-off-c"
+            this.state.current_card > 0 ? '' : 'arrows-off-c'
           }`}
           size={24}
           onClick={this.prev}
@@ -63,7 +64,7 @@ export default class ProductsCarousel extends Component {
           >
             {this.props.pics.map((thumb) => (
               <ProdcutDetailsImage
-                key={thumb.length}
+                key={generateKey(thumb)}
                 thumbSrc={thumb}
                 onClick={() => this.onThumbClick(thumb)}
               />

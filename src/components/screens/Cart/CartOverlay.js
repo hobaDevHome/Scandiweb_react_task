@@ -6,6 +6,7 @@ import WideButton from '../../UI/Buttons/WideButton';
 import { Link } from 'react-router-dom';
 import { calculateTotal } from '../../../store/actions';
 import { connect } from 'react-redux';
+import { generateKey } from '../../../GenerateKey';
 
 import './CartOverlay.css';
 
@@ -95,7 +96,7 @@ class CartOverlay extends Component {
                             return (
                               <div>
                                 <CartItemOverlay
-                                  key={item.id}
+                                  key={generateKey(item.id)}
                                   cartItem={item}
                                 />
                               </div>

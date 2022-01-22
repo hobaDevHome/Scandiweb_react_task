@@ -3,6 +3,7 @@ import ProductItem from './ProductItem';
 import { connect } from 'react-redux';
 import { gql } from '@apollo/client';
 import { clientScandiweb } from '../../../Apollo';
+import { generateKey } from '../../../GenerateKey';
 import './ProductsPage.css';
 
 class ProductsPage extends Component {
@@ -83,7 +84,7 @@ class ProductsPage extends Component {
             this.state.theSelectedList.map((product) => {
               return (
                 <ProductItem
-                  key={product.id}
+                  key={generateKey(product.id)}
                   inStock={product.inStock}
                   inCart={false}
                   id={product.id}

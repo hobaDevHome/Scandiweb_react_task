@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { generateKey } from '../../../../GenerateKey';
 
 import './CartItemCarousel.css';
 
@@ -51,7 +52,7 @@ export default class CartItemCarousel extends Component {
               className={
                 index === this.state.current ? 'slide active' : 'slide'
               }
-              key={index}
+              key={generateKey(index)}
             >
               {index === this.state.current && (
                 <img src={slide} alt="travel" className="slide-image" />

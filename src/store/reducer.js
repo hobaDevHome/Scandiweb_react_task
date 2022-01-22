@@ -390,7 +390,7 @@ export const productsReducer = (state = INITIAL_STATE, action) => {
       }
     }
     case 'change_cat': {
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         category: action.payload,

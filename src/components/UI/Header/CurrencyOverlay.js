@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 
 import { connect } from 'react-redux';
+import { generateKey } from '../../../GenerateKey';
 
 import './Header.css';
 
@@ -40,7 +41,7 @@ class CurrencytOverlay extends Component {
                     {this.props.currNames.map((cur) => {
                       return (
                         <div
-                          key={cur.length}
+                          key={generateKey(cur.length)}
                           className="currency-item"
                           onClick={() =>
                             this.props.onChooseCurrencyHandler(

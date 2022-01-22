@@ -7,6 +7,7 @@ import {
   deleteCartItemFromCart,
 } from '../../../store/actions';
 import OverlayAddRemove from '../../UI/Buttons/OverlayAddRemove';
+import { generateKey } from '../../../GenerateKey';
 
 import './CartItemOverlay.css';
 
@@ -54,7 +55,10 @@ class CartItemOverlay extends Component {
               this.itemAttributes.map((attr) => {
                 if (attr.name === 'Color') {
                   return (
-                    <div className="att-button-cart">
+                    <div
+                      className="att-button-cart"
+                      key={generateKey(attr.name)}
+                    >
                       <div>
                         <p className="attr-name-cart-t">{attr.name} :</p>
                       </div>

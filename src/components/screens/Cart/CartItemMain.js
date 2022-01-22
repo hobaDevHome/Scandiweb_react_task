@@ -10,6 +10,7 @@ import {
 
 import CartItemCarousel from './CartItemCarousel/CartItemCarousel';
 import AddRemove from '../../UI/Buttons/AddRemove';
+import { generateKey } from '../../../GenerateKey';
 import './Cart.css';
 
 class CartItemMain extends Component {
@@ -56,7 +57,10 @@ class CartItemMain extends Component {
               this.itemAttributes.map((attr) => {
                 if (attr.name === 'Color') {
                   return (
-                    <div className="att-button-cart">
+                    <div
+                      className="att-button-cart"
+                      key={generateKey(attr.attribute.value)}
+                    >
                       <div className="attr-name-cart">{attr.name} : </div>
                       <div
                         className="color-btn-in-item1"

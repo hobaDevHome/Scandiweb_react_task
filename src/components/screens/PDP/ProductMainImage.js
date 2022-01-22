@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import "./ProductMainImage.css";
+import React, { Component } from 'react';
+import './ProductMainImage.css';
 
 export default class ProdcutMainImage extends Component {
   render() {
-    console.log(this.props.inStock);
+    // console.log(this.props.inStock);
     return (
       <div
         className={
           !this.props.inStock
-            ? "mainImage-container out-of-stock"
-            : "mainImage-container"
+            ? 'mainImage-container out-of-stock'
+            : 'mainImage-container'
         }
       >
         <img

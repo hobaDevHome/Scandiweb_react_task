@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import ColorBtn from "../../UI/Buttons/ColorBtn";
-import SizeButton from "../../UI/Buttons/SizeButton";
-import { connect } from "react-redux";
-import { changeAttrubute } from "../../../store/actions";
-import "./SizesAtributes.css";
+import React, { Component } from 'react';
+import ColorBtn from '../../UI/Buttons/ColorBtn';
+import SizeButton from '../../UI/Buttons/SizeButton';
+import { connect } from 'react-redux';
+import { changeAttrubute } from '../../../store/actions';
+import { generateKey } from '../../../GenerateKey';
+import './SizesAtributes.css';
 
 class SizesAtributes extends Component {
   constructor(props) {
@@ -38,14 +39,15 @@ class SizesAtributes extends Component {
         <div className="atts-containter">
           <div className="sizes-buttons">
             {this.props.attributes.map((attKind) => {
-              if (attKind.name === "Color") {
+              if (attKind.name === 'Color') {
                 return (
-                  <div className="att-cont">
+                  <div className="att-cont" key={generateKey(attKind.name)}>
                     <div className="att-name">{attKind.name}</div>
                     <div className="att-list">
                       {attKind.items.map((attr) => {
                         return (
                           <ColorBtn
+                            key={generateKey(attr.value)}
                             style={{ backgroundColor: attr.value }}
                             checked={this.checkIfSelected(attr, attKind.name)}
                             onClick={() =>
@@ -63,12 +65,13 @@ class SizesAtributes extends Component {
                 );
               } else {
                 return (
-                  <div className="att-cont">
+                  <div className="att-cont" key={generateKey(attKind.name)}>
                     <div className="att-name">{attKind.name}</div>
                     <div className="att-list">
                       {attKind.items.map((attr) => {
                         return (
                           <SizeButton
+                            key={generateKey(attr.value)}
                             onClick={() =>
                               this.attrHandler(
                                 this.props.id,
