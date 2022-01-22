@@ -25,6 +25,13 @@ const portalElement = document.getElementById('productAttirbutes');
 class ProdcutsDetailsInPLP extends Component {
   componentDidMount() {
     document.body.classList.add('no-scroll');
+    // setTimeout(() => {
+    //   if (this.props.opened) {
+    //     window.addEventListener('click', this.props.onHide);
+    //   } else {
+    //     window.removeEventListener('click', this.props.onHide);
+    //   }
+    // }, 0);
   }
 
   componentWillUnmount() {
@@ -36,7 +43,12 @@ class ProdcutsDetailsInPLP extends Component {
       <Fragment>
         <div>
           {ReactDOM.createPortal(
-            <Backdrop onBackHide={this.props.onHide} />,
+            <Backdrop
+              onBackHide={(e) => {
+                e.stopPropagation();
+                this.props.onHide();
+              }}
+            />,
             portalElement
           )}
           {ReactDOM.createPortal(

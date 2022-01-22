@@ -85,7 +85,10 @@ class ProductItem extends Component {
         {this.props.inStock && (
           <div
             className="item-cart-icon"
-            onClick={this.showProcutDetailsHandler.bind(this)}
+            onClick={(e) => {
+              e.stopPropagation();
+              this.showProcutDetailsHandler();
+            }}
           >
             <BsCart2 size={20} color={'white'} />
           </div>
@@ -93,11 +96,12 @@ class ProductItem extends Component {
 
         {this.state.showProcutDetails && (
           <ProdcutsDetailsInPLP
+            opened={this.state.showProcutDetails}
             attributes={this.attributes}
             sentItem={this.itemProduct}
             id={this.itemProduct.id}
             clicked={this.props.clickedAttributes}
-            onHide={this.hideProcutDetailsHandler.bind(this)}
+            onHide={this.hideProcutDetailsHandler}
           />
         )}
       </div>

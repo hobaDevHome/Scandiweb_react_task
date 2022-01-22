@@ -38,11 +38,19 @@ class CartOverlay extends Component {
   }
 
   componentDidMount() {
-    document.body.classList.add('no-scroll');
+    // document.body.classList.add('no-scroll');
+
+    setTimeout(() => {
+      if (this.props.opened) {
+        window.addEventListener('click', this.props.onHide);
+      } else {
+        window.removeEventListener('click', this.props.onHide);
+      }
+    }, 0);
   }
 
   componentWillUnmount() {
-    document.body.classList.remove('no-scroll');
+    // document.body.classList.remove('no-scroll');
   }
 
   getTotalCartItems() {
@@ -64,13 +72,18 @@ class CartOverlay extends Component {
       <Fragment>
         <div className="mian-cur-cont">
           {ReactDOM.createPortal(
-            <Backdrop onBackHide={this.props.onHide} />,
+            <Backdrop
+              onBackHide={(e) => {
+                e.stopPropagation();
+                this.props.onHide();
+              }}
+            />,
             portalElement
           )}
           {ReactDOM.createPortal(
             <CartModal>
-              <div className="header-clone2">
-                <div className="header-row-clone2">
+              <div className="header-clone">
+                <div className="header-row-clone">
                   <div className="cart-modal-content">
                     {this.props.cartItems.length > 0 ? (
                       <div>

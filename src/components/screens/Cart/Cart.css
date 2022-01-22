@@ -23,6 +23,7 @@
 .main-cart-item {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   margin-top: 20px;
 }
 .overlay-cart-item {
@@ -52,6 +53,7 @@
 .cart-item-images-quantity {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 }
 .attr-buttons-cont {
   display: flex;
@@ -82,15 +84,19 @@
 .cart-item-pic-div {
   height: 185px;
   width: 140px;
+  display: flex;
   align-self: flex-end;
-  margin-right: 20px;
-  padding-right: 10px;
+  margin-right: 5px;
+  /* padding-right: 10px; */
   overflow: hidden;
+  margin-left: 10px;
 }
 .cart-item-pic-div img {
   height: 185px;
-  object-fit: contain;
-  margin-left: 15px;
+  max-width: 140px;
+  overflow: hidden;
+  object-fit: cover;
+  margin-left: 5px;
 }
 .quantity-div {
   height: 185px;

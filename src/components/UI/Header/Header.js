@@ -103,6 +103,7 @@ class Header extends Component {
     }
   }
   render() {
+    console.log(this.state.showCartModal);
     if (this.props.query !== undefined) {
       this.getCartItemsNo();
 
@@ -112,7 +113,10 @@ class Header extends Component {
       <div className="header-row  header-in-app">
         <div className="currency-modal">
           {this.state.showCartModal && (
-            <CartOverlay onHide={this.hideCartOverlay.bind(this)} />
+            <CartOverlay
+              onHide={this.hideCartOverlay.bind(this)}
+              opened={this.state.showCartModal}
+            />
           )}
         </div>
 
@@ -170,7 +174,10 @@ class Header extends Component {
           </div>
 
           <div
-            onClick={this.showCartOverlay.bind(this)}
+            onClick={(e) => {
+              e.stopPropagation();
+              this.showCartOverlay();
+            }}
             className={`cart-icon ${
               this.props.cartItems.length > 0 ? 'cart-badge-visible' : ''
             }`}
