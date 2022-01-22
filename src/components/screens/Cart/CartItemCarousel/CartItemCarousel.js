@@ -31,7 +31,7 @@ export default class CartItemCarousel extends Component {
       <section className="slider">
         <div className={`left-arrow ${this.length > 1 ? '' : 'arrows-off'}`}>
           <img
-            src="./images/arrow-left.png"
+            src="./images/arrow-left_b.png"
             alt="left arrow"
             className="left-arrow-img"
             onClick={this.prevSlide.bind(this)}
@@ -39,7 +39,7 @@ export default class CartItemCarousel extends Component {
         </div>
         <div className={`right-arrow ${this.length > 1 ? '' : 'arrows-off'}`}>
           <img
-            src="./images/arrow-right.png"
+            src="./images/arrow-right_b.png"
             alt="left arrow"
             className="left-arrow-img"
             onClick={this.nextSlide.bind(this)}

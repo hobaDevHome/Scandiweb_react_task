@@ -94,7 +94,11 @@ class CartItemMain extends Component {
             {this.props.cartItem.gallery.length > 1 ? (
               <CartItemCarousel cartItem={this.props.cartItem} />
             ) : (
-              <img src={this.props.cartItem.gallery[0]} alt="" />
+              <img
+                className="cart-single-image"
+                src={this.props.cartItem.gallery[0]}
+                alt=""
+              />
             )}
           </div>
         </div>
