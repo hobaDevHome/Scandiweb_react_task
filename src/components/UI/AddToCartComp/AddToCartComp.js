@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import AddRemove from '../Buttons/AddRemove';
-import WideButton from '../Buttons/WideButton';
+import React, { Component } from "react";
+import AddRemove from "../Buttons/AddRemove";
+import WideButton from "../Buttons/WideButton";
 
-import { connect } from 'react-redux';
-import { addCartItem } from '../../../store/actions';
-import { deleteCartItem, getCurrentItemNo } from '../../../store/actions';
-import { generateKey } from '../../../GenerateKey';
-import './AddToCartComp.css';
+import { connect } from "react-redux";
+import { addCartItem } from "../../../store/actions";
+import { deleteCartItem, getCurrentItemNo } from "../../../store/actions";
+
+import "./AddToCartComp.css";
 
 class AddToCartComp extends Component {
   constructor(props) {

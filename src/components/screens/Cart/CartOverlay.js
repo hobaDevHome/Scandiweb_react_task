@@ -1,14 +1,14 @@
-import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
-import ViewBagButton from '../../UI/Buttons/ViewBagButton';
-import CartItemOverlay from './CartItemOverlay';
-import WideButton from '../../UI/Buttons/WideButton';
-import { Link } from 'react-router-dom';
-import { calculateTotal } from '../../../store/actions';
-import { connect } from 'react-redux';
-import { generateKey } from '../../../GenerateKey';
+import React, { Component, Fragment } from "react";
+import ReactDOM from "react-dom";
+import ViewBagButton from "../../UI/Buttons/ViewBagButton";
+import CartItemOverlay from "./CartItemOverlay";
+import WideButton from "../../UI/Buttons/WideButton";
+import { Link } from "react-router-dom";
+import { calculateTotal } from "../../../store/actions";
+import { connect } from "react-redux";
+import { generateKey } from "../../../GenerateKey";
 
-import './CartOverlay.css';
+import "./CartOverlay.css";
 
 class Backdrop extends Component {
   render() {
@@ -26,7 +26,7 @@ class CartModal extends Component {
   }
 }
 
-const portalElement = document.getElementById('overlays');
+const portalElement = document.getElementById("overlays");
 
 class CartOverlay extends Component {
   constructor(props) {
@@ -43,9 +43,9 @@ class CartOverlay extends Component {
 
     setTimeout(() => {
       if (this.props.opened) {
-        window.addEventListener('click', this.props.onHide);
+        window.addEventListener("click", this.props.onHide);
       } else {
-        window.removeEventListener('click', this.props.onHide);
+        window.removeEventListener("click", this.props.onHide);
       }
     }, 0);
   }
@@ -93,12 +93,11 @@ class CartOverlay extends Component {
                         </div>
                         <div className="overlay-items-containter">
                           {this.props.cartItems.map((item) => {
+                            let i = generateKey(item.id);
+
                             return (
                               <div>
-                                <CartItemOverlay
-                                  key={generateKey(item.id)}
-                                  cartItem={item}
-                                />
+                                <CartItemOverlay key={i} cartItem={item} />
                               </div>
                             );
                           })}
