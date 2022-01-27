@@ -93,6 +93,7 @@ class CartOverlay extends Component {
                         </div>
                         <div className="overlay-items-containter">
                           {this.props.cartItems.map((item) => {
+                            console.log(generateKey(item.id));
                             return (
                               <div>
                                 <CartItemOverlay

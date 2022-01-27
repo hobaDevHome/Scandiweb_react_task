@@ -25,15 +25,7 @@ const portalElement = document.getElementById('productAttirbutes');
 class ProdcutsDetailsInPLP extends Component {
   componentDidMount() {
     document.body.classList.add('no-scroll');
-    // setTimeout(() => {
-    //   if (this.props.opened) {
-    //     window.addEventListener('click', this.props.onHide);
-    //   } else {
-    //     window.removeEventListener('click', this.props.onHide);
-    //   }
-    // }, 0);
   }
-
   componentWillUnmount() {
     document.body.classList.remove('no-scroll');
   }

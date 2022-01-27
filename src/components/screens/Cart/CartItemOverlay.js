@@ -55,10 +55,7 @@ class CartItemOverlay extends Component {
               this.itemAttributes.map((attr) => {
                 if (attr.name === 'Color') {
                   return (
-                    <div
-                      className="att-button-cart"
-                      key={generateKey(attr.name)}
-                    >
+                    <div className="att-button-cart" key={generateKey('test')}>
                       <div>
                         <p className="attr-name-cart-t">{attr.name} :</p>
                       </div>
@@ -89,11 +86,25 @@ class CartItemOverlay extends Component {
 
         <div className="overlay-item-images-quantity">
           <div className="overlay-quantity-div">
-            <OverlayAddRemove onClick={this.onAddItem}>+</OverlayAddRemove>
+            <OverlayAddRemove
+              onClick={(e) => {
+                e.stopPropagation();
+                this.onAddItem();
+              }}
+            >
+              +
+            </OverlayAddRemove>
             <div className="overlay-quantity">
               {this.props.cartItem.quantity}
             </div>
-            <OverlayAddRemove onClick={this.onDeleteItem}>-</OverlayAddRemove>
+            <OverlayAddRemove
+              onClick={(e) => {
+                e.stopPropagation();
+                this.onDeleteItem();
+              }}
+            >
+              -
+            </OverlayAddRemove>
           </div>
           <div className="overlay-item-pic">
             <img src={this.props.cartItem.gallery[0]} alt="" />

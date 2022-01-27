@@ -104,7 +104,6 @@ class Header extends Component {
     }
   }
   render() {
-    // console.log(this.state.showCartModal);
     if (this.props.query !== undefined) {
       this.getCartItemsNo();
 
@@ -125,7 +124,7 @@ class Header extends Component {
           <ul>
             {this.categoryNames.map((cat) => {
               return (
-                <Link to="/" key={cat.length} key={generateKey(cat.length)}>
+                <Link to="/" key={generateKey(cat.length)}>
                   <li
                     className={`cat-link ${
                       this.props.category === cat ? 'acitve-cat' : ''
