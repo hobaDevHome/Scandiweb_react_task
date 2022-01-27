@@ -39,8 +39,6 @@ class CartOverlay extends Component {
   }
 
   componentDidMount() {
-    // document.body.classList.add('no-scroll');
-
     setTimeout(() => {
       if (this.props.opened) {
         window.addEventListener('click', this.props.onHide);
@@ -48,10 +46,6 @@ class CartOverlay extends Component {
         window.removeEventListener('click', this.props.onHide);
       }
     }, 0);
-  }
-
-  componentWillUnmount() {
-    // document.body.classList.remove('no-scroll');
   }
 
   getTotalCartItems() {
@@ -87,13 +81,12 @@ class CartOverlay extends Component {
                 <div className="header-row-clone">
                   <div className="cart-modal-content">
                     {this.props.cartItems.length > 0 ? (
-                      <div>
+                      <div className="scrollable-cont">
                         <div className="overlay-item-titles">
-                          My Bag. {this.itemsNo} items
+                          My Bag : {this.itemsNo} items
                         </div>
                         <div className="overlay-items-containter">
                           {this.props.cartItems.map((item) => {
-                            console.log(generateKey(item.id));
                             return (
                               <div>
                                 <CartItemOverlay

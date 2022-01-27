@@ -55,7 +55,6 @@ export const changeAttrubute = (id, attribute, name) => {
   };
 };
 export const changeCategory = (newCat) => {
-  // console.log(newCat);
   return {
     type: 'change_cat',
     payload: newCat,

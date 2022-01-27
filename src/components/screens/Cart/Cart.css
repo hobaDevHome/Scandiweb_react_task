@@ -87,17 +87,10 @@
   display: flex;
   align-self: flex-end;
   margin-right: 5px;
-  /* padding-right: 10px; */
+
   overflow: hidden;
   margin-left: 10px;
-  /* border: 1px solid green; */
 }
-/* .cart-item-pic-div img {
-  height: 185px;
-  max-width: 140px;
-  overflow: hidden;
-  margin-left: 5px;
-} */
 
 .cart-single-image {
   object-fit: contain;

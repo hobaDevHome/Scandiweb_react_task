@@ -10,7 +10,7 @@ html {
   align-items: center;
   height: 80px;
   position: relative;
-  /* border: 1px solid purple; */
+
   background-color: transparent;
 }
 .links-section {
@@ -132,7 +132,6 @@ html {
 
 .currency-icons-section {
   display: flex;
-  /* flex-direction: column; */
 }
 
 .currbackdrop {
@@ -149,7 +148,6 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* border: 1px solid red; */
 }
 
 .header-clone {
@@ -159,13 +157,12 @@ html {
   width: 100%;
   height: 100vh;
 
-  /* background-color: blueviolet; */
   z-index: 50;
 }
 
 .header-row-clone {
   position: relative;
-  /* z-index: 405; */
+
   max-width: 1200px;
   margin: 0 auto;
   height: 80px;

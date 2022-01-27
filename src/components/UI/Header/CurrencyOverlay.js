@@ -39,7 +39,6 @@ class CurrencytOverlay extends Component {
                 <div className="header-row-clone">
                   <div className="currency-list">
                     {this.props.currNames.map((cur) => {
-                      console.log('called from modal');
                       return (
                         <div
                           key={generateKey(cur)}

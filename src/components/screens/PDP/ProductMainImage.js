@@ -3,7 +3,6 @@ import './ProductMainImage.css';
 
 export default class ProdcutMainImage extends Component {
   render() {
-    // console.log(this.props.inStock);
     return (
       <div
         className={

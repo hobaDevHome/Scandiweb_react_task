@@ -18,27 +18,11 @@ class App extends Component {
     this.state = { categories: undefined, selectedProducts: undefined };
   }
 
-  // componentDidMount() {
-  //   document.body.style.overflow = 'hidden';
-  // }
-
-  // componentWillUnmount() {
-  //   document.body.style.overflow = 'unset';
-  // }
-
   render() {
-    // if (this.state.categories === undefined) {
-    //   return <div>Loading</div>;
-    // }
-
     return (
       <div className="app-container">
         <div className="App">
-          <Header
-            ifActive={this.state.active}
-            setAtive={this.setActive}
-            // categories={this.state.categories}
-          />
+          <Header ifActive={this.state.active} setAtive={this.setActive} />
 
           <Switch>
             <Route exact path="/">

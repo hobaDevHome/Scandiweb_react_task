@@ -55,7 +55,10 @@ class CartItemOverlay extends Component {
               this.itemAttributes.map((attr) => {
                 if (attr.name === 'Color') {
                   return (
-                    <div className="att-button-cart" key={generateKey('test')}>
+                    <div
+                      className="att-button-cart"
+                      key={generateKey(attr.attribute.value)}
+                    >
                       <div>
                         <p className="attr-name-cart-t">{attr.name} :</p>
                       </div>
